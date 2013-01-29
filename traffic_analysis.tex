@@ -85,4 +85,69 @@ What language does the client request to the server?
 Is it possible to find which are the URLs visited by the user?
 At which layer is this information available?
 
-The default destination port for 
+The default destination port for web is 80.
+What is the source port of the get requests?
+Write the source number for different connections.
+At which layer can you find this information?
+
+Find a DNS query/response pair.
+What is the function of DNS?
+
+Use the option ``Analyze -> Follow TCP Stream'' to analyze a TCP session.
+Identify the three-way-handshake and the session tear-down.
+
+If http is used, it is possible to observe the contents of the web using WireShark?
+
+Now use HTTPs.
+Is it still possible to read the information that is being transmitted?
+(Look for SSL packets).
+
+Identify a SSL handshake in WireShark.
+
+\section{ICMP-ping packet capture (Homework)}
+
+Close all the applications that use the network and ping four different webs in four different continents.
+Analyze the results.
+
+What protocols are being use?
+Draw a frame and explain how the different packet are encapsulated in each other.
+
+How many ping messages are transmitted by default?
+
+Prepare a table with the source, destination, and average packet delay  of the four different ping experiments.
+
+What packet length is being used?
+
+At which layers can we find source and destination addresses?
+Which kind of addresses?
+
+Are the ping packets sent uniformly in time?
+What about the answers?
+What are the reasons for different inter-arrival times for the answers?
+
+What information is included in the data field of the ICMP packets?
+What about in the reply messages?
+
+\section{tcpdump}
+
+In this section we will use the tcpdump command in linux.
+Use ``man tcpdump'' to learn about the different parameters and options.
+With tcpdump it is also possible to filter the traffic according to the source or destination addresses, protocol, port number, etc.
+
+Open a terminal and launch a tcpdump capture.
+Finish the capture using ``Ctrl-C''.
+What is the information provided by tcpdump and which format is being used?
+To which level does the information belong?
+(Remember that you can redirect the output using \$ tcmpdump > my-file ).
+
+The first line of tcpdump specifies which interface is being used and it can be changed using the -i option.
+What interface are you using?
+
+Describe the information provided for the ARP protocol (tcpdump arp).
+
+Execute the same command again using the -e flag.
+Whats the difference with respect to the previous execution?
+Check the tcpdump manual if necessary.
+
+Try new captures related to this assignment, such as ``tcpdump stp'', ``tcpdump http'', ``tcpdump http'', ``tcpdump udp'', ``tcpdump ssl'', ``tcpdump ip'', etc.
+Try also to make captures for a specific IP address.
