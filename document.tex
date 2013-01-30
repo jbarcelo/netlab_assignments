@@ -1,21 +1,45 @@
 \documentclass[12pt]{book}
 \usepackage[width=4.375in, height=7.0in, top=1.0in, papersize={5.5in,8.5in}]{geometry}
-%\usepackage[pdftex]{graphicx}
+
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{tipa}
-%for using the euro sign
 \usepackage{eurosym}
 \usepackage{graphicx}
-%\usepackage{txfonts}
-\usepackage{textcomp}
-%\usepackage{amsthm}
-%\usepackage{array}
-%\usepackage{xy}
 \usepackage{fancyhdr}
-
+\usepackage{xcolor}
+\usepackage{ifpdf}
+\ifpdf
+\usepackage[protrusion=true,expansion=true]{microtype}
 \usepackage{hyperref}
-\usepackage{color}
+\fi
+
+\definecolor{hyperrefcite}{RGB}{0,51,153}
+\definecolor{hyperrefurl}{RGB}{153,51,51}
+
+\ifpdf
+\hypersetup{
+    bookmarks=true,
+    unicode=false,
+    pdftoolbar=true,
+    pdfmenubar=true,
+    pdffitwindow=false,
+    pdfstartview={FitV},
+    pdfpagelayout={SinglePage},
+    pdftitle={Network Laboratory},
+    pdfauthor={Ruizhi Liao, Alex Bikfalvi, Jaume Barcelo},
+    pdfsubject={Practice},
+    pdfcreator={LaTeX2e},
+    pdfproducer={Universitat Pompeu Fabra},
+    pdfkeywords={probabilities}{availability}{},
+    pdfnewwindow=true,
+    colorlinks=true,
+    linkcolor=hyperrefcite,
+    citecolor=hyperrefcite,
+    filecolor=black,
+    urlcolor=hyperrefurl
+}
+\fi
 
 \pagestyle{fancy}
 \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
@@ -33,30 +57,24 @@
 \fancyhead{}
 \renewcommand{\headrulewidth}{0pt}
 }
-%
-%\parindent 0in
+
 \parskip 0.05in
-%
+
 \begin{document}
+
 \frontmatter
 \pagestyle{empty}
-%\pagenumbering{}
-% Set book title
+
 \title{\textbf{Network Laboratory}}
-% Include Author name and Copyright holder name
 \author{Ruizhi Liao, Alex Bikfalvi, Jaume Barcelo}
-% 1st page for the Title
-%-------------------------------------------------------------------------------
 \maketitle
-%
+
 \tableofcontents
-%
+
 \mainmatter
-%
+
 \input{about.tex}
 \input{traffic_analysis.tex}
 \backmatter
-%
-%\bibliographystyle{plain}
-%\bibliography{my_bib}
+
 \end{document}
