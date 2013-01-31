@@ -2,7 +2,7 @@
 
 \section{Home exercise}
 
-Connect to the web configuration interface of your home access point and find out:
+Connect to the web configuration interface of your home access point and find:
 \begin{itemize}
 \item The name of the wireless network (SSID or ESSID).
 \item Frequency channel.
@@ -17,33 +17,32 @@ You can use Netstumbler or the command ``sudo iwlist wlan1 scan''.
 \section{Equipment}
 
 Each group requires at least two PCs.
-If possible, three PCs is better than two.
-Boot one of the PCs in Windows and the other in Linux.
+If possible, three PCs are better than two.
+Boot one of the PCs in Windows and the other one in Linux.
 The hardware you are going to use is the Cisco Aironet 1200 access point.
-The user guide can be downloaded here: \url{http://www.jaumebarcelo.info/teaching/lxs/wlan/WLAN_manual.pdf}
+The user guide can be downloaded here: \ifpdf \url{http://www.jaumebarcelo.info/teaching/lxs/wlan/WLAN_manual.pdf} \fi
 The firmware of the access point is CISCO IOS Version 12.3(8)JA2.
 
-Install a FTP server in one of the computers (e.g., Filezilla in windows or yum install vsftpd in linux).
-The web browser can be used as an FTP client.
+Install an FTP server in one of the computers (e.g., Filezilla in windows or yum install vsftpd in linux).
+You may use a web browser as an FTP client.
 
 If you decide to use Filezilla, connect locally from the same PC using the loopback interface 127.0.0.1 .
 Create a user (user:test/pass:test) and share a folder with large files.
 
 Remove the proxy configuration of the client computer.
 
-\section{Basic WLAN configuration}
+\section{Basic WLAN Configuration}
 
 Interconnect the windows box and the linux box using a cross-over cable.
 Check layer-2 connectivity using the LED or the mii-tool command in Linux.
-Check layer-3 connectivity and measure round-trip-time using ping. 
+Check layer-3 connectivity and measure round-trip-time using ping.
 Configure the interfaces if needed.
 Estimate the available bandwidth using FTP transfer or iperf.
 Change the speed to 10 Mbps and estimate the bandwidth again.
 
-
 \emph{Is the maximum transmission speed reached? Why?}
 
-\section{WLAN basic configuration}
+\section{WLAN Basic Configuration}
 
 WLANs can be used as an access point to LANs.
 They can also be used to interconnect to LANs using WDS.
@@ -58,21 +57,21 @@ SSID: grupXX.
 Channel: default.
 Transmit power: default.
 
-Make sure that the radio interface is up. 
+Make sure that the radio interface is up.
 Indicate what are the security options available.
 Try different settings and configurations and then connect the AP to the laboratory switch.
 
 Connect the WiFi interface to the Linux box and connect the computer to the AP that you have just configured.
-Disable the wired interface to make sure that you are using the wireless interface.
-Check that you have network connectivity and use the ``ifconfig'' command to look at the interface configuration.
+Disable the wired interface in order to make sure that you are using the wireless interface.
+Check that you have network connectivity and use the \texttt{ifconfig} command to look at the interface configuration.
 
 If you have network connectivity, you should be able to ping the other computers of your group (the ones with wired connection) and also be able to connect to the Internet.
 
-Take measures from the wireless computer to the wired one and the other way around.
+Perform measurements from the wireless computer to the wired one and the other way around.
 Measure the round-trip-time using ping.
 Also the throughput using FTP to transfer a large file.
 \emph{Can you reach the PHY rate maximum throughput? Why?}.
-\emph{Do you observe the same measures for the uplink and downlink? Why?}
+\emph{Do you observe the same values for the uplink and downlink? Why?}
 Write down any other observations you find interesting.
 
 Use either ``Netstumbler'' or ``iwlist'' to detect the available wireless networks.
@@ -92,11 +91,11 @@ Same SSID, same network mask and same security setting.
 
 In the AP-root, go to ``Network Interfaces'', ''Radio 802.11g'', and select ''Access Point (Fallback to radio shutdown)''.
 
-In the AP-standby select ``Services'', ``Hot Stan-by''.
+In the AP-standby select ``Services'', ``Hot Standby''.
 Click enable and specify the MAC address that the AP will be monitoring (the radio interface of the root-AP).
 If the configuration is correct, you should be able to see the status that will appear below on the screen.
 
-Draw an sketch of all the involved network devices and connections and test that it actually works.
+Draw a sketch of all the involved network devices and connections and test that it actually works.
 To test that it is working, disable the radio interface of AP-root (``Network interfaces'',``802.11g'',``settings'').
 After the time-out expires, the AP-standby takes over with the same SSID and security settings.
 
@@ -117,7 +116,7 @@ Check the information that appears in the ``Home'' page of the APs to determine 
 After you have verified that the client is connected to the AP-root device, disconnect the ethernet cable of AP-root.
 \emph{What happens? Does the AP-standby take over? Why?}
 
-\section{Configuring an AP as a repeater}
+\section{Configuring an AP as a Repeater}
 
 A repeater AP is not connected to the wired LAN.
 It is situated within the coverage range of another AP to extend the covered area.
@@ -129,7 +128,7 @@ Configure the SSID and at the end of the page select ``Set Infrastructure SSID''
 In the ``express setup'' select ``Repeater'' in the option ``role in radio network''.
 
 At this point, your home screen should show the configuration of your network and the repeater, and the clients connected to each AP.
-Your client is probably connected to the AP-root. 
+Your client is probably connected to the AP-root.
 Click on ``clients'' and you will see the list of associated clients.
 You can de-associate a particular client if you select it.
 The client will automatically re-connect to the repeater.
