@@ -53,7 +53,7 @@ This can be either a direct connection or a connection using the patch panel.
 You will find the AP's IP on a post-it, and the administrator user is ``Cisco'' and the password field must be left blank.
 
 Use the express set-up to configure the AP.
-AP Name: LABXARXES_GRUP_XX.
+AP Name: LABXARXES\_GRUP\_XX.
 SSID: grupXX.
 Channel: default.
 Transmit power: default.
@@ -69,6 +69,77 @@ Check that you have network connectivity and use the ``ifconfig'' command to loo
 If you have network connectivity, you should be able to ping the other computers of your group (the ones with wired connection) and also be able to connect to the Internet.
 
 Take measures from the wireless computer to the wired one and the other way around.
+Measure the round-trip-time using ping.
+Also the throughput using FTP to transfer a large file.
+\emph{Can you reach the PHY rate maximum throughput? Why?}.
+\emph{Do you observe the same measures for the uplink and downlink? Why?}
+Write down any other observations you find interesting.
+
+Use either ``Netstumbler'' or ``iwlist'' to detect the available wireless networks.
+Write down their configuration.
+
+Draw a sketch of the computers, access point and other networking devices in your setting.
+
+\section{Hot-Standby}
+
+The hot-standby is a feature to offer high availability.
+A backup AP (AP-standby) takes over if the primary AP (AP-root) fails.
+
+Collaborate with another group.
+One of the groups will configure the AP-root and the other the AP-standby.
+Make sure that you replicate the same configuration (with the exception of the IP address) in both devices.
+Same SSID, same network mask and same security setting.
+
+In the AP-root, go to ``Network Interfaces'', ''Radio 802.11g'', and select ''Access Point (Fallback to radio shutdown)''.
+
+In the AP-standby select ``Services'', ``Hot Stan-by''.
+Click enable and specify the MAC address that the AP will be monitoring (the radio interface of the root-AP).
+If the configuration is correct, you should be able to see the status that will appear below on the screen.
+
+Draw an sketch of all the involved network devices and connections and test that it actually works.
+To test that it is working, disable the radio interface of AP-root (``Network interfaces'',``802.11g'',``settings'').
+After the time-out expires, the AP-standby takes over with the same SSID and security settings.
+
+To gather more information about what is going on, you can run ping tests while the takeover takes place.
+You can also check the logs in the ``Home'' page of the AP configuration interface.
+Finally, you can check the log of the Filezilla server.
+
+\emph{How long does it take for the PC to recover the connection after AP-root's radio is disabled?
+Will the user notice that the connection switches from one AP to the other? How?
+Do you think that the default time-out setting are appropriate? Why?
+How is the network affected if we change this parameters?
+}
+
+Now re-enable the radio interface of AP-root.
+Then, at the AP-standby, click ``Restart''.
+Check the information that appears in the ``Home'' page of the APs to determine to which AP is the client connected.
+
+After you have verified that the client is connected to the AP-root device, disconnect the ethernet cable of AP-root.
+\emph{What happens? Does the AP-standby take over? Why?}
+
+\section{Configuring an AP as a repeater}
+
+A repeater AP is not connected to the wired LAN.
+It is situated within the coverage range of another AP to extend the covered area.
+Just in the previous exercise, both APs must share the same configuration (with the exception of the IP address).
+
+In the AP-root, select the option ``role in radio network'' and then choose ``access point''.
+In the AP-repeater (former AP-standby) disable the hot-standby option.
+Configure the SSID and at the end of the page select ``Set Infrastructure SSID''.
+In the ``express setup'' select ``Repeater'' in the option ``role in radio network''.
+
+At this point, your home screen should show the configuration of your network and the repeater, and the clients connected to each AP.
+Your client is probably connected to the AP-root. 
+Click on ``clients'' and you will see the list of associated clients.
+You can de-associate a particular client if you select it.
+The client will automatically re-connect to the repeater.
+
+To verify that is working, repeat the round-trip-time and bandwidth tests that you have performed before.
+Do the tests while connected on AP-root and AP-repeater.
+\emph{Can you observe any difference?}
+Repeat the ping tests while a file is being transferred.
+
+
 
 
 
