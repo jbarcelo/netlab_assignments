@@ -18,27 +18,29 @@ You can use Netstumbler or the command ``sudo iwlist wlan1 scan''.
 
 Each group requires at least two PCs.
 If possible, three PCs are better than two.
-Boot one of the PCs in Windows and the other one in Linux.
+Boot one PC in Windows and the other one in Linux.
 The hardware you are going to use is the Cisco Aironet 1200 access point.
 The user guide can be downloaded here: \ifpdf \url{http://www.jaumebarcelo.info/teaching/lxs/wlan/WLAN_manual.pdf} \fi
 The firmware of the access point is CISCO IOS Version 12.3(8)JA2.
 
-Install an FTP server in one of the computers (e.g., Filezilla in windows or yum install vsftpd in linux).
-You may use a web browser as an FTP client.
+Install an FTP server in one of the computers (e.g., \emph{Filezilla} in Windows or \emph{vsftpd} in Linux). You may use a web browser as an FTP client.
 
-If you decide to use Filezilla, connect locally from the same PC using the loopback interface 127.0.0.1 .
-Create a user (user:test/pass:test) and share a folder with large files.
+\begin{itemize}
 
-Remove the proxy configuration of the client computer.
+\item[On Windows] Install and open Filezilla, and connect locally from the same PC using the loopback interface 127.0.0.1. Create a new user (username \texttt{test} and password \texttt{test}) and share a local folder with several large files. Do not forget to remove the proxy configuration, or select not to use a proxy server for local addresses.
+    
+\item[On Linux] Install \emph{vsftpd} with the command line \texttt{sudo yum install vsftpd}. Once installed, you can find and modify the FTP server configuration in the file \texttt{/etc/vsftpd/vsftpd.conf}. If you need to change the configuration, do not forget to restart the FTP server with the command \texttt{sudo services vsftpd restart}. The server allows by default anonymous access, and therefore you do not neet to create a new user. The default shared folder is \texttt{/var/ftp}.
 
-\section{Basic WLAN Configuration}
+\end{itemize}
 
-Interconnect the windows box and the linux box using a cross-over cable.
-Check layer-2 connectivity using the LED or the mii-tool command in Linux.
+\section{Basic LAN Configuration}
+
+Interconnect the windows box and the Linux box using a cross-over cable. --- ask Jaume
+Check layer-2 connectivity using the LED or the \texttt{mii} command in Linux.
 Check layer-3 connectivity and measure round-trip-time using ping.
 Configure the interfaces if needed.
 Estimate the available bandwidth using FTP transfer or iperf.
-Change the speed to 10 Mbps and estimate the bandwidth again.
+Change the speed to 10 Mbps (full duplex) and estimate the bandwidth again.
 
 \emph{Is the maximum transmission speed reached? Why?}
 
@@ -49,7 +51,7 @@ They can also be used to interconnect to LANs using WDS.
 
 First connect the AP to the PC using Windows.
 This can be either a direct connection or a connection using the patch panel.
-You will find the AP's IP on a post-it, and the administrator user is ``Cisco'' and the password field must be left blank.
+You will find the AP's IP on a post-it, and the administrator user is \texttt{Cisco} and the password field is \texttt{Cisco}.
 
 Use the express set-up to configure the AP.
 AP Name: LABXARXES\_GRUP\_XX.
@@ -63,7 +65,7 @@ Try different settings and configurations and then connect the AP to the laborat
 
 Connect the WiFi interface to the Linux box and connect the computer to the AP that you have just configured.
 Disable the wired interface in order to make sure that you are using the wireless interface.
-Check that you have network connectivity and use the \texttt{ifconfig} command to look at the interface configuration.
+Check that you have network connectivity and use the \texttt{ifconfig} or \texttt{ipconfig} command to look at the interface configuration.
 
 If you have network connectivity, you should be able to ping the other computers of your group (the ones with wired connection) and also be able to connect to the Internet.
 
@@ -71,7 +73,7 @@ Perform measurements from the wireless computer to the wired one and the other w
 Measure the round-trip-time using ping.
 Also the throughput using FTP to transfer a large file.
 \emph{Can you reach the PHY rate maximum throughput? Why?}.
-\emph{Do you observe the same values for the uplink and downlink? Why?}
+\emph{Do you observe the same values for the uplink and downlink?}
 Write down any other observations you find interesting.
 
 Use either ``Netstumbler'' or ``iwlist'' to detect the available wireless networks.
