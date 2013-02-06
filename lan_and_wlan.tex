@@ -28,7 +28,7 @@ Install an FTP server in one of the computers (e.g., \emph{Filezilla} in Windows
 \begin{itemize}
 
 \item[On Windows] Install and open Filezilla, and connect locally from the same PC using the loopback interface 127.0.0.1. Create a new user (username \texttt{test} and password \texttt{test}) and share a local folder with several large files. Do not forget to remove the proxy configuration, or select not to use a proxy server for local addresses.
-    
+
 \item[On Linux] Install \emph{vsftpd} with the command line \texttt{sudo yum install vsftpd}. Once installed, you can find and modify the FTP server configuration in the file \texttt{/etc/vsftpd/vsftpd.conf}. If you need to change the configuration, do not forget to restart the FTP server with the command \texttt{sudo services vsftpd restart}. The server allows by default anonymous access, and therefore you do not neet to create a new user. The default shared folder is \texttt{/var/ftp}.
 
 \end{itemize}
@@ -131,7 +131,7 @@ Just in the previous exercise, both APs must share the same configuration (with 
 
 In the AP-root, select the option ``role in radio network'' and then choose ``access point''.
 In the AP-repeater (former AP-standby) disable the hot-standby option.
-Configure the SSID and at the end of the page select ``Set Infrastructure SSID''.
+Configure the SSID and at the end of the page "Security" $>$ "SSID Manager" select ``Set Infrastructure SSID'' (choose the current SSID).
 In the ``express setup'' select ``Repeater'' in the option ``role in radio network''.
 
 At this point, your home screen should show the configuration of your network and the repeater, and the clients connected to each AP.
