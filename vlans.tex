@@ -61,12 +61,153 @@ For each of the interfaces identify the ID, the name, the status, the assigned p
 Include this information in the report.
 
 Enter the config mode and try to delete the default VLAN: 
-\texttt{Switch-B(config)#no vlan 1}.
+\texttt{Switch-B(config)\#no vlan 1}.
 \emph{What happens?}
 
 In the config mode, use the ``?'' to find which commands can be used in this mode.
-Use the \texttt{vlan <id>} to create a new command.
+Use the \texttt{vlan <id>} to create a new VLAN.
+The type is Ethernet and the id must be set according to the sketch on the blackboard.
+Include the exact command that you used and the reply message of the router in your report.
 
+Verify the new configuration using the command \texttt{show vlan} in the privileged EXEC mode.
+\emph{What is the default name of the new VLAN?}
+
+Delete the VLAN that you have just created using \texttt{no vlan <id>}, verify that it has been deleted and created again.
+Include in your report the sequence of commands that you used and the output of the switch after each command.
+You can use the command \texttt{show vlan brief}.
+
+In the global configuration mode, use the command \texttt{vlan <id>} to configure the VLAN that you have created.
+In the VLAN configuration mode use the name command to change the name of the VLAN \texttt{Switch-B(config-vlan)\#name test}.
+
+Name your VLAN vlanXX-GroupX-switchX.
+Verify the changes.
+Include in your report the exact commands that you used and the output of the switch.
+\emph{Which other parameters can be changed in the vlan configuration mode?}
+
+In the privileged EXEC mode, take a look at the running configuration and compare it with the start-up configuration.
+\emph{Are they equal?}
+Find which is the command that is needed to copy the running configuration to the start-up configuration.
+You will need this command when you make changes to the configuration that you want to save.
+
+\section{Static assignment of ports to a VLAN}
+\label{sec:static}
+
+After having created one or more VLANs, the next step is to assign ports to the VLANs.
+The simplest assignment is the ``static'' assignment.
+
+Go to the global configuration mode.
+Find out which are the ports that you want to modify (e.g., 0/1, 0/2, etc.).
+Change the ports to which your two auxiliary PCs are connected.
+Make sure that you do not change the port that you are using for the telnet connection.
+
+To make the changes, you first have to go into to interface configuration mode.
+Now check the options of the \texttt{switchport} command and use the switch user manual if you require extra information.
+
+After making the changes go back to the privileged execution mode.
+Verify which are the changes that you have made comparing the running config to the start-up config.
+Save your changes.
+
+Use the \texttt{ping} command to test the connectivity between the two auxiliary PCs.
+Then try the connectivity between the configuration PC (the one with the telnet connection) to the auxiliary PCs.
+Finally, try the connectivity between your PCs and other groups PCs.
+Explain the results and the conclusions of the experiments.
+
+Try to complete Table \ref{tab:connectivity}.
+
+\begin{table}[!t]
+%% increase table row spacing, adjust to taste
+\renewcommand{\arraystretch}{1.3}
+% if using array.sty, it might be a good idea to tweak the value of
+%\extrarowheight as needed to properly center the text within the cells
+\caption{Command modes}
+\label{tab:connectivity}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+& Same Switch & Different Switch\\
+\hline
+Same VLAN & ok/ko & ok/ko \\
+\hline
+Different VLAN & ok/ko & ok/ko \\
+\hline
+\end{tabular}
+\end{table}
+
+\emph{Which devices are reached if you use a broadcast packet?}
+\emph{How can a packet travel from one VLAN to a different VLAN?}
+
+\section{Trunk ports}
+
+A trunk port can carry traffic of different VLANs between two switches.
+You will find which are the trunking ports on the blackboard.
+In the privileged EXEC mode use the command \texttt{show interfaces <trunk interface> switchport}.
+Write down the following parameters:
+\begin{itemize}
+\item Administrative mode
+\item Operational mode
+\item Administrative trunking encapsulation
+\item Trunking native mode
+\item Trunking VLAN enabled
+\item Trunking VLAN active
+\end{itemize}
+
+Use the \texttt{show vlan} command to check the status of the ports.
+\emph{Where can you find the trunk ports?}
+
+\section{Defining the VLANs carried by a given trunk port}
+
+By default, a trunk port carries traffic of all VLANs.
+It is possible to configure which VLANs are allowed in a given trunk port.
+
+From the privileged EXEC mode, check which are the VLANs in the trunk port of your switch.
+\emph{Which command do you use?}
+
+In the global configuration mode, enter into the configuration of the trunk port.
+Specify the command that you use.
+
+Now we are going to configure the trunk port to allow the traffic of our VLAN.
+Check the options of the command \texttt{switchport trunk allowed vlan [remove,add] valn-list}.
+The parameter \texttt{vlan-list} is a list of VLAN identifiers (or names) separated by a  hyphen (or a comma, respectively).
+
+Exit the configuration mode and move back to the privileged EXEC mode.
+Use the commands \texttt{show interface interface-id status} or \texttt{show interface status} to see the configuration of one or all the interfaces.
+\emph{What are the results?}.
+
+Try also the \texttt{show interfaces trunk} command and write down the results.
+
+\section{Connectivity test}
+
+Verify whether the following connections are possible and explain why.
+\begin{itemize}
+\item Ping a PC of the same VLAN connected to a different switch.
+\item Ping a  switch of a different VLAN.
+\item Perform additional tests.
+\end{itemize}
+
+Compare the results that you obtain now with the results obtained in Section \ref{sec:static}.
+Fill in the connectivity table again.
+
+\emph{Are there any differences? Why}
+
+Change the IP address of one of your auxiliary PCs to an address belonging to the range of the other VLAN.
+Perform connectivity tests again.
+\emph{What happens? Why?}
+
+\section{Network topology}
+
+Draw the network topology, both from the physical point of view and the logical point of view.
+
+\section{Preparing the report}
+
+These are aspects that you may want to cover in your report:
+\begin{itemize}
+\item What is a VLAN and what is used for?
+\item What are the differences among the different modes of the switch?
+\item Relation between the active VLANs and the different ports.
+\item Differences between access ports and trunk ports.
+\item Connectivity in the different situations.
+\item Remote management using telnet and VLAN 1.
+\end{itemize}
 
 
 
