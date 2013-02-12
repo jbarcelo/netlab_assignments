@@ -2,5 +2,81 @@
 
 In this lab assignment the switches will be configured to create different VLANs.
 The IPs of the switches are 192.168.1.110, 192.168.1.111 and 192.168.1.112.
+An sketch on the blackboard specifies the switch to which your PC is connected.
 Each VLAN has a unique identifier that takes values between 0 and 4094. 
 In this assignment we will use the identifiers 10 and 20.
+
+
+Each group will use three PCs.
+One of the PCs is for managing the switch and needs an IP address of the same range as the IP of the switch (check the blackboard for the details).
+The IPs of the other two switches must belong to the range of the VLAN that you are going to use (192.168.\{10,20\}.XX).
+
+\section{Creation of a VLAN}
+
+\begin{table}[!t]
+%% increase table row spacing, adjust to taste
+\renewcommand{\arraystretch}{1.3}
+% if using array.sty, it might be a good idea to tweak the value of
+%\extrarowheight as needed to properly center the text within the cells
+\caption{Command modes}
+\label{tab:modes}
+\centering
+\begin{tabular}{|c|p{5cm}|c|}
+\hline
+Command Mode & Access & Prompt\\
+\hline
+User EXEC & Connecting to the switch & Switch> \\
+Privileged EXEC & Using the enable command in the ``User EXEC'' mode & Switch\# \\
+Global Configuration & Using the ``configure terminal'' command in the ``Privileged EXEC'' mode& Switch(config)\# \\
+        Interface Configuration & Using the ``interface $<$interface-name$>$'' command in the ``Global Configuration'' mode specifying the interface that we want to configure, e.g. FastEthernet0/4& Switch(config-if)\# \\
+\hline
+\end{tabular}
+\end{table}
+
+
+Table \ref{tab:modes} describes the four possible modes of interaction with the switch.
+The first one offers limited information about the switch.
+It is possible to find more detailed information in the second (privileged EXEC) mode.
+The third mode allows the configuration of general aspects of the switch while and the last one is to configure a specific interface.
+The commands available in each of the modes are different.
+Make sure you are in the right mode before issuing a command.
+It is possible to move to the previous mode using the ``exit'' command.
+
+Use a telnet client to connect to the switch and observe which is the initial mode.
+You can use the command ``?'' to obtain information about the possible commands in a given mode.
+Additionally, you can also follow a partial command by ``?'' to obtain more information about how to use the command and the required parameters.
+For example ``ip address ?'' would give you information about the parameters you could use after address.
+
+Enter the mode \emph{privileged} EXEC and use the command \texttt{show running config} to see the current configuration of the switch.
+Answer the following questions.
+\emph{How many VLANs can you observe? (Note that this is not necessarily the number of VLANs in the switch).}
+\emph{How many Fast Ethernet interfaces are available?}
+\emph{What is the VLAN1 administrative address?}
+\emph{What is the status of VLAN1?}
+
+There exists a \emph{default} VLAN which has the number 1.
+Use the command \texttt{show vlan}.
+\emph{How many VLANs are there in the switch?}
+For each of the interfaces identify the ID, the name, the status, the assigned ports and the type.
+Include this information in the report.
+
+Enter the config mode and try to delete the default VLAN: 
+\texttt{Switch-B(config)#no vlan 1}.
+\emph{What happens?}
+
+In the config mode, use the ``?'' to find which commands can be used in this mode.
+Use the \texttt{vlan <id>} to create a new command.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
