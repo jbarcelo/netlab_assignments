@@ -3,13 +3,15 @@
 In this lab assignment the switches will be configured to create different VLANs.
 The IPs of the switches are 192.168.1.110, 192.168.1.111 and 192.168.1.112.
 An sketch on the blackboard specifies the switch to which your PC is connected.
-Each VLAN has a unique identifier that takes values between 0 and 4094. 
+Each VLAN has a unique identifier that takes values between 0 and 4094.
 In this assignment we will use the identifiers 10 and 20.
 
 
 Each group will use three PCs.
 One of the PCs is for managing the switch and needs an IP address of the same range as the IP of the switch (check the blackboard for the details).
 The IPs of the other two switches must belong to the range of the VLAN that you are going to use (192.168.\{10,20\}.XX).
+
+%% Command to view the serial COM ports: "compmgmt.msc"
 
 \section{Creation of a VLAN}
 
@@ -47,20 +49,20 @@ You can use the command ``?'' to obtain information about the possible commands 
 Additionally, you can also follow a partial command by ``?'' to obtain more information about how to use the command and the required parameters.
 For example ``ip address ?'' would give you information about the parameters you could use after address.
 
-Enter the mode \emph{privileged} EXEC and use the command \texttt{show running config} to see the current configuration of the switch.
+Enter the mode \emph{privileged} EXEC and use the command \texttt{show running-config} to see the current configuration of the switch.
 Answer the following questions.
 \emph{How many VLANs can you observe? (Note that this is not necessarily the number of VLANs in the switch).}
 \emph{How many Fast Ethernet interfaces are available?}
 \emph{What is the VLAN1 administrative address?}
-\emph{What is the status of VLAN1?}
 
 There exists a \emph{default} VLAN which has the number 1.
-Use the command \texttt{show vlan}.
+Use the command \texttt{show vlan} or \texttt{show vlan id \textless id \textgreater}.
+\emph{What is the status of VLAN1?}
 \emph{How many VLANs are there in the switch?}
-For each of the interfaces identify the ID, the name, the status, the assigned ports and the type.
+For each of the VLANs identify the ID, the name, the status, the assigned ports and the type.
 Include this information in the report.
 
-Enter the config mode and try to delete the default VLAN: 
+Enter the config mode and try to delete the default VLAN:
 \texttt{Switch-B(config)\#no vlan 1}.
 \emph{What happens?}
 
@@ -166,7 +168,7 @@ In the global configuration mode, enter into the configuration of the trunk port
 Specify the command that you use.
 
 Now we are going to configure the trunk port to allow the traffic of our VLAN.
-Check the options of the command \texttt{switchport trunk allowed vlan [remove,add] valn-list}.
+Check the options of the command \texttt{switchport trunk allowed vlan [remove,add] vlan-list}.
 The parameter \texttt{vlan-list} is a list of VLAN identifiers (or names) separated by a  hyphen (or a comma, respectively).
 
 Exit the configuration mode and move back to the privileged EXEC mode.
