@@ -12,7 +12,9 @@
 \usepackage{fullpage}
 \ifpdf
 \usepackage[protrusion=true,expansion=true]{microtype}
+\usepackage{url}
 \usepackage{hyperref}
+\usepackage{breakurl}
 \fi
 
 \definecolor{hyperrefcite}{RGB}{0,51,153}
@@ -78,6 +80,10 @@
 \input{traffic_analysis.tex}
 \input{lan_and_wlan.tex}
 \input{vlans.tex}
-\backmatter
+\input{stp.tex}
 
+\backmatter
+\bibliographystyle{plain}
+\bibliography{rfc,my_bib}
+\end{document}
 \end{document}
