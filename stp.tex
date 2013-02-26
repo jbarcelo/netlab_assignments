@@ -1,114 +1,139 @@
-\chapter{Spanning Tree Protocol}
+\chapter{Spanning Tree Protocol (STP)}
 
 \section{Switch Manual}
 The user manual for the switch is available here:
 
-
-
 \url{http://www.jaumebarcelo.info/teaching/lxs/stp/manual_spantree.pdf}
-
 
 \section{Introduction}
 
-In this assignment you will configure the Spanning Tree Protocol.
-This protocol is used in Ethernet networks to establish which are the active link and therefore which is the path that data packets will follow.
-The switches that you will use are the same as the ones in the previous assignment.
-Have your VLAN report handy just in case you need to consult it to refresh which are the basic commands to interact with the switch.
+In this assignment you will configure the Spanning Tree Protocol (STP). This protocol is used in Ethernet networks to establish which are the active link and therefore which is the path that data packets will follow. The switches that you will use are the same as the ones in the previous assignment. Have your VLAN report handy just in case you need to consult it and to remember which are the basic commands to interact with the switch.
 
-\section{Theoretical construction of the tree}
-The switches are connected as depicted in Fig. \ref{fig:stp_topology}.
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.8\linewidth]{figures/stp_topology.eps}
-  \caption{Network topology}
-  \label{fig:stp_topology}
+\section{Theoretical Construction of the Tree}
+
+The switches are connected as illustrated in the figure \ref{fig:StpTopology}.
+
+\begin{figure}
+\centering
+\ifpdf
+\includegraphics[width=0.9\linewidth]{Figures/StpTopology.pdf}
+\else
+\includegraphics[width=0.9\linewidth]{Figures/StpTopology.eps}
+\fi
+\caption{The network topology used for the STP practical exercise.}
+\label{fig:StpTopology}
 \end{figure}
 
-Find the BridgeId of each switch.
-Compute which is the spanning tree and draw it.
-Which switch is the root?
-Which is the role of each port?
-Which ports are activated?
-
-Fill in Table \ref{tab:stp}.
-
-\begin{table}[!t]
-%% increase table row spacing, adjust to taste
-\renewcommand{\arraystretch}{1.3}
-% if using array.sty, it might be a good idea to tweak the value of
-%\extrarowheight as needed to properly center the text within the cells
-\caption{Spanning Tree}
-\label{tab:stp}
-\centering
-\begin{tabular}{|c|c|c|c|c|}
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions and Tasks}\\
+Find the \texttt{\color{blue}BridgeId} of each switch.\\
 \hline
- Switch ID & MAC & Port & Role & State\\
+Compute which is the spanning tree and draw it.\\
 \hline
- \multirow{3}{*}{Switch B}& & & & \\
-\cline{2-5}
- & & & & \\
-\cline{2-5}
- & & & & \\
+Which is the root switch?\\
 \hline
- $\cdots$ &  $\cdots$ &  $\cdots$ &  $\cdots$ & $\cdots$ \\
+Which is the role of each port?\\
+\hline
+Which are the activated ports?\\
 \hline
 \end{tabular}
+\end{center}
+
+Fill in the table \ref{tab:stp}.
+
+
+\begin{table}
+\sffamily\small
+\centering
+\begin{tabular}{>{\columncolor{tablegray}}ccccc}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}c}{Switch ID} & MAC & Port & Role &
+State \\
+Switch B & & & & \\
+\cline{2-5}
+& & & & \\
+\cline{2-5}
+& & & & \\
+\hline
+\vdots & & & & \\
+\hline
+\end{tabular}
+\caption{The spanning tree.}
+\label{tab:Stp}
 \end{table}
 
-\section{Practical verification}
+\section{Practical Verification}
 
-Now you will verify that the STP constructed by the switches is in fact the one you computed in the previous section.
+Now you will verify that the STP constructed by the switches is in fact the one you computed in the previous section. Use the VLAN 1 to connect to the five switches (B, C, D, E, F). It is recommended to open five simultaneous Telnet connections, one for each of the switch.
 
-Use the VLAN 1 to connect to the five switches (B, C, D, E, F).
-It is recommended to open five windows and telnet one of the switches in each of them.
+Each group will work in a different VLAN. The teacher will assign a VLAN to each group. Make sure that your VLAN is included in all the trunk ports. Each group will have a different STP, as the network creates a tree for each VLAN.
 
-Each group will work in a different VLAN.
-The teacher will assign a VLAN to each group.
-Make sure that your VLAN is included in all the trunk ports.
-Each group will have a different STP, as the network creates a tree for each VLAN.
+In each of the switches, enter the \emph{privileged EXEC} mode and use the command:
 
-In each of the switches, enter the privileged EXEC mode and use the command \texttt{show spanning-tree vlan XX}.
-What can you see?
+\begin{lstlisting}
+Switch# show spanning-tree vlan <id>
+\end{lstlisting}
+
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+What can you see?\\
+\hline
+\end{tabular}
+\end{center}
+
 Observe all the fields and make sure you understand them.
 
-Find the BridgeId of each switch.
+{\color{red}Find the BridgeId of each switch.
 Compute which is the spanning tree and draw it.
 Which switch is the root?
 Which is the role of each port?
 Which ports are activated?
 
-Fill in Table \ref{tab:stp} and compare practical results to the theoretical computation.
+Fill in the table \ref{tab:Stp} and compare practical results to the theoretical computation.}
 
-\section{Changing the STP configuration}
+\section{Changing the STP Configuration}
 
-Now that you are familiar with the STP parameter, you will make some changes that will result in the computation of a new tree.
-In the global configuration mode use the command \texttt{spanning-tree vlan XXX} (alternatively you can use \texttt{interface VLAN XXX} and \texttt{spanning-tree}) to see which parameters are susceptible to be configured.
-Use the question mark \texttt{?} to see all the available parameters and make sure you understand them.
+Now that you are familiar with the STP parameters, you will make some changes that will result in the computation of a new tree. In the \emph{global configuration} mode use the command:
 
-The exercise that we propose is to change the priority of one of the switches different from the root switch.
-The default behaviour is that the switch with the lowest MAC address is selected as a root.
-The reason is that, in the default configuration, the priority of all the switches is 32768.
-By changing the priority of one of the switches to a lower value, we can force that that particular switch becomes the root.
+\begin{lstlisting} 
+Switch(config)# spanning-tree vlan <id>
+\end{lstlisting}
+or, alternatively, you may use:
 
-Go ahead and change the root switch and observe the new configuration of the tree.
-Fill in Table \ref{fig:tab} for this new configuration and draw the new tree.
+\begin{lstlisting}
+Switch(config)# interface vlan <id>
+Switch(config)# spanning-tree
+\end{lstlisting}
+to see which parameters are susceptible to be configured. Use the question mark \texttt{\color{blue}?} to see all the available parameters and make sure you understand them.
 
-\section{Link failure}
+The exercise that we propose is to change the priority of one of the switches different from the root switch. The default behavior is that the switch with the lowest MAC address is selected as a root. The reason is that, in the default configuration, the priority of all the switches is 32768. By changing the priority of one of the switches to a lower value, we can force that that particular switch becomes the root.
 
-This exercise cannot be started until all the groups have finished the previous one.
-If you reach this exercise before the other groups, move on to the next exercise while you wait for all the groups to be ready for the link failure.
+Go ahead and change the root switch and observe the new configuration of the tree. Fill in the {\color{red}table \ref{}} for this new configuration and draw the new tree.
 
-Now we will disconnect one of the links to simulate a link failure.
-Compute in advance your new spanning tree after the link failure.
-Ask your teacher which is the cable that will be disconnected.
+\section{Link Failure}
 
-After the disconnection, check which is the new configuration and compare it with the one that you have predicted.
-Explain what happened.
+This exercise cannot be started until all the groups have finished the previous one. If you reach this exercise before the other groups, move on to the next exercise while you wait for all the groups to be ready for the link failure.
+
+Now we will disconnect one of the links to simulate a link failure. Compute in advance your new spanning tree after the link failure. Ask your teacher which is the cable that will be disconnected.
+
+After the disconnection, check which is the new configuration and compare it with the one that you have predicted. Explain what happened.
 
 \section{BPDUs}
 
-Use a computer connected to the VLAN 1 (administration) and capture the traffic for several seconds using Wireshark.
-Observed the received STP frames and identify the different fields of the packet.
-Write them down to include them in your report and find out which is the meaning of the information in each of the fields.
+Use the computer connected to the VLAN 1 (the computer used for the administartion of the switch) and capture the traffic for several seconds using \emph{Wireshark}. Observed the received STP frames and identify the different fields in the packet. Write them down to include them in your report and find out which is the meaning of the information in each of the fields.
 
-Why are you receiving this frames at your computer?
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+Why are you receiving these frames at your computer?\\
+\hline
+\end{tabular}
+\end{center}

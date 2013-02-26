@@ -1,157 +1,240 @@
-\chapter{Virtual LANs (VLANs)}
+\chapter{Virtual Local Area Networks (VLANs)}
 
-\section{Switch user manual}
+\section{Switch User Manual}
 
-The user manual for the switch is available here:
+You can download the switch user manual from here:
 
 \url{http://www.jaumebarcelo.info/teaching/lxs/wlan/manual_vlan.pdf}
 
-
 \section{Introduction}
 
-In this lab assignment the switches will be configured to create different VLANs.
-The IPs of the switches are 192.168.1.110, 192.168.1.111 and 192.168.1.112.
-An sketch on the blackboard specifies the switch to which your PC is connected.
-Each VLAN has a unique identifier that takes values between 0 and 4094.
-In this assignment we will use the identifiers 10 and 20.
+In this lab assignment, we shall configure a Cisco switch to create different VLANs. The IP addresses of the lab switches are 192.168.1.110, 192.168.1.111 and 192.168.1.112. A sketch on the blackboard/whiteboard specifies the switch to which your PC is connected. Each VLAN has a unique identifier that takes values between 0 and 4094. In this lab assignment we shall use the identifiers 10 and 20.
 
-
-Each group will use three PCs.
-One of the PCs is for managing the switch and needs an IP address of the same range as the IP of the switch (check the blackboard for the details).
-The IPs of the other two switches must belong to the range of the VLAN that you are going to use (192.168.\{10,20\}.XX).
+Each group will use three computers. With one computer you shall manage the switch, and this compute requires an IP address in the same subnetwork as the address of the switch. Your instructor will give your further details. {\color{red}The IPs of the other two switches must belong to the range of the VLAN that you are going to use (192.168.\{10,20\}.XX).}
 
 %% Command to view the serial COM ports: "compmgmt.msc"
 
 \section{Creation of a VLAN}
 
-\begin{table}[!t]
-%% increase table row spacing, adjust to taste
-\renewcommand{\arraystretch}{1.3}
-% if using array.sty, it might be a good idea to tweak the value of
-%\extrarowheight as needed to properly center the text within the cells
-\caption{Command modes}
-\label{tab:modes}
+All Cisco switches used during this lab, use an operating system called the Cisco \emph{Internetwork Operating System}, or \emph{IOS}. The IOS features a command-line interface (CLI), which is accessible using a serial cable or a LAN Telnet connection.
+
+
+\begin{table}
+\sffamily\small
 \centering
-\begin{tabular}{|c|p{5cm}|c|}
+\begin{tabular}{l>{\columncolor{tablegray}}lp{8cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableheader}}c}{Command Mode} & \multicolumn{1}{>{\columncolor{tableorange}}c}{CLI Prompt} &
+\multicolumn{1}{>{\columncolor{tableheader}}c}{Access}\\
+User EXEC & \texttt{\color{blue}Switch\textgreater} & By default, when connecting to the switch for the first time, you are in this mode. \\
 \hline
-Command Mode & Access & Prompt\\
+Privileged EXEC & \texttt{\color{blue}Switch\#} & From the \emph{User EXEC} mode, enter the \texttt{\color{blue}enable} command. \\
 \hline
-User EXEC & Connecting to the switch & Switch> \\
-Privileged EXEC & Using the enable command in the ``User EXEC'' mode & Switch\# \\
-Global Configuration & Using the ``configure terminal'' command in the ``Privileged EXEC'' mode& Switch(config)\# \\
-        Interface Configuration & Using the ``interface $<$interface-name$>$'' command in the ``Global Configuration'' mode specifying the interface that we want to configure, e.g. FastEthernet0/4& Switch(config-if)\# \\
+Global Configuration & \texttt{\color{blue}Switch(config)\#} & From the \emph{Privileged EXEC} mode, enter the \texttt{\color{blue}configure terminal} command. \\
+\hline
+Interface Configuration & \texttt{\color{blue}Switch(config-if)\#} & From the \emph{Global Configuration} mode, enter the \texttt{\color{blue}interface \textless if-name\textgreater}, where \texttt{\color{blue}if-name} is the name of the interface that we want to configure, such as \texttt{\color{blue}FastEthernet0/4} or \texttt{\color{blue}Fa0/4}. \\
 \hline
 \end{tabular}
+\caption{Command modes of the Cisco IOS command-line interface}
+\label{tab:IosModes}
 \end{table}
 
+We shall use the IOS command-line interface in four modes of operation, which are described in the table \ref{tab:IosModes}. As shown in the table, you can identify the current mode of operation according to the CLI prompt. The \emph{user EXEC} mode offers limited information about the switch. The \emph{privileged EXEC} mode allows us to access detailed information. The \emph{global configuration} mode enables us to configure the general aspects of the switch, whereas we can use the \emph{interface configuration} mode to configure a specific interface. The commands available in each of the modes are different. Make sure you are in the right mode before issuing a command. After entering a specific mode, it is possible to leave to the previous one using the command:
 
-Table \ref{tab:modes} describes the four possible modes of interaction with the switch.
-The first one offers limited information about the switch.
-It is possible to find more detailed information in the second (privileged EXEC) mode.
-The third mode allows the configuration of general aspects of the switch while and the last one is to configure a specific interface.
-The commands available in each of the modes are different.
-Make sure you are in the right mode before issuing a command.
-It is possible to move to the previous mode using the ``exit'' command.
+\begin{lstlisting}
+exit
+\end{lstlisting}
 
-Use a telnet client to connect to the switch and observe which is the initial mode.
-You can use the command ``?'' to obtain information about the possible commands in a given mode.
-Additionally, you can also follow a partial command by ``?'' to obtain more information about how to use the command and the required parameters.
-For example ``ip address ?'' would give you information about the parameters you could use after address.
+Use a Telnet client to connect to the switch and observe which is the initial mode. You can use the command:
 
-Enter the mode \emph{privileged} EXEC and use the command \texttt{show running-config} to see the current configuration of the switch.
-Answer the following questions.
-\emph{How many VLANs can you observe? (Note that this is not necessarily the number of VLANs in the switch).}
-\emph{How many Fast Ethernet interfaces are available?}
-\emph{What is the VLAN1 administrative address?}
+\begin{lstlisting}
+?
+\end{lstlisting}
+to obtain information about the possible commands in a given mode. Additionally, you can also follow a partial command by \texttt{\color{blue}?} to obtain more information about how to use the command and the required parameters. For example, the command:
 
-There exists a \emph{default} VLAN which has the number 1.
-Use the command \texttt{show vlan} or \texttt{show vlan id \textless id \textgreater}.
-\emph{What is the status of VLAN1?}
-\emph{How many VLANs are there in the switch?}
-For each of the VLANs identify the ID, the name, the status, the assigned ports and the type.
-Include this information in the report.
+\begin{lstlisting}
+ip address ?
+\end{lstlisting}
+would give you information about the parameters you could use after address.
 
-Enter the config mode and try to delete the default VLAN:
-\texttt{Switch-B(config)\#no vlan 1}.
-\emph{What happens?}
+Enter the \emph{privileged EXEC} mode and use the command:
+\begin{lstlisting}
+Switch# show running-config
+\end{lstlisting}
+to see the current configuration of the switch.
 
-In the config mode, use the ``?'' to find which commands can be used in this mode.
-Use the \texttt{vlan <id>} to create a new VLAN.
-The type is Ethernet and the id must be set according to the sketch on the blackboard.
-Include the exact command that you used and the reply message of the router in your report.
-
-Verify the new configuration using the command \texttt{show vlan} in the privileged EXEC mode.
-\emph{What is the default name of the new VLAN?}
-
-Delete the VLAN that you have just created using \texttt{no vlan <id>}, verify that it has been deleted and created again.
-Include in your report the sequence of commands that you used and the output of the switch after each command.
-You can use the command \texttt{show vlan brief}.
-
-In the global configuration mode, use the command \texttt{vlan <id>} to configure the VLAN that you have created.
-In the VLAN configuration mode use the name command to change the name of the VLAN \texttt{Switch-B(config-vlan)\#name test}.
-
-Name your VLAN vlanXX-GroupX-switchX.
-Verify the changes.
-Include in your report the exact commands that you used and the output of the switch.
-\emph{Which other parameters can be changed in the vlan configuration mode?}
-
-In the privileged EXEC mode, take a look at the running configuration and compare it with the start-up configuration.
-\emph{Are they equal?}
-Find which is the command that is needed to copy the running configuration to the start-up configuration.
-You will need this command when you make changes to the configuration that you want to save.
-
-\section{Static assignment of ports to a VLAN}
-\label{sec:static}
-
-After having created one or more VLANs, the next step is to assign ports to the VLANs.
-The simplest assignment is the ``static'' assignment.
-
-Go to the global configuration mode.
-Find out which are the ports that you want to modify (e.g., 0/1, 0/2, etc.).
-Change the ports to which your two auxiliary PCs are connected.
-Make sure that you do not change the port that you are using for the telnet connection.
-
-To make the changes, you first have to go into to interface configuration mode.
-Now check the options of the \texttt{switchport} command and use the switch user manual if you require extra information.
-
-After making the changes go back to the privileged execution mode.
-Verify which are the changes that you have made comparing the running config to the start-up config.
-Save your changes.
-
-Use the \texttt{ping} command to test the connectivity between the two auxiliary PCs.
-Then try the connectivity between the configuration PC (the one with the telnet connection) to the auxiliary PCs.
-Finally, try the connectivity between your PCs and other groups PCs.
-Explain the results and the conclusions of the experiments.
-
-Try to complete Table \ref{tab:connectivity}.
-
-\begin{table}[!t]
-%% increase table row spacing, adjust to taste
-\renewcommand{\arraystretch}{1.3}
-% if using array.sty, it might be a good idea to tweak the value of
-%\extrarowheight as needed to properly center the text within the cells
-\caption{Command modes}
-\label{tab:connectivity}
-\centering
-\begin{tabular}{|c|c|c|}
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions}\\
+How many VLANs can you observe? \emph{Note that this is not necessarily the number of VLANs in the switch.}\\
 \hline
-& Same Switch & Different Switch\\
+How many Fast Ethernet interfaces are available?\\
 \hline
-Same VLAN & ok/ko & ok/ko \\
-\hline
-Different VLAN & ok/ko & ok/ko \\
+What is the VLAN1 administrative address?\\
 \hline
 \end{tabular}
+\end{center}
+
+There exists a \emph{default} VLAN which has the number 1. Use the command:
+
+\begin{lstlisting}
+Switch# show vlan
+\end{lstlisting}
+or
+\begin{lstlisting}
+Switch# show vlan id <id>
+\end{lstlisting}
+to collect more information.
+
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions}\\
+What is the status of VLAN1?\\
+\hline
+How many VLANs are there in the switch? For each of the VLANs identify the ID, the name, the status, the assigned ports and the type. Include this information in the report.\\
+\hline
+\end{tabular}
+\end{center}
+
+Enter the \emph{global configuration} mode and try to delete the default VLAN.
+
+\begin{lstlisting}
+Switch(config)# no vlan 1
+\end{lstlisting}
+
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+What happens?\\
+\hline
+\end{tabular}
+\end{center}
+
+Use the \texttt{\color{blue}?} command to find which commands can be used in this mode. Create a new VLAN with the command:
+
+\begin{lstlisting}
+Switch(config)# vlan <id>
+\end{lstlisting}
+
+The type of the VLAN is Ethernet and the \texttt{\color{blue}id} must be set according to the sketch you find on the blackboard/whiteboard. Include the exact command that you used and the reply message of the router in your report.
+
+Verify the new configuration using the following command:
+
+\begin{lstlisting}
+Switch# show vlan
+\end{lstlisting}
+in the privileged EXEC mode.
+
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+What is the default name of the new VLAN?\\
+\hline
+\end{tabular}
+\end{center}
+
+Delete the VLAN that you have just created using the command:
+
+\begin{lstlisting}
+Switch(config)# no vlan <id>
+\end{lstlisting}
+and verify that it has been deleted and created again. {\color{red}What???}
+
+Include in your report the sequence of commands that you used and the output of the switch after each command. You can use the command:
+
+\begin{lstlisting}
+Switch# show vlan brief
+\end{lstlisting}
+
+In the \emph{global configuration} mode, use the command:
+
+\begin{lstlisting}
+Switch(config)# vlan <id>
+\end{lstlisting}
+to configure the VLAN that you have created. In the \emph{VLAN configuration} mode use the \texttt{\color{blue}name} command to change the name of the VLAN. {\color{red}The VLAN configuration mode is not included in the operation modes table.}
+
+\begin{lstlisting}
+Switch(config-vlan)# name <vlan-name>
+\end{lstlisting}
+
+Name your VLAN \texttt{\color{blue}vlanXX-GroupX-switchX}, and verify the changes. Include in your report the exact commands that you used and the output of the switch.
+
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+Which other parameters can be changed in the VLAN configuration mode?\\
+\hline
+\end{tabular}
+\end{center}
+
+In the \emph{privileged EXEC} mode, take a look at the running configuration and compare it with the start-up configuration.
+
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+Are they equal?\\
+\hline
+\end{tabular}
+\end{center}
+
+Find which is the command that is needed to copy the running configuration to the start-up configuration. {\color{red}The students also need to find the command to show the start-up config for the previous point.} You will need this command when you make changes to the configuration that you want to save.
+
+\section{Static Assignment of Ports to a VLAN}
+
+After creating one or more VLANs, during the next step we assign ports to the VLANs. The simplest assignment is the \emph{static} assignment.
+
+First, enter the \emph{global configuration} mode. Find out which are the ports that you want to modify (for example, 0/1, 0/2, etc.). Modify only the configuration of the ports that are assigned to the other two computers from your group. Make sure that you do not change the port that you are using for the Telnet connection.
+
+To make the changes, you first have to go into to \emph{interface configuration} mode. Here, check the options of the \texttt{\color{blue}switchport} command and use the switch user manual if you require extra information. After making the changes {\color{red}(what changes -- specify?)} return to the \emph{privileged} mode. Verify the changes that you have made comparing the running configuration to the start-up configuration. Save your changes.
+
+Use the \texttt{\color{blue}ping} command to test the connectivity between the two auxiliary computers. Try the connectivity between the configuration computer (the one that you use to connect to the switch CLI) to the auxiliary computers. Finally, try the connectivity between the computers of your group and computers of other groups in your class. Explain the results and the conclusions of the experiments, and complete the table \ref{tab:Connectivity}.
+
+\begin{table}
+\sffamily\small
+\centering
+\begin{tabular}{>{\columncolor{tablegray}}ccc}
+\rowcolor{tableheader}
+\multicolumn{1}{c}{} & \multicolumn{1}{>{\columncolor{tablegray}}c}{Same switch} &
+\multicolumn{1}{>{\columncolor{tablegray}}c}{Different switch} \\
+Same VLAN & OK/KO & OK/KO \\
+Different VLAN & OK/KO & OK/KO \\
+\end{tabular}
+\caption{Connectivity tests}
+\label{tab:Connectivity}
 \end{table}
 
-\emph{Which devices are reached if you use a broadcast packet?}
-\emph{How can a packet travel from one VLAN to a different VLAN?}
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions}\\
+Which devices are reached if you use a broadcast packet?\\
+\hline
+How can a packet travel from one VLAN to a different VLAN?\\
+\hline
+\end{tabular}
+\end{center}
 
-\section{Trunk ports}
+\section{Trunk Ports}
 
-A trunk port can carry traffic of different VLANs between two switches.
-You will find which are the trunking ports on the blackboard.
-In the privileged EXEC mode use the command \texttt{show interfaces <trunk interface> switchport}.
+A trunk port can carry traffic of different VLANs between two switches. You will find which are the trunking ports on the blackboard/whiteboard. In the \emph{privileged EXEC} mode use the command:
+
+\begin{lstlisting}
+Switch(config)# show interfaces <interface> switchport
+\end{lstlisting}
+
 Write down the following parameters:
 \begin{itemize}
 \item Administrative mode
@@ -162,53 +245,121 @@ Write down the following parameters:
 \item Trunking VLAN active
 \end{itemize}
 
-Use the \texttt{show vlan} command to check the status of the ports.
-\emph{Where can you find the trunk ports?}
+Use the command:
+\begin{lstlisting}
+Switch(config)# show vlan
+\end{lstlisting}
+to check the status of the ports.
 
-\section{Defining the VLANs carried by a given trunk port}
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+Where can you find the trunk ports?\\
+\hline
+\end{tabular}
+\end{center}
 
-By default, a trunk port carries traffic of all VLANs.
-It is possible to configure which VLANs are allowed in a given trunk port.
+\section{Setup the VLANs Carried by a Trunk Port}
 
-From the privileged EXEC mode, check which are the VLANs in the trunk port of your switch.
-\emph{Which command do you use?}
+By default, a trunk port carries traffic of all VLANs. However, it is possible to configure which VLANs are allowed in a given trunk port. To accomplish this, from the \emph{privileged EXEC} mode, check which are the VLANs in the trunk port of your switch.
 
-In the global configuration mode, enter into the configuration of the trunk port.
-Specify the command that you use.
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+Which command do you use?\\
+\hline
+\end{tabular}
+\end{center}
+
+In the \emph{global configuration} mode, enter into the configuration of the trunk port.
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+Which command do you use?\\
+\hline
+\end{tabular}
+\end{center}
 
 Now we are going to configure the trunk port to allow the traffic of our VLAN.
-Check the options of the command \texttt{switchport trunk allowed vlan [remove,add] vlan-list}.
-The parameter \texttt{vlan-list} is a list of VLAN identifiers (or names) separated by a  hyphen (or a comma, respectively).
+Check the options of the command:
 
-Exit the configuration mode and move back to the privileged EXEC mode.
-Use the commands \texttt{show interface interface-id status} or \texttt{show interface status} to see the configuration of one or all the interfaces.
-\emph{What are the results?}.
+\begin{lstlisting}
+Switch(config-if)# switchport trunk allowed vlan [remove | add] <vlan-list>
+\end{lstlisting}
 
-Try also the \texttt{show interfaces trunk} command and write down the results.
+The parameter \texttt{\color{blue}vlan-list} is a list of VLAN identifiers (or names) separated by a hyphen (\texttt{\color{blue}-}) when specifying a VLAN range, or a comma (\texttt{\color{blue},}) when specifying a set of VLANs.
 
-\section{Connectivity test}
+Exit the configuration mode and return to the \emph{privileged EXEC} mode. Use the commands:
+\begin{lstlisting}
+Switch# show interface interface-id status
+\end{lstlisting}
+or
+\begin{lstlisting}
+Switch# show interface status
+\end{lstlisting}
+to see the configuration of one or all the interfaces.
+
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+What are the results?\\
+\hline
+\end{tabular}
+\end{center}
+
+Try also the command:
+
+\begin{lstlisting}
+Switch# show interfaces trunk
+\end{lstlisting}
+and write down the results.
+
+\section{Connectivity Test}
 
 Verify whether the following connections are possible and explain why.
 \begin{itemize}
-\item Ping a PC of the same VLAN connected to a different switch.
-\item Ping a  switch of a different VLAN.
-\item Perform additional tests.
+\item Ping a computer of the same VLAN, connected to a different switch.
+\item Ping the switch of a different VLAN.
+\item Perform additional tests. {\color{red}Examples???}
 \end{itemize}
 
-Compare the results that you obtain now with the results obtained in Section \ref{sec:static}.
-Fill in the connectivity table again.
+Compare the results that you obtain now with the results obtained in the static assignment of VLANs. Fill in the connectivity table \ref{tab:Connectivity} again.
 
-\emph{Are there any differences? Why}
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions}\\
+Are there any differences? Why?\\
+\hline
+\end{tabular}
+\end{center}
 
-Change the IP address of one of your auxiliary PCs to an address belonging to the range of the other VLAN.
-Perform connectivity tests again.
-\emph{What happens? Why?}
+Change the IP address of one of your auxiliary computers to an address belonging to the range of the other VLAN. Perform the connectivity tests again.
 
-\section{Network topology}
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+What happens? Why?\\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Network Topology}
 
 Draw the network topology, both from the physical point of view and the logical point of view.
 
-\section{Preparing the report}
+\section{Preparing the Report}
 
 These are aspects that you may want to cover in your report:
 \begin{itemize}
@@ -217,28 +368,17 @@ These are aspects that you may want to cover in your report:
 \item Relation between the active VLANs and the different ports.
 \item Differences between access ports and trunk ports.
 \item Connectivity in the different situations.
-\item Remote management using telnet and VLAN 1.
+\item Remote management using Telnet and VLAN 1.
 \end{itemize}
 
+\section{Changing the Native VLAN (Optional)}
 
-\section{Changing the native VLAN (Optional)}
+For security reasons, it is recommended to change the native VLAN of the switches (for example, to 666) and leave no ports assigned to that VLAN, except for administration.
 
-For security reasons, it is recommended to change the native VLAN (e.g., to 666) of the switches and leave no ports assigned to the VLAN, except for administration.
+\section{Speed and Duplexing (Optional)}
 
-\section{Speed and duplexing (Optional)}
+Change the speed of the port and the duplexing type and perform tests using \texttt{\color{blue}iperf}.
 
-Change the speed of the port and the duplexing and perform tests using iperf.
-
-\section{Administrative shutdown of interface (Optional)}
+\section{Administrative Shutdown of an Interface (Optional)}
 
 Try to administratively disable access ports and trunking ports and describe the results.
-
-
-
-
-
-
-
-
-
-

@@ -1,0 +1,127 @@
+\documentclass[a4paper,11pt]{book}
+
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subfigure}
+\usepackage{fullpage}
+\usepackage{MinionPro}
+\usepackage[scaled=.95]{inconsolata}
+\usepackage[Sonny]{fncychap}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{titling}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{colortbl}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{hhline}
+\usepackage{ifpdf}
+\ifpdf
+\usepackage[protrusion=true,expansion=true]{microtype}
+\usepackage{hyperref}
+\else
+\usepackage{url}
+\fi
+
+\renewcommand{\sfdefault}{Myriad-LF}
+\renewcommand{\maketitlehooka}{\sf}
+\renewcommand{\captionfont}{\small\it}
+\renewcommand{\captionlabelfont}{\sf}
+\titleformat*{\section}{\sf\Large}
+\titleformat*{\subsection}{\sf\large}
+
+\ChNameVar{\Large\sf}
+\ChNumVar{\fontsize{60}{1}\selectfont}
+\ChTitleVar{\Huge\sf}
+\ChRuleWidth{0pt}
+\ChNameAsIs
+
+\arrayrulecolor{tableborder}
+\renewcommand{\arraystretch}{1.5}
+\setlength{\arrayrulewidth}{0.5pt}
+
+\pagestyle{fancy}
+
+\definecolor{lightgray}{RGB}{240,240,240}
+\definecolor{darkgray}{RGB}{100,100,100}
+
+\definecolor{tableborder}{RGB}{0,0,0}
+\definecolor{tableheader}{RGB}{192,192,193}
+\definecolor{tablerow}{RGB}{238,238,238}
+\definecolor{tablegray}{RGB}{228,228,230}
+\definecolor{tableorange}{RGB}{255,204,50}
+
+\definecolor{hyperrefcite}{RGB}{0,51,153}
+\definecolor{hyperrefurl}{RGB}{153,51,51}
+
+\definecolor{codelinenumber}{RGB}{43,145,175}
+\definecolor{codekeyword}{RGB}{0,0,255}
+\definecolor{codecomment}{RGB}{0,128,0}
+\definecolor{codestring}{RGB}{163,21,21}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    commentstyle=\color{codecomment},
+    stringstyle=\color{codestring},
+    keywordstyle=\color{codekeyword},
+    xleftmargin=5px,
+    xrightmargin=5px,
+    framexleftmargin=5px,
+    framexrightmargin=5px,
+    frame=single,
+    backgroundcolor=\color{lightgray},
+    rulecolor=\color{tableborder},
+    lineskip=-1px,
+    showstringspaces=false,
+    fontadjust
+}
+
+\ifpdf
+\hypersetup{
+    bookmarks=true,
+    unicode=false,
+    pdftoolbar=true,
+    pdfmenubar=true,
+    pdffitwindow=false,
+    pdfstartview={FitV},
+    pdfpagelayout={TwoPageRight},
+    pdftitle={Network Laboratory},
+    pdfauthor={Ruizhi Liao, Alex Bikfalvi, Jaume Barcelo, Albert Rabassa},
+    pdfsubject={Lab practice},
+    pdfcreator={LaTeX2e},
+    pdfproducer={Universitat Pompeu Fabra},
+    pdfkeywords={traffic} {analysis} {LAN} {WLAN} {VLAN} {STP},
+    pdfnewwindow=true,
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=hyperrefcite,
+    filecolor=black,
+    urlcolor=hyperrefurl
+}
+\fi
+
+\begin{document}
+
+\frontmatter
+\pagestyle{empty}
+
+\title{\Huge Network Laboratory}
+\author{Ruizhi Liao, Alex Bikfalvi, Jaume Barcelo, Albert Rabassa}
+\date{Spring 2013}
+\maketitle
+
+\tableofcontents
+
+\mainmatter
+
+\input{About}
+\input{TrafficAnalysis}
+\input{LanAndWlan}
+\input{Vlans}
+\input{Stp}
+
+\backmatter
+\bibliographystyle{plain}
+\bibliography{Lab,Rfc}
+\end{document}

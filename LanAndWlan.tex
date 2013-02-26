@@ -1,0 +1,186 @@
+\chapter{LAN and WLAN}
+
+\section{Home Preparation}
+
+Connect to the web configuration interface of your home access point and find:
+\begin{itemize}
+\item The name of the wireless network (SSID or ESSID).
+\item Frequency channel.
+\item PHY layer data rates.
+\item Supported security protocols.
+\item Possibility of QoS differentiation.
+\end{itemize}
+
+Do a survey and find the information of available wireless networks (name, channel, security settings). On a Windows computer, you can use NetStumbler, whereas on Linux computer you can use the following command:
+
+\begin{lstlisting}
+sudo iwlist <wlan_interface> scan
+\end{lstlisting}
+
+\section{Equipment}
+
+Each group requires at least \emph{two} (2) computers. However, if possible, \emph{three} (3) computers are better than two. Start one computer in Windows and the other one in Linux. The hardware we shall use during this lab is the \emph{Cisco Aironet 1200} access point. The firmware of the access point is \emph{CISCO IOS Version 12.3(8)JA2}, and you can download the corresponding at the following link:
+
+\url{http://www.jaumebarcelo.info/teaching/lxs/wlan/WLAN_manual.pdf}
+
+To test copying a file across the wireless network, install an FTP server on one of the computers, such as \emph{Filezilla} in Windows and \emph{vsftpd} in Linux. You may use a web browser as an FTP client.
+
+\begin{itemize}
+
+\item On Windows, install and open \emph{Filezilla}, and connect locally from the same PC using the \emph{loopback} interface 127.0.0.1. Create a new user (username \texttt{\color{blue}test} and password \texttt{\color{blue}test}) and share a local folder with several large files. Do not forget to remove the proxy configuration, or select not to use a proxy server for local addresses.
+
+\item On Linux, install \emph{vsftpd} with the following command:
+\begin{lstlisting}
+sudo yum install vsftpd
+\end{lstlisting}
+    Once installed, you can find and modify the FTP server configuration in the file \texttt{/etc/vsftpd/vsftpd.conf}. If you need to change the configuration, do not forget to restart the FTP server with the command:
+\begin{lstlisting}
+sudo services vsftpd restart
+\end{lstlisting}
+    The server allows by default anonymous access, and therefore you do not need to create a new user. The default shared folder is \texttt{/var/ftp}.
+\end{itemize}
+
+\section{Disable Your Local Firewall and Pay Attention to Your Browser}
+
+On a Linux machine, your local firewall can interfere with the assignment. Disable it using the following command:
+
+\begin{lstlisting}
+sudo service iptables stop
+\end{lstlisting}
+
+If you decide to use \emph{Firefox} to connect to the access point during the assignment, it might be necessary to disable the proxy settings and to uncheck the \emph{offline navigation} option.
+
+\section{Basic LAN Configuration}
+
+Connect the Windows and the Linux computers using a cross-over cable. Check layer-2 connectivity using the LED or the \texttt{\color{blue}mii} command in Linux. Check layer-3 connectivity and measure round-trip time using \text{\color{blue}ping}. Configure the interfaces if needed.
+
+Next, you need to estimate the available bandwidth using an FTP file transfer or the \texttt{\color{blue}iperf} tool. Change the Ethernet connection speed to 10 Mbps (full duplex) and estimate the bandwidth again.
+
+{\color{red}I believe the mii tool is obsolete - update? Include instructions on how to change the connection speed in Windows/Linux.}
+
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions}\\
+Is the maximum transmission speed reached? Why?\\
+\hline
+\end{tabular}
+\end{center}
+
+\section{WLAN Basic Configuration}
+
+WLANs can be used as an access point (AP) to LANs. They can also be used to interconnect to LANs using WDS. {\color{red}What's this?}
+
+First connect the AP to the Windows computer. You may use either a direct connection or a connection using the patch panel. The address is available on the AP, and the administrator user is \texttt{\color{blue}Cisco} and the password is \texttt{\color{blue}Cisco}.
+
+Use the express set-up to configure the AP with the following settings.
+
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}ll}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}c}{Setting} & \multicolumn{1}{>{\columncolor{tableheader}}c}{Value}\\
+AP Name & \texttt{LABXARXES\_GRUP\_XX} \\
+\hline
+SSID & \texttt{grupXX} \\
+\hline
+Channel & default \\
+\hline
+Transmit power & default \\
+\hline
+\end{tabular}
+\end{center}
+
+After completing the configuration, verify that the radio interface is up. Indicate what are the security options available. Try different settings and configurations and then connect the AP to the laboratory switch.
+
+Plug-in the WiFi interface into the Linux computer and connect the computer to the AP that you have just configured. Disable the wired interface in order to make sure that you are using the wireless interface. Check that you have network connectivity and use the \texttt{\color{blue}ipconfig} (on Windows) or \texttt{\color{blue}ifconfig} (on Linux) commands to look at the interface configuration. If you have network connectivity, you should be able to ping the other computers of your group (the ones with wired connection) and also be able to connect to the Internet.
+
+Perform measurements from the wireless computer to the wired one and the other way around. Measure the round-trip-time using \texttt{\color{blue}}ping. Measure the throughput using FTP to transfer a large file.
+
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions and Tasks}\\
+Can you reach the PHY rate maximum throughput? Why?\\
+\hline
+Do you observe the same values for the uplink and downlink?\\
+\hline
+Write down any other observations you find interesting.\\
+\hline
+\end{tabular}
+\end{center}
+
+Use either \emph{Netstumbler} or \texttt{\color{blue}iwlist} to detect the available wireless networks. Write down their configuration. Draw a sketch of the computers, access point and other networking devices in your setting.
+
+\section{Hot-Standby}
+
+The hot-standby is a feature to offer high availability. It consists of a backup AP (\emph{AP-standby}) which takes over if the primary AP (\emph{AP-root}) fails.
+
+\emph{During this assignment, collaborate with another group.}
+
+One of the groups will configure the AP-root and the other the AP-standby.
+Make sure that you replicate the same configuration (with the exception of the IP address) in both devices: SSID, network mask and security setting.
+
+\begin{itemize}
+\item In the \emph{AP-root}, go to \textbf{\sf Network Interfaces} \textgreater \textbf{\sf Radio 802.11g}, and select \textbf{\sf Access Point (Fallback to radio shutdown)}.
+\item In the \emph{AP-standby} go to \textbf{\sf Services} \textgreater \textbf{\sf Hot Standby}. Select \textbf{\sf Enable} and specify the MAC address that the AP will be monitoring (the radio interface of the root-AP). If the configuration is correct, you should be able to see the status that will appear below on the screen.
+\end{itemize}
+
+Draw a sketch of all the involved network devices and connections and test that it actually works. To test that it is working, disable the radio interface of AP-root from \textbf{\sf Network interfaces} \textgreater \textbf{\sf 802.11g} \textgreater \textbf{\sf Settings}. After the time-out expires, the AP-standby takes over with the same SSID and security settings.
+
+To gather more information about what is happening, you can run ping tests while the takeover takes place. You can also check the logs in the \textbf{\sf Home} page of the AP configuration interface. Finally, you can check the log of the \emph{Filezilla} server.
+
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions}\\
+How long does it take for the PC to recover the connection after AP-root's radio is disabled?\\
+\hline
+Will the user notice that the connection switches from one AP to the other? How?\\
+\hline
+Do you think that the default time-out setting are appropriate? Why?\\
+\hline
+How is the network affected if we change this parameters?\\
+\hline
+\end{tabular}
+\end{center}
+
+Now re-enable the radio interface of AP-root. Then, at the AP-standby, click \textbf{\sf Restart}. Check the information that appears in the \textbf{\sf Home} page of the APs to determine to which AP is the client connected. After you have verified that the client is connected to the AP-root device, disconnect the ethernet cable of AP-root.
+
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions}\\
+What happens? Does the AP-standby take over? Why?\\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Configuring an AP as a Repeater}
+
+A repeater AP is not connected to the wired LAN. It is situated within the coverage range of another AP to extend the covered area. Similar to the previous exercise, both APs must share the same configuration (with the exception of the IP address). In this exercise, we shall use the previous \emph{AP-standby} as a repeater.
+
+\begin{itemize}
+\item In the \emph{AP-root}, select the option \textbf{\sf Role in radio network} and then choose \textbf{\sf Access point}.
+\item In the \emph{AP-repeater} (the former \emph{AP-standby}), disable the hot-standby option. Configure the SSID, and at the bottom of the page \textbf{\sf Security} \textgreater \textbf{\sf SSID Manager} select \textbf{\sf Set Infrastructure SSID} and entering the current SSID. In the \textbf{\sf Express Setup}, choose \textbf{\sf Repeater} for the option \textbf{\sf Role in radio network}.
+\end{itemize}
+
+After the configuration changes have been completed, your home screen should show the configuration of your network and the repeater, and the clients connected to each AP. Initially, the client computer is probably connected to the \emph{AP-root}.
+
+By selecting the \textbf{\sf Clients} options, you will see the list of associated clients. You can manually de-associate a particular client, in which case the client will automatically re-connect to the repeater.
+
+To verify that the client connects successfully to the other AP, repeat the round-trip time and bandwidth tests that you have performed before. Do the tests while connected to both \emph{AP-root} and \emph{AP-repeater}. Repeat the ping tests while a file is being transferred.
+
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+Can you observe any difference?\\
+\hline
+\end{tabular}
+\end{center}
