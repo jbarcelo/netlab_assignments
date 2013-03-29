@@ -65,3 +65,67 @@ Fill in a table that includes
 \item Bandwidth
 \item Encapsulation protocol
 \end{itemize}
+
+Enter the Ethernet interface configuration mode with the command 
+\begin{lstlisting}
+# interface <interface name>
+\end{lstlisting}
+and set the IP address to 192.168.10.XX, where XX is your group ID plus 10.
+Use a /24 netmask.
+
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+What is the command that you have used?\\
+\hline
+\end{tabular}
+\end{center}
+
+Use the command
+\begin{lstlisting}
+# show interfaces
+\end{lstlisting}
+to verify the IP address assignment, and enable it with the command
+\begin{lstlisting}
+# no shutdown
+\end{lstlisting}
+
+Verify the line status and the interface status using the command 
+\begin{lstlisting}
+# show protocols
+\end{lstlisting}
+
+Use the commands
+\begin{lstlisting}
+# show cdp neighbors
+\end{lstlisting}
+and
+\begin{lstlisting}
+# show cdp neighbors detail
+\end{lstlisting}
+to see the neighboring devices.
+
+Write down the information received from the different interfaces.
+\begin{itemize}
+\item neighbor identifier
+\item ip address
+\item port
+\end{itemize}
+
+Use the ping command to test the connectivity to the other routers in the lab and write down the round-trip times and other results that you may consider relevant.
+
+Find out which is the network topology and sketch it in a figure.
+
+Use the ``telnet'' command to connect to the router.
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+What is the command that you have used?\\
+\hline
+\end{tabular}
+\end{center}
+
