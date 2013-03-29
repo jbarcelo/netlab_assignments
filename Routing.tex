@@ -124,8 +124,132 @@ Use the ``telnet'' command to connect to the router.
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
 \rowcolor{tableheader}
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
-What is the command that you have used?\\
+Is it possible to remotely configure a router?\\
+\hline
+Is login and password required?\\
+\hline
+Does a console user notice that there is an ongoing telnet connection?\\
+\hline
+Use telnet to change a parameter of the router (e.g., the name) and verify the changes both using the console and the telnet connection. What happens?\\
 \hline
 \end{tabular}
 \end{center}
 
+Do messages appear on the console when changes are done over telnet? What information is included in these messages?\\
+
+Logout the telnet session to the Cisco router.
+
+\subsection{IP routing configuration}
+
+In this exercise we will enable the RIP protocol and check the status of the routing table as well as the RIP transactions of each router.
+
+Check whether IP routing is enabled using the command
+\begin{lstlisting}
+# show protocols
+\end{lstlisting}
+
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+What is the status of IP routing?\\
+\hline
+\end{tabular}
+\end{center}
+
+Enter the global config mode and enter the submenu router.
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+What is the purpose of this submenu?\\
+\hline
+\end{tabular}
+\end{center}
+
+Use the ``?'' command the available routing protocols and write down the results.
+Enter into the configuration of RIP.
+
+Use the command 
+\begin{lstlisting}
+# network <your network>
+\end{lstlisting}
+to associate your network to the RIP routing process.
+Assume that we are working with ``C'' class addresses.
+Therefore, the last byte of the network address must be 0.
+
+Verify that the RIP protocol is now enabled and that your network has been recognized by the router using the command
+\begin{lstlisting}
+# show ip protocol
+\end{lstlisting}
+Observe the relevant parameters and answer the following questions:
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+What is the use of the timers?\\
+\hline
+What are their values?\\
+\hline
+Are they too small, or too large?\\
+\hline
+What happens if we change the values?\\
+\hline
+\end{tabular}
+\end{center}
+
+Verify the status of the routing table with the command
+\begin{lstlisting}
+# show ip route
+\end{lstlisting}
+
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+What is the meaning of each of the fields in the table?\\
+\hline
+How can we check which are the networks to which RIP protocols is associated?\\
+\hline
+If there is no information, why?\\
+\hline
+\end{tabular}
+\end{center}
+
+Work together with another group to do this part.
+If there is no other group ready, skip this exercise and move back to it when another group reaches this point.
+
+Add an static route to the other group's network.
+Use the ``ip route'' command from the configuration mode.
+Explain what happens when you use ``traceroute'' to the other groups router (both interfaces).
+Repeat the experiment after deleting the static route in one of the routers.
+Explains what happens and why.
+
+The command 
+\begin{lstlisting}
+# debug ip rip
+\end{lstlisting}
+shows the RIP messages that are sent and received by the router.
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+What are the source and destination of these packets?\\
+\hline
+What information do we obtain?\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Saving the router configuration in a TFTP server}
+
+A convenient way to store a router's configuration is using TFTP.
+We need to install the TFTP server in a PC with connectivity (ping connectivity) to the router.
+Install the server and configure in which folder you want to save the router's configuration.
+
+In the router, execute the command 
