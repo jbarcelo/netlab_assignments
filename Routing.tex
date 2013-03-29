@@ -20,4 +20,48 @@ The goals of this session are:
 \end{itemize}
 
 Before disconnecting the computer from the Internet, download the TFTP server.
-\url{
+\url{http://tftpd32.jounin.net/}
+Save it to one of the computers that you will use to connect to the router.
+
+The routers are connected among them using the Ethernet interfaces and forming a topology that you will have to find out.
+Use the console to connect to the routers (Hyperterminal or putty, 9600 bps, COM6).
+The escape keystroke to exit a ping in a router is Ctrl-Alt-6.
+
+\subsection{Checking the router status}
+
+Use the console to connect to your router and explore the following commands.
+Prepare a summary of what you can see with each command.
+\begin{itemize}
+\item show version
+\item show protocols
+\item show interfaces
+\item show processes
+\item show mem
+\item show ip route
+\item show history
+\end{itemize}
+
+\subsection{Create a ``Running'' and ``Startup'' configuration}
+Enter the ``privileged EXEC'' mode (enable, pass ``cisco'') and global configuration (conf term). 
+Find the commands to:
+\begin{itemize}
+\item show and change the router name
+\item debugging mode configuration
+\item send pings from the router
+\item activate ``fair queueing'' at the ethernet interfaces (Fa0/0).
+\end{itemize}
+
+Use the command ``show running-config'' from the privileged mode.
+Save the current configuration to the startup configuration (copy running-config startup-config).
+
+\subsection{IP addresses configuration}
+Go to your physical router box and check which interfaces are visible.
+
+Use the ``show interfaces'' command to see what interfaces are available in the router.
+Fill in a table that includes
+\begin{itemize}
+\item Interface name
+\item MTU
+\item Bandwidth
+\item Encapsulation protocol
+\end{itemize}
