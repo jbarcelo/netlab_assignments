@@ -253,3 +253,70 @@ We need to install the TFTP server in a PC with connectivity (ping connectivity)
 Install the server and configure in which folder you want to save the router's configuration.
 
 In the router, execute the command 
+\begin{lstlisting}
+# copy run tftp
+\end{lstlisting}
+and follow the instructions to enter the TFT server address (this is one of your PCs) and the filename that you want to use.
+In the PC, open the configuration file using a text editor.
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+What can you observe?\\
+\hline
+\end{tabular}
+\end{center}
+
+Two copy the configuration in the TFTP server to the router, there are two different options.
+Either use the command
+\begin{lstlisting}
+# copy tftp run
+\end{lstlisting}
+on the server or simply copy\&paste on the configuration terminal.
+
+\section{Router Interconnection}
+In this session, we will use the WAN (serial) interfaces of the routers.
+The topology of the network is unknown to us and we have to figure it out.
+In the previous session we used the ethernet interfaces to connect the routers, and in this session we will use the serial interfaces.
+
+\subsection{Shutdown Ethernet interfaces}
+
+Make sure that there is no cable connected to the ethernet interface, and that there is a cable connecting the serial interfaces.
+Delete the IP address of the ethernet interface
+\begin{lstlisting}
+# no ip address
+\end{lstlisting}
+and administratively shutdown the interface
+\begin{lstlisting}
+# shutdown
+\end{lstlisting}
+
+Verify that the changes have been applied using
+\begin{lstlisting}
+# show run
+\end{lstlisting}
+
+\subsection{Configuration of the WAN serial interface}
+
+From the privileged EXEC mode of your router, enter the global configuration mode.
+Enter into the configuration of the WAN serial interface and configure it with the IP indicated on the blackboard.
+
+The serial interfaces are interconnected by cables that, in the middle, have male/female connector.
+The router in the female connector side sets the communication rate.
+Use the command 
+\begin{lstlisting}
+# clock rate 12600
+\end{lstlisting}
+or the closest available rate.
+
+Verify the configuration and use the command
+\begin{lstlisting}
+# no shutdown 
+\end{lstlisting}
+at both ends of the connection to enable the communication.
+Then use the command
+\begin{lstlisting}
+# show protocols
+\end{lstlisting}
+to verify the state of the line.
