@@ -384,3 +384,76 @@ And disadvantages?\\
 \hline
 \end{tabular}
 \end{center}
+
+\section{Configuration of an L2-L3 network}
+This third session extends the previous one by including switches to the network topology.
+The topology consists of a ring of routers connected in a ring using the serial interfaces.
+Each router is connected using the ethernet interface to a local area network with two or more computers.
+The devices used in this assignment are
+\begin{itemize}
+\item PCs
+\item Six Cisco routers with an ethernet interface and two serial interfaces.
+\item Three Cisco switches
+\item Direct and cross-over RJ-45 cables.
+\end{itemize}
+
+\begin{figure}
+\centering
+\ifpdf
+\includegraphics[width=0.9\linewidth]{Figures/routers_and_switches.pdf}
+\else
+\includegraphics[width=0.9\linewidth]{Figures/routers_and_switches.eps}
+\fi
+\caption{Network topology that includes routers and switches}
+\label{fig:StpTopology}
+\end{figure}
+
+Each group has to configure its router and its VLAN.
+It is assumed that the previous session has been successfully completed and the connectivity tests were satisfactory.
+
+\subsection{VLAN configuration}
+We \texttt{telnet} our switch and enter the privileged EXEC mode.
+Create a VLAN with a number equal to ten times your group number (group*10, e.g. VLAN 20 for group 2).
+Assign a port connected to the router and one or two other ports connected to PCs. 
+Remember to keep the port of the computer you are using for managing the switch in VLAN 1.
+Use an IP equal to 192.168.1.XX where XX is the group multiplied by ten for the computer in VLAN 1.
+Use an IP 192.168.VLAN.YY for the other VLAN. 
+YY is going to be 1 for the router and 2 for the computer.
+You can use YY equal to 3 if you have another computer.
+
+Test the connectivity between your different computers and with computers of other groups.
+Write down when the \texttt{ping} work and when it does not work and provide an explanation.
+
+\subsection{Configuring the Router LAN interface}
+
+In the router console enter the privileged EXEC mode and use the command 
+\begin{lstlisting}
+# show interfaces
+\end{lstlisting}
+to see the interfaces which are available in the router.
+We enter the global configuration mode and thin in the configuration of the LAN (ethernet) interface.
+We configure the IP for this interface.
+Then we enable the interface
+\begin{lstlisting}
+# no shutdown
+\end{lstlisting}
+and check the link status led.
+We can also check the status of the line and the interface using the command
+\begin{lstlisting}
+# show protocols
+\end{lstlisting}
+
+Let's enable routing.
+From the global configuration menu we enter the router menu and we use the command
+\begin{lstlisting}
+# network 192.168.VLAN.0
+\end{lstlisting}
+to associate our network to the routing process.
+We will assume that we are using class C networks.
+Then we use the command
+\begin{lstlisting}
+# show routes
+\end{lstlisting}
+To see the routing tables.
+
+\subsection{Connectivity test}
