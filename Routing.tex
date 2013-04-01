@@ -320,3 +320,67 @@ Then use the command
 # show protocols
 \end{lstlisting}
 to verify the state of the line.
+
+Now we will gather information about neighbouring devices using the command
+\begin{lstlisting}
+# show cdp neighbours
+\end{lstlisting}
+or 
+\begin{lstlisting}
+# show cdp neighbours detail
+\end{lstlisting}
+and we will elaborate a table indicating, for each neighbour, the following information:
+\begin{itemize}
+\item Neighbour identifier
+\item Neighbour IP address
+\item Port
+\end{itemize}
+
+Make sure that routing is enabled using the following commands
+\begin{lstlisting}
+# ip routing
+# router rip
+# network 192.168.XX.0
+\end{lstlisting}
+and look at the routing tables using the command 
+\begin{lstlisting}
+# show ip route
+\end{lstlisting}
+
+Compare the routing tables to the ones obtained in the previous session and highlight the differences.
+
+Send pings to the other devices in the network.
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+Which ones are reachable?\\
+\hline
+Which ones are not?\\
+\hline
+Why?\\
+\hline
+Are there differences in the round-trip-time compared to the measures taken in the previous session?\\
+\hline
+Why?\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Network Topology}
+Prepare a sketch of the network topology that we have used in this session.
+
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+What are the differences?\\
+\hline
+What are the advantages?\\
+\hline
+And disadvantages?\\
+\hline
+\end{tabular}
+\end{center}
