@@ -107,4 +107,81 @@ Look at the syslog (home screen) to answer this questions.
 
 \section{Firewall}
 An alternative configuration option is telnet.
-Enable the telnet option 
+We enable the telnet options ASDM configuration$\rightarrow$Properties$\rightarrow$Device Access$\rightarrow$Telnet.
+We have to make sure that we have applied the changes (apply and save).
+Now we telnet the device and we use \texttt{cisco} (small letters) as a password.
+
+We try the 
+\begin{lstlisting}
+# who
+\end{lstlisting}
+command to see who is connected to the firewall.
+\begin{lstlisting}
+# show run
+\end{lstlisting}
+to see the running configuration.
+Find information about telnet and dhcp and explain it.
+We also try the commands
+\begin{lstlisting}
+# show interface
+\end{lstlisting}
+and
+\begin{lstlisting}
+# show traffic
+\end{lstlisting}
+and explain the information that they provide.
+
+Discuss the security implications of connecting using telnet of the console.
+
+\section{The Hosts/Networks table}
+In the Network Objects / Groups (Configuration$\rightarrow$Global Objects) we can view, edit, add and delete hosts and networks lists  defined in every interface.
+The hosts and networks are organized according to the interface they are connected to (inside/outside).
+It is recommended to name all the hosts we are managing.
+
+We add the two internal PCs by clicking on ``add network object''. 
+The mask is 255.255.255.255, as it is a single host.
+Add also the external PC.
+We apply and save.
+
+\section{Access Rules}
+The access rules make it possible to establish security policies as a list of rules.
+The tables to specify how a computer interacts with another by allowing and denying specific services and protocols.
+
+We try to connect from the inside PC to the outside PC and explain the behaviour and the default ``Access Rules'' table for the inside interface.
+
+The rules are examined sequentially until one of the applies.
+If the first rule applies, the second is not checked.
+If the first rule does not apply, then the second is checked.
+The process is repeated until one of the rules applies.
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+The last rule is ``any to any deny''. Why?\\
+\hline
+\end{tabular}
+\end{center}
+
+The first rule allows traffic from any IP source to any IP destination if the destination interface has a lower security level.
+If this rule does not apply, the second rule is examined.
+The second rule always applies and discards the packet.
+
+We will observe and explain the rules for the traffic arriving to the external interfaces.
+To understand the rules, we will pay attention to the graphical diagrams offered by the software.`
+
+We will install and configure the FTP server to the external computer.
+Remember that it is needed to add a folder.
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+Is it possible to access the FTP server from the internal computers?\\
+\hline
+\end{tabular}
+\end{center}
+
+Use the rules to deny the access to the FTP server to one of the internal computers and allow access to the other.
+Observe the log messages to verify that access is being denied.
+Each time that you change the configuration and try to access to the ftp server, clean the browser cache.
