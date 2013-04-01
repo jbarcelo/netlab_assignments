@@ -185,3 +185,40 @@ Is it possible to access the FTP server from the internal computers?\\
 Use the rules to deny the access to the FTP server to one of the internal computers and allow access to the other.
 Observe the log messages to verify that access is being denied.
 Each time that you change the configuration and try to access to the ftp server, clean the browser cache.
+
+\section{Translation Rules}
+
+The ASA 5505 supports both network address translation (NAT) which is a one-to-one address translation (one inside to one outside) and port address translation (PAT) which is a many-to-one address translation.
+
+Look at the default configuration for the translation rules.
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\rowcolor{tableheader}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+How does this configuration affect outgoing traffic?\\
+\hline
+What is the IP address used after the packets traverse the firewall?\\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Monitoring}
+The ASDM can be used for network monitoring.
+It allows to select the message supervising level.
+Check the telnet connections and connected users using the options of the menu on the left.
+
+There is also a tool to generate graphs such as traffic, memory andCPU.
+Look at some of the graphs and explain them.
+
+\section{Case Study}
+
+An enterprise has C class network 204.69.100+X.0 and wants securely connect their internal network to an external network.
+The address of the outside firewall interface is 204.69.100+X.1.
+
+In the internal network there is an FTP server with address 192.168.1.4 that needs to be accessed from the outside network using the address 204.69.100+X.4.
+
+The other requirements are that internal users must be able to ping external devices, but not the other way around.
+
+We will configure the firewall to satisfy the above requirements using the command line interface (CLI).
+Explain the commands that have been used as well as the tests performed to verify the correctness of the configuration.
