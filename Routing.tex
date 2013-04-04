@@ -304,13 +304,26 @@ Verify that the changes have been applied using
 \subsection{Configuration of the WAN serial interface}
 
 From the privileged EXEC mode of your router, enter the global configuration mode.
-Enter into the configuration of the WAN serial interface and configure it with the IP indicated on the blackboard.
+Enter into the configuration of the WAN serial interface and configure the IP.
+
+To choose the IP, use the following algorithm. 
+Assume the your group id is $X$ and your neighbour's group id is $Y$.
+If $X<Y$, then your IP is 192.168.XY.X. Otherwise, it is 192.168.YX.X.
 
 The serial interfaces are interconnected by cables that, in the middle, have male/female connector.
 The router in the female connector side sets the communication rate.
+You can find which is the female router issuing the command
+\begin{lstlisting}
+# show controller
+\end{lstlisting}
+DCE means male and CTE is female.
+
+You can also look at the number on the cable.
+1428 means male and 1429 is female.
+
 Use the command 
 \begin{lstlisting}
-# clock rate 12600
+# clock rate 128000
 \end{lstlisting}
 or the closest available rate.
 
@@ -373,7 +386,7 @@ Why?\\
 \end{center}
 
 \subsection{Network Topology}
-Prepare a sketch of the network topology that we have used in this session.
+Prepare a sketch of the network topology that we have used in this session and compare it to the topology of the previous session.
 
 \begin{center}
 \sffamily\small
@@ -390,7 +403,7 @@ And disadvantages?\\
 \end{center}
 
 \section{Configuration of an L2-L3 network}
-This third session extends the previous one by including switches to the network topology.
+This third session extends the previous one by including switches to the network topology, as shown in Fig.~\ref{fig:routers_and_switches}.
 The topology consists of a ring of routers connected in a ring using the serial interfaces.
 Each router is connected using the ethernet interface to a local area network with two or more computers.
 The devices used in this assignment are
@@ -409,7 +422,7 @@ The devices used in this assignment are
 \includegraphics[width=0.9\linewidth]{Figures/routers_and_switches.eps}
 \fi
 \caption{Network topology that includes routers and switches}
-\label{fig:StpTopology}
+\label{fig:routers_and_switches}
 \end{figure}
 
 Each group has to configure its router and its VLAN.
