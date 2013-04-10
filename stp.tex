@@ -27,7 +27,7 @@ The switches are connected as illustrated in the figure \ref{fig:StpTopology}.
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Questions and Tasks}\\
 Find the \texttt{\color{blue}BridgeId} of each switch.\\
 \hline
@@ -42,14 +42,14 @@ Which are the activated ports?\\
 \end{tabular}
 \end{center}
 
-Fill in the table \ref{tab:stp}.
+Fill in the table \ref{tab:Stp}.
 
 
 \begin{table}
 \sffamily\small
 \centering
 \begin{tabular}{>{\columncolor{tablegray}}ccccc}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}c}{Switch ID} & MAC & Port & Role &
 State \\
 Switch B & & & & \\
@@ -80,7 +80,7 @@ Switch# show spanning-tree vlan <id>
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 What can you see?\\
 \hline
@@ -101,7 +101,7 @@ Fill in the table \ref{tab:Stp} and compare practical results to the theoretical
 
 Now that you are familiar with the STP parameters, you will make some changes that will result in the computation of a new tree. In the \emph{global configuration} mode use the command:
 
-\begin{lstlisting} 
+\begin{lstlisting}
 Switch(config)# spanning-tree vlan <id>
 \end{lstlisting}
 or, alternatively, you may use:
@@ -114,7 +114,7 @@ to see which parameters are susceptible to be configured. Use the question mark 
 
 The exercise that we propose is to change the priority of one of the switches different from the root switch. The default behavior is that the switch with the lowest MAC address is selected as a root. The reason is that, in the default configuration, the priority of all the switches is 32768. By changing the priority of one of the switches to a lower value, we can force that that particular switch becomes the root.
 
-Go ahead and change the root switch and observe the new configuration of the tree. Fill in the {\color{red}table \ref{}} for this new configuration and draw the new tree.
+Go ahead and change the root switch and observe the new configuration of the tree. Fill in the table \ref{tab:Stp} for this new configuration and draw the new tree.
 
 \section{Link Failure}
 
@@ -131,7 +131,7 @@ Use the computer connected to the VLAN 1 (the computer used for the administarti
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 Why are you receiving these frames at your computer?\\
 \hline

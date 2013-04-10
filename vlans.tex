@@ -23,7 +23,7 @@ All Cisco switches used during this lab, use an operating system called the Cisc
 \sffamily\small
 \centering
 \begin{tabular}{l>{\columncolor{tablegray}}lp{8cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableheader}}c}{Command Mode} & \multicolumn{1}{>{\columncolor{tableorange}}c}{CLI Prompt} &
 \multicolumn{1}{>{\columncolor{tableheader}}c}{Access}\\
 User EXEC & \texttt{\color{blue}Switch\textgreater} & By default, when connecting to the switch for the first time, you are in this mode. \\
@@ -66,7 +66,7 @@ to see the current configuration of the switch.
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Questions}\\
 How many VLANs can you observe? \emph{Note that this is not necessarily the number of VLANs in the switch.}\\
 \hline
@@ -91,7 +91,7 @@ to collect more information.
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Questions}\\
 What is the status of VLAN1?\\
 \hline
@@ -109,7 +109,7 @@ Switch(config)# no vlan 1
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 What happens?\\
 \hline
@@ -134,7 +134,7 @@ in the privileged EXEC mode.
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 What is the default name of the new VLAN?\\
 \hline
@@ -146,7 +146,7 @@ Delete the VLAN that you have just created using the command:
 \begin{lstlisting}
 Switch(config)# no vlan <id>
 \end{lstlisting}
-and verify that it has been deleted and create it again. 
+and verify that it has been deleted and create it again.
 
 Include in your report the sequence of commands that you used and the output of the switch after each command. You can use the command:
 
@@ -170,7 +170,7 @@ Name your VLAN \texttt{\color{blue}vlanXX-GroupX-switchX}, and verify the change
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 Which other parameters can be changed in the VLAN configuration mode?\\
 \hline
@@ -182,7 +182,7 @@ In the \emph{privileged EXEC} mode, take a look at the running configuration and
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 Are they equal?\\
 \hline
@@ -205,7 +205,7 @@ Use the \texttt{\color{blue}ping} command to test the connectivity between the t
 \sffamily\small
 \centering
 \begin{tabular}{>{\columncolor{tablegray}}ccc}
-\rowcolor{tableheader}
+
 \multicolumn{1}{c}{} & \multicolumn{1}{>{\columncolor{tablegray}}c}{Same switch} &
 \multicolumn{1}{>{\columncolor{tablegray}}c}{Different switch} \\
 Same VLAN & OK/KO & OK/KO \\
@@ -218,7 +218,7 @@ Different VLAN & OK/KO & OK/KO \\
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Questions}\\
 Which devices are reached if you use a broadcast packet?\\
 \hline
@@ -254,7 +254,7 @@ to check the status of the ports.
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 Where can you find the trunk ports?\\
 \hline
@@ -268,7 +268,7 @@ By default, a trunk port carries traffic of all VLANs. However, it is possible t
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 Which command do you use?\\
 \hline
@@ -279,7 +279,7 @@ In the \emph{global configuration} mode, enter into the configuration of the tru
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 Which command do you use?\\
 \hline
@@ -308,7 +308,7 @@ to see the configuration of one or all the interfaces.
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 What are the results?\\
 \hline
@@ -336,7 +336,7 @@ Compare the results that you obtain now with the results obtained in the static 
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Questions}\\
 Are there any differences? Why?\\
 \hline
@@ -348,7 +348,7 @@ Change the IP address of one of your auxiliary computers to an address belonging
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 What happens? Why?\\
 \hline

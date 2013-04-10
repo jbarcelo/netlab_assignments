@@ -12,10 +12,8 @@
 \usepackage{titling}
 \usepackage{xcolor}
 \usepackage{listings}
-\usepackage{colortbl}
 \usepackage{multicol}
-\usepackage{multirow}
-\usepackage{hhline}
+\usepackage{colortbl}
 \usepackage{ifpdf}
 \ifpdf
 \usepackage[protrusion=true,expansion=true]{microtype}
@@ -24,7 +22,7 @@
 \usepackage{url}
 \fi
 
-\renewcommand{\sfdefault}{Myriad-LF}
+%\renewcommand{\sfdefault}{Myriad-LF}
 \renewcommand{\maketitlehooka}{\sf}
 \renewcommand{\captionfont}{\small\it}
 \renewcommand{\captionlabelfont}{\sf}
@@ -106,10 +104,7 @@
 \frontmatter
 \pagestyle{empty}
 
-\title{\Huge Network Laboratory}
-\author{Ruizhi Liao, Alex Bikfalvi, Jaume Barcelo, Albert Rabassa}
-\date{Spring 2013}
-\maketitle
+\input{Title}
 
 \tableofcontents
 
@@ -121,7 +116,7 @@
 \input{Vlans}
 \input{Stp}
 \input{Routing}
-\input{firewall}
+\input{Firewall}
 
 \backmatter
 \bibliographystyle{plain}

@@ -11,7 +11,7 @@ Review the TCP/IP model and explain the function of each layer. Provide examples
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Questions and Tasks}\\
 What is the purpose of ARP? \emph{Tip: Use the RFC826 standard to answer this question \cite{rfc826}.}\\
 \hline
@@ -45,7 +45,7 @@ Start your computer in Linux. Start the \emph{Wireshark} software program and ch
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Questions}\\
 What interface does Wireshark detect? What is your IP address? What is the corresponding MAC address?\\
 \hline
@@ -57,7 +57,7 @@ Configure the \textbf{\sf Capture} \textgreater \textbf{\sf Interfaces} options 
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Questions}\\
 What is the total number of captured packets? Are there lost packets? If yes, why?\\
 \hline
@@ -69,7 +69,7 @@ Select a (any) packet. Observe the details and answer the following questions.
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Questions}\\
 What is the source and destination IP address?\\
 \hline
@@ -90,12 +90,20 @@ In the dialog \textbf{\sf Analyze} \textgreater \textbf{\sf Enable Protocols...}
 
 Select the menu \textbf{\sf Statistics} \textgreater \textbf{\sf Protocol Hierarchy} and observe the percentage of the following protocols: Ethernet, Internet Protocol, TCP, UDP, Logical Link Control, ARP, STP, IPv6, HTTP.
 
-\textbf{\color{red} Include IPv6 practice with a ping to the local-link IPv6 address of a neighbor. Use: \texttt{ping6 -I iface addr} or a failed ping to \texttt{ping6 ipv6.google.com}.}
+Repeat the previous capture using IPv6, by performing ping to the local-link IPv6 address of a neighbor or attempting an IPv6 ping to an existing destination. You may use one of the following commands:
+
+\begin{lstlisting}
+ping6 -I <interface> <address>
+\end{lstlisting}
+or:
+\begin{lstlisting}
+ping6 ipv6.google.com
+\end{lstlisting}
 
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Questions}\\
 What are the differences between IPv4 and IPv6?\\
 \hline
@@ -120,7 +128,7 @@ sudo ip neighbour flush all
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Questions}\\
 What are the source and destination MAC addresses of the Ethernet frame that contains the ARP request message?\\
 \hline
@@ -138,7 +146,7 @@ Use the information available in \emph{Wireshark} to indicate the length of the 
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 To which layer does ARP belong?\\
 \hline
@@ -152,7 +160,7 @@ Begin a new 5 minutes capture and during this time visit a few web sites, such a
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Questions}\\
 What is the HTTP version of your web browser?\\
 \hline
@@ -172,7 +180,7 @@ The default destination port for web is 80 or 8080, when using a web proxy.
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Questions}\\
 What is the source port of the get requests?\\
 \hline
@@ -186,7 +194,7 @@ Find a DNS query--response message pair. Use \texttt{\color{blue} dns} in the \e
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 What is the function of DNS?\\
 \hline
@@ -198,7 +206,7 @@ Use the option \textbf{\sf Analyze} \textgreater \textbf{\sf Follow TCP Stream} 
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 When using HTTP, it is possible to observe the contents of the web using Wireshark?\\
 \hline
@@ -210,7 +218,7 @@ Now use HTTPS.
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 Is it still possible to read the information that is being transmitted? \emph{Tip: Search for SSL packets.}\\
 \hline
@@ -226,7 +234,7 @@ Close all applications that use the network and \texttt{ping} four different web
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 What are protocols used?\\
 \hline
@@ -238,7 +246,7 @@ Draw a frame and explain how the different packet are encapsulated in each other
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 How many ping messages are transmitted by default?\\
 \hline
@@ -250,7 +258,7 @@ Prepare a table with the source, destination, and average packet delay  of the f
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Questions}\\
 What is the packet length?\\
 \hline
@@ -285,11 +293,11 @@ Open a terminal and begin a new \texttt{\color{blue}tcpdump} capture. Enter the 
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Questions}\\
 What is the information provided by \texttt{tcpdump} and what is the format used?\\
 \hline
-{\color{red}To which level does the information belong?} \emph{Tip: Remember that you can redirect the output to a file using the following command \texttt{\color{blue}tcpdump \textgreater file\_name}.}\\
+To which network layer does the information belong? \emph{Tip: Remember that you can redirect the output to a file using the following command \texttt{\color{blue}tcpdump \textgreater file\_name}}.\\
 \hline
 \end{tabular}
 \end{center}
@@ -299,7 +307,7 @@ The first line of \texttt{tcpdump} specifies the network interface used during t
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 What is the interface that you are using?\\
 \hline
@@ -316,7 +324,7 @@ Then, execute the same command again using the \texttt{\color{blue}-e} option.
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 What is the difference with respect to the previous execution? \emph{Tip: Use the \texttt{tcpdump} manual, if necessary.}\\
 \hline
