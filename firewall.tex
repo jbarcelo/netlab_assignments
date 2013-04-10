@@ -59,7 +59,7 @@ We try to ping between the two PCs connected to the internal interfaces.
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 Does it work? Why?\\
 \hline
@@ -77,7 +77,7 @@ Observe and explain the different aspects that can be configured using the icons
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 What is the default configuration of Ethernet 0/0 (outside)?\\
 \hline
@@ -86,7 +86,7 @@ Why do you thing that the router ships with this configuration?\\
 \end{tabular}
 \end{center}
 
-We will change the address of the Ethernet 0/0 (outside) interface to 204.69.100+X.1. 
+We will change the address of the Ethernet 0/0 (outside) interface to 204.69.100+X.1.
 Remember that the X is the group number.
 We will use a /24 network mask.
 Now we connect the outside PC (via switch B) to the outside interface.
@@ -95,7 +95,7 @@ We configure the IP of the outside PC to an address of the outside rang and we s
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 Can you ping from the outside PC to an inside PC? Why?\\
 \hline
@@ -111,7 +111,7 @@ We enable the telnet options ASDM configuration$\rightarrow$Properties$\rightarr
 We have to make sure that we have applied the changes (apply and save).
 Now we telnet the device and we use \texttt{cisco} (small letters) as a password.
 
-We try the 
+We try the
 \begin{lstlisting}
 # who
 \end{lstlisting}
@@ -138,7 +138,7 @@ In the Network Objects / Groups (Configuration$\rightarrow$Global Objects) we ca
 The hosts and networks are organized according to the interface they are connected to (inside/outside).
 It is recommended to name all the hosts we are managing.
 
-We add the two internal PCs by clicking on ``add network object''. 
+We add the two internal PCs by clicking on ``add network object''.
 The mask is 255.255.255.255, as it is a single host.
 Add also the external PC.
 We apply and save.
@@ -156,7 +156,7 @@ The process is repeated until one of the rules applies.
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 The last rule is ``any to any deny''. Why?\\
 \hline
@@ -175,7 +175,7 @@ Remember that it is needed to add a folder.
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 Is it possible to access the FTP server from the internal computers?\\
 \hline
@@ -194,7 +194,7 @@ Look at the default configuration for the translation rules.
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 How does this configuration affect outgoing traffic?\\
 \hline
@@ -208,7 +208,7 @@ The ASDM can be used for network monitoring.
 It allows to select the message supervising level.
 Check the telnet connections and connected users using the options of the menu on the left.
 
-There is also a tool to generate graphs such as traffic, memory andCPU.
+There is also a tool to generate graphs such as traffic, memory and CPU.
 Look at some of the graphs and explain them.
 
 \section{Case Study}
