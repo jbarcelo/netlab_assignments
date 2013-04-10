@@ -1,6 +1,7 @@
 \chapter{Routing}
 
 \section{Home preparation}
+
 Two of the more used routing protocols are RIP and OSPF.
 Find information about these two protocols and compare them.
 Describe what is the format of a routing table and explain how each of the protocols work.
@@ -9,12 +10,11 @@ Read the following quick guide:
 \url{www.jaumebarcelo.info/teaching/lxs/routing/GUIA_RAPIDA_CISCO_2010.pdf}
 
 And download the router user manuals:
-\url{
-www.jaumebarcelo.info/teaching/lxs/routing/manuals_routers.rar
-}
+\url{www.jaumebarcelo.info/teaching/lxs/routing/manuals_routers.rar}
+
 \section{First Session}
 
-In this first session each group will work with a router. 
+In this first session each group will work with a router.
 The goals of this session are:
 \begin{itemize}
 \item Getting familiar with the configuration method.
@@ -46,7 +46,7 @@ Prepare a summary of what you can see with each command.
 \end{itemize}
 
 \subsection{Create a ``Running'' and ``Startup'' configuration}
-Enter the ``privileged EXEC'' mode (enable, pass ``cisco'') and global configuration (conf term). 
+Enter the ``privileged EXEC'' mode (enable, pass ``cisco'') and global configuration (conf term).
 Find the commands to:
 \begin{itemize}
 \item show and change the router name
@@ -70,7 +70,7 @@ Fill in a table that includes
 \item Encapsulation protocol
 \end{itemize}
 
-Enter the Ethernet interface configuration mode with the command 
+Enter the Ethernet interface configuration mode with the command
 \begin{lstlisting}
 # interface <interface name>
 \end{lstlisting}
@@ -80,7 +80,7 @@ Use a /24 netmask.
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 What is the command that you have used?\\
 \hline
@@ -96,7 +96,7 @@ to verify the IP address assignment, and enable it with the command
 # no shutdown
 \end{lstlisting}
 
-Verify the line status and the interface status using the command 
+Verify the line status and the interface status using the command
 \begin{lstlisting}
 # show protocols
 \end{lstlisting}
@@ -126,7 +126,7 @@ Use the ``telnet'' command to connect to the router.
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 Is it possible to remotely configure a router?\\
 \hline
@@ -155,7 +155,7 @@ Check whether IP routing is enabled using the command
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 What is the status of IP routing?\\
 \hline
@@ -166,7 +166,7 @@ Enter the global config mode and enter the submenu router.
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 What is the purpose of this submenu?\\
 \hline
@@ -176,7 +176,7 @@ What is the purpose of this submenu?\\
 Use the ``?'' command the available routing protocols and write down the results.
 Enter into the configuration of RIP.
 
-Use the command 
+Use the command
 \begin{lstlisting}
 # network <your network>
 \end{lstlisting}
@@ -192,7 +192,7 @@ Observe the relevant parameters and answer the following questions:
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 What is the use of the timers?\\
 \hline
@@ -213,7 +213,7 @@ Verify the status of the routing table with the command
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 What is the meaning of each of the fields in the table?\\
 \hline
@@ -233,7 +233,7 @@ Explain what happens when you use ``traceroute'' to the other groups router (bot
 Repeat the experiment after deleting the static route in one of the routers.
 Explains what happens and why.
 
-The command 
+The command
 \begin{lstlisting}
 # debug ip rip
 \end{lstlisting}
@@ -241,7 +241,7 @@ shows the RIP messages that are sent and received by the router.
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 What are the source and destination of these packets?\\
 \hline
@@ -256,7 +256,7 @@ A convenient way to store a router's configuration is using TFTP.
 We need to install the TFTP server in a PC with connectivity (ping connectivity) to the router.
 Install the server and configure in which folder you want to save the router's configuration.
 
-In the router, execute the command 
+In the router, execute the command
 \begin{lstlisting}
 # copy run tftp
 \end{lstlisting}
@@ -265,7 +265,7 @@ In the PC, open the configuration file using a text editor.
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 What can you observe?\\
 \hline
@@ -306,7 +306,7 @@ Verify that the changes have been applied using
 From the privileged EXEC mode of your router, enter the global configuration mode.
 Enter into the configuration of the WAN serial interface and configure the IP.
 
-To choose the IP, use the following algorithm. 
+To choose the IP, use the following algorithm.
 Assume the your group id is $X$ and your neighbour's group id is $Y$.
 If $X<Y$, then your IP is 192.168.XY.X. Otherwise, it is 192.168.YX.X.
 
@@ -321,7 +321,7 @@ DCE means male and CTE is female.
 You can also look at the number on the cable.
 1428 means male and 1429 is female.
 
-Use the command 
+Use the command
 \begin{lstlisting}
 # clock rate 128000
 \end{lstlisting}
@@ -329,7 +329,7 @@ or the closest available rate.
 
 Verify the configuration and use the command
 \begin{lstlisting}
-# no shutdown 
+# no shutdown
 \end{lstlisting}
 at both ends of the connection to enable the communication.
 Then use the command
@@ -342,7 +342,7 @@ Now we will gather information about neighbouring devices using the command
 \begin{lstlisting}
 # show cdp neighbours
 \end{lstlisting}
-or 
+or
 \begin{lstlisting}
 # show cdp neighbours detail
 \end{lstlisting}
@@ -359,7 +359,7 @@ Make sure that routing is enabled using the following commands
 # router rip
 # network 192.168.XX.0
 \end{lstlisting}
-and look at the routing tables using the command 
+and look at the routing tables using the command
 \begin{lstlisting}
 # show ip route
 \end{lstlisting}
@@ -370,7 +370,7 @@ Send pings to the other devices in the network.
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 Which ones are reachable?\\
 \hline
@@ -391,7 +391,7 @@ Prepare a sketch of the network topology that we have used in this session and c
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\rowcolor{tableheader}
+
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 What are the differences?\\
 \hline
@@ -431,10 +431,10 @@ It is assumed that the previous session has been successfully completed and the 
 \subsection{VLAN configuration}
 We \texttt{telnet} our switch and enter the privileged EXEC mode.
 Create a VLAN with a number equal to ten times your group number (group*10, e.g. VLAN 20 for group 2).
-Assign a port connected to the router and one or two other ports connected to PCs. 
+Assign a port connected to the router and one or two other ports connected to PCs.
 Remember to keep the port of the computer you are using for managing the switch in VLAN 1.
 Use an IP equal to 192.168.1.XX where XX is the group multiplied by ten for the computer in VLAN 1.
-Use an IP 192.168.VLAN.YY for the other VLAN. 
+Use an IP 192.168.VLAN.YY for the other VLAN.
 YY is going to be 1 for the router and 2 for the computer.
 You can use YY equal to 3 if you have another computer.
 
@@ -443,7 +443,7 @@ Write down when the \texttt{ping} work and when it does not work and provide an 
 
 \subsection{Configuring the Router LAN interface}
 
-In the router console enter the privileged EXEC mode and use the command 
+In the router console enter the privileged EXEC mode and use the command
 \begin{lstlisting}
 # show interfaces
 \end{lstlisting}
