@@ -54,6 +54,10 @@ If you decide to use \emph{Firefox} to connect to the access point during the as
 
 Connect the Windows and the Linux computers using a cross-over cable. Check layer-2 connectivity using the LED or the \texttt{\color{blue}mii} command in Linux. Check layer-3 connectivity and measure round-trip time using \texttt{\color{blue}ping}. Configure the interfaces if needed.
 
+\begin{lstlisting}
+# ethtool -s eth0 speed 100 duplex full
+\end{lstlisting}
+
 Next, you need to estimate the available bandwidth using an FTP file transfer or the \texttt{\color{blue}iperf} tool. Change the Ethernet connection speed to 10 Mbps (full duplex) and estimate the bandwidth again.
 
 %{\color{red}I believe the mii tool is obsolete - update? Include instructions on how to change the connection speed in Windows/Linux.}
