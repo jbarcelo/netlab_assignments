@@ -12,8 +12,6 @@ In this lab assignment, we shall configure a Cisco switch to create different VL
 
 Each group will use three computers. With one computer you shall manage the switch, and this compute requires an IP address in the same subnetwork as the address of the switch. Your instructor will give your further details. {\color{red}The IPs of the other two switches must belong to the range of the VLAN that you are going to use (192.168.\{10,20\}.XX).}
 
-%% Command to view the serial COM ports: "compmgmt.msc"
-
 \section{Creation of a VLAN}
 
 All Cisco switches used during this lab, use an operating system called the Cisco \emph{Internetwork Operating System}, or \emph{IOS}. The IOS features a command-line interface (CLI), which is accessible using a serial cable or a LAN Telnet connection.
@@ -159,7 +157,7 @@ In the \emph{global configuration} mode, use the command:
 \begin{lstlisting}
 Switch(config)# vlan <id>
 \end{lstlisting}
-to configure the VLAN that you have created. In the \emph{VLAN configuration} mode use the \texttt{\color{blue}name} command to change the name of the VLAN. {\color{red}The VLAN configuration mode is not included in the operation modes table.}
+to configure the VLAN that you have created. In the \emph{VLAN configuration} mode use the \texttt{\color{blue}name} command to change the name of the VLAN.
 
 \begin{lstlisting}
 Switch(config-vlan)# name <vlan-name>
@@ -189,7 +187,7 @@ Are they equal?\\
 \end{tabular}
 \end{center}
 
-Find which is the command that is needed to copy the running configuration to the start-up configuration. {\color{red}The students also need to find the command to show the start-up config for the previous point.} You will need this command when you make changes to the configuration that you want to save.
+Find which are the commands that are needed to show the running configurations, and then to copy the running configuration to the start-up configuration. You will need this command when you make changes to the configuration that you want to save.
 
 \section{Static Assignment of Ports to a VLAN}
 
@@ -197,7 +195,7 @@ After creating one or more VLANs, during the next step we assign ports to the VL
 
 First, enter the \emph{global configuration} mode. Find out which are the ports that you want to modify (for example, 0/1, 0/2, etc.). Modify only the configuration of the ports that are assigned to the other two computers from your group. Make sure that you do not change the port that you are using for the Telnet connection.
 
-To make the changes, you first have to go into to \emph{interface configuration} mode. Here, check the options of the \texttt{\color{blue}switchport} command and use the switch user manual if you require extra information. After making the changes {\color{red}(what changes -- specify?-- Jaume: It was not completely clear to me. My guess is that the changes are the assignment of ports to the VLAN)} return to the \emph{privileged} mode. Verify the changes that you have made comparing the running configuration to the start-up configuration. Save your changes.
+To make the changes, you first have to go into to \emph{interface configuration} mode. Here, check the options of the \texttt{\color{blue}switchport} command and use the switch user manual if you require extra information. After making the changes, return to the \emph{privileged} mode. Verify the changes that you have made comparing the running configuration to the start-up configuration. Save your changes.
 
 Use the \texttt{\color{blue}ping} command to test the connectivity between the two auxiliary computers. Try the connectivity between the configuration computer (the one that you use to connect to the switch CLI) to the auxiliary computers. Finally, try the connectivity between the computers of your group and computers of other groups in your class. Explain the results and the conclusions of the experiments, and complete the table \ref{tab:Connectivity}.
 
@@ -328,7 +326,7 @@ Verify whether the following connections are possible and explain why.
 \begin{itemize}
 \item Ping a computer of the same VLAN, connected to a different switch.
 \item Ping the switch of a different VLAN.
-\item Perform additional tests. {\color{red}Examples???}
+\item Perform additional tests (optional).
 \end{itemize}
 
 Compare the results that you obtain now with the results obtained in the static assignment of VLANs. Fill in the connectivity table \ref{tab:Connectivity} again.
