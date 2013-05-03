@@ -8,20 +8,38 @@ You can download the switch user manual from here:
 
 \section{Introduction}
 
-In this lab assignment, we shall configure a Cisco switch to create different VLANs. The IP addresses of the lab switches are 192.168.1.110, 192.168.1.111 and 192.168.1.112. A sketch on the blackboard/whiteboard specifies the switch to which your PC is connected. Each VLAN has a unique identifier that takes values between 0 and 4094. In this lab assignment we shall use the identifiers 10 and 20.
+In this lab assignment, we shall configure a Cisco switch to create different VLANs. Your instructor will give your the IP addresses of the lab switches, which shall be similar to the ones from the table below. During this assignment, each group of students will be assigned to a switch. Before you begin, you must connect the Ethernet cable of your computers to the switch assigned to your group, in the manner indicated by your instructor.
 
-Each group will use three computers. With one computer you shall manage the switch, and this compute requires an IP address in the same subnetwork as the address of the switch. Your instructor will give your further details. {\color{red}The IPs of the other two switches must belong to the range of the VLAN that you are going to use (192.168.\{10,20\}.XX).}
+\begin{table}
+\sffamily\small
+\centering
+\begin{tabular}{l>{\columncolor{tablegray}}ll}
+\multicolumn{1}{>{\columncolor{tableheader}}c}{Student Group} & \multicolumn{1}{>{\columncolor{tableorange}}c}{Switch} & \multicolumn{1}{>{\columncolor{tableheader}}c}{IP Address}\\
+Group 1 & Switch B & 192.168.1.102 \\
+\hline
+Group 2 & Switch C & 192.168.1.103 \\
+\hline
+Group 3 & Switch D & 192.168.1.104 \\
+\hline
+Group 4 & Switch E & 192.168.1.105 \\
+\hline
+Group 5 & Switch F & 192.168.1.106 \\
+\hline
+\end{tabular}
+\caption{The IP addresses of the lab switches (subject to change, according to the instructions received during the lab).}
+\label{tab:SwitchIp}
+\end{table}
+
+Each VLAN has a unique identifier that takes values between 0 and 4094. In this lab assignment we shall use the identifiers \emph{10} and \emph{20}. Each group will use \emph{three computers}. With one computer you shall manage the switch, and this compute requires an IP address in the same subnetwork as the address of the switch. Your instructor will give your further details. The IP addresses of the other two computers must belong to the range of the VLAN that you are going to use: 192.168.10.\emph{XX} or 192.168.20.\emph{XX}.
 
 \section{Creation of a VLAN}
 
 All Cisco switches used during this lab, use an operating system called the Cisco \emph{Internetwork Operating System}, or \emph{IOS}. The IOS features a command-line interface (CLI), which is accessible using a serial cable or a LAN Telnet connection.
 
-
 \begin{table}
 \sffamily\small
 \centering
 \begin{tabular}{l>{\columncolor{tablegray}}lp{8cm}}
-
 \multicolumn{1}{>{\columncolor{tableheader}}c}{Command Mode} & \multicolumn{1}{>{\columncolor{tableorange}}c}{CLI Prompt} &
 \multicolumn{1}{>{\columncolor{tableheader}}c}{Access}\\
 User EXEC & \texttt{\color{blue}Switch\textgreater} & By default, when connecting to the switch for the first time, you are in this mode. \\
