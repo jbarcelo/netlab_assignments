@@ -24,7 +24,18 @@ In this first session each group will work with a router. The goals of this sess
 
 Start your computer in Windows. Before disconnecting the computer from the Internet, download the TFTP server from the web site \url{http://tftpd32.jounin.net/}, and save it on one of the computers that you will use to connect to the router.
 
-The routers are connected to each other using the Ethernet interfaces and forming a topology that you will have to determine by yourselves. Use the console connection to connect to the routers (use either \emph{HyperTerminal} or \emph{putty} to open a serial connection at 9600 bps). The COM port number (e.g. COM1, COM2, etc.) depends on your computer configuration\footnote{You can see the name of the local serial ports in the \emph{Device Manager} snap-in. To open the snap-in, click on \textsf{Start} \textgreater \textsf{Run...}, type \texttt{devmgmt.msc} and click \textsf{OK}. The serial ports are listed under the \emph{Ports} branch.}. The escape keystroke to exit the \texttt{ping} command in a router is \textsf{Ctrl-Alt-6}.
+\begin{figure}
+\centering
+\ifpdf
+\includegraphics[width=0.9\linewidth]{Figures/RoutingEthernet.pdf}
+\else
+\includegraphics[width=0.9\linewidth]{Figures/RoutingEthernet.eps}
+\fi
+\caption{The network topology used for the Ethernet routing exercise.}
+\label{fig:RoutingEthernet}
+\end{figure}
+
+The routers are connected to each other using the Ethernet interfaces and forming the topology from the figure \ref{fig:RoutingEthernet}. Use the console connection to connect to the routers (use either \emph{HyperTerminal} or \emph{putty} to open a serial connection at 9600 bps). The COM port number (e.g. COM1, COM2, etc.) depends on your computer configuration\footnote{You can see the name of the local serial ports in the \emph{Device Manager} snap-in. To open the snap-in, click on \textsf{Start} \textgreater \textsf{Run...}, type \texttt{devmgmt.msc} and click \textsf{OK}. The serial ports are listed under the \emph{Ports} branch.}. The escape keystroke to exit the \texttt{ping} command in a router is \textsf{Ctrl-Alt-6}.
 
 \subsection{Checking the Router Status}
 
@@ -93,8 +104,7 @@ Enter the Ethernet interface configuration mode with the command:
 Router(config)# interface <interface name>
 \end{lstlisting}
 
-Then, set the IP address to 192.168.10.XX, where XX is your group ID plus 10.
-Use a /24 network mask.
+Then, set the IP address to 192.168.XX.1, where XX is your group ID times 10, i.e. 10, 20, 30, etc. Use a /24 network mask. For the Ethernet interface of your computer use the IP address 192.168.XX.2.
 
 \begin{center}
 \sffamily\small
@@ -120,7 +130,7 @@ Router(config-if)# no shutdown
 Verify the line status and the interface status using the command:
 
 \begin{lstlisting}
-Router(config-if)# show protocols
+Router# show protocols
 \end{lstlisting}
 
 Use the commands:
@@ -135,18 +145,16 @@ and:
 Router# show cdp neighbors detail
 \end{lstlisting}
 
-to see the neighboring Cisco devices.
-
-Write down the information received from the different interfaces.
+to see the neighboring Cisco devices. Write down the information received from the different interfaces.
 \begin{itemize}
 \item the neighbor identifier;
 \item the IP address, and;
 \item the port.
 \end{itemize}
 
-Use the \texttt{\color{blue}ping} command to test the connectivity to the other routers in the lab and write down the round-trip times and other results that you may consider relevant. Find out which is the network topology and sketch it in a figure.
+Use the \texttt{\color{blue}ping} command to test the connectivity to the other routers in the lab and write down the round-trip times and other results that you may consider relevant.
 
-From your computer, use the \texttt{\color{blue}telnet} command to connect to the router.
+From your computer, use the \texttt{\color{blue}telnet} command to connect to your router.
 
 \begin{center}
 \sffamily\small
@@ -198,6 +206,10 @@ What is the purpose of this submenu?\\
 \end{center}
 
 Use the \texttt{\color{blue}?} command to list available routing protocols and write down the results. Enter into the configuration of RIP.
+
+\begin{lstlisting}
+Router(config)# router rip
+\end{lstlisting}
 
 Use the command:
 
@@ -307,7 +319,18 @@ on the server or simply copy and paste on the configuration terminal.
 
 \section{Router Interconnection}
 
-In this session, we shall use the WAN (serial) interfaces of the routers. The topology of the network is unknown to us and we have to figure it out. In the previous session we used the Ethernet interfaces to connect the routers, and in this session we will use the serial interfaces.
+\begin{figure}
+\centering
+\ifpdf
+\includegraphics[width=0.9\linewidth]{Figures/RoutingSerial.pdf}
+\else
+\includegraphics[width=0.9\linewidth]{Figures/RoutingSerial.eps}
+\fi
+\caption{The network topology used for the WAN routing exercise.}
+\label{fig:RoutingSerial}
+\end{figure}
+
+In this session, we shall use the WAN (serial) interfaces of the routers. The figure \ref{fig:RoutingSerial} illustrates the topology of the network. In the previous session we used the Ethernet interfaces to connect the routers, and in this session we will use the serial interfaces.
 
 \subsection{Shutdown the Ethernet Interfaces}
 
