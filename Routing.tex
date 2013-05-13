@@ -356,7 +356,7 @@ Router# show running-config
 
 From the privileged EXEC mode of your router, enter the global configuration mode. Enter into the configuration of the WAN serial interface and configure the IP.
 
-To choose the IP, use the following algorithm. Assume the your group id is $X$ and your neighbor's group ID is $Y$. If $X<Y$, then your IP is 192.168.XY.X. Otherwise, it is 192.168.YX.X.
+To choose the IP, use the following algorithm. Assume the your group id is $X$ and your neighbor's group ID is $Y$. If $X<Y$, then your IP is 192.168.XY.1. Otherwise, it is 192.168.YX.2. Use a /30 network mask.
 
 The serial interfaces are interconnected by cables that, in the middle, have male/female connector. The router in the female connector side sets the communication rate. You can find which is the female router issuing the command:
 
@@ -460,7 +460,18 @@ And disadvantages?\\
 
 \section{Configuration of an L2-L3 Network}
 
-This third session extends the previous one by including switches to the network topology, as shown in the figure~\ref{fig:routers_and_switches}. The topology consists of a ring of routers connected in a ring using the serial interfaces. Each router is connected using the ethernet interface to a local area network with two or more computers. The devices used in this assignment are:
+\begin{figure}
+\centering
+\ifpdf
+\includegraphics[width=0.9\linewidth]{Figures/RoutingSwitches.pdf}
+\else
+\includegraphics[width=0.9\linewidth]{Figures/RoutingSwitches.eps}
+\fi
+\caption{The network topology used for the L2-L3 network.}
+\label{fig:RoutingSwitches}
+\end{figure}
+
+This third session extends the previous one by including switches to the network topology, as shown in the figure~\ref{fig:RoutingSwitches}. The topology consists of a ring of routers connected in a ring using the serial interfaces. Each router is connected using the ethernet interface to a local area network with two or more computers. The devices used in this assignment are:
 
 \begin{itemize}
 \item computers;
@@ -468,17 +479,6 @@ This third session extends the previous one by including switches to the network
 \item up to three Cisco switches, and;
 \item direct and cross-over RJ-45 cables.
 \end{itemize}
-
-\begin{figure}
-\centering
-\ifpdf
-\includegraphics[width=0.9\linewidth]{Figures/routers_and_switches.pdf}
-\else
-\includegraphics[width=0.9\linewidth]{Figures/routers_and_switches.eps}
-\fi
-\caption{Network topology that includes routers and switches}
-\label{fig:routers_and_switches}
-\end{figure}
 
 Each group has to configure its router and its VLAN. It is assumed that the previous session has been successfully completed and the connectivity tests were satisfactory.
 
