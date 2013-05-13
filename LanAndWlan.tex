@@ -48,8 +48,7 @@ On a Linux machine, your local firewall can interfere with the assignment. Disab
 sudo service iptables stop
 \end{lstlisting}
 
-We recommend \emph{Internet Explorer} to interact with the AP web interface.
-If you decide to use \emph{Firefox} to connect to the access point during the assignment, it might be necessary to disable the proxy settings and to uncheck the \emph{offline navigation} option.
+We recommend \emph{Internet Explorer} to interact with the AP web interface. If you decide to use \emph{Firefox} to connect to the access point during the assignment, it might be necessary to disable the proxy settings and to uncheck the \emph{offline navigation} option\footnote{}.
 
 \section{Basic LAN Configuration}
 
@@ -57,7 +56,7 @@ Connect the Windows and the Linux computers using a cross-over cable. Check laye
 
 Next, you need to estimate the available bandwidth using an FTP file transfer or the \texttt{\color{blue}iperf} tool. Change the Ethernet connection speed to 10 Mbps (full duplex) and estimate the bandwidth again.
 
-On a Linux machine, you can check your eth interface configration: 
+On a Linux machine, you can check your eth interface configration:
 \begin{lstlisting}
 ethtool eth0
 \end{lstlisting}
@@ -86,7 +85,7 @@ Is the maximum transmission speed reached? Why?\\
 
 \section{WLAN Basic Configuration}
 
-WLANs can be used as an access point (AP) to LANs. They can also be used to interconnect to LANs using wireless distribution system (WDS). 
+WLANs can be used as an access point (AP) to LANs. They can also be used to interconnect to LANs using wireless distribution system (WDS).
 WDS can also be used to extend the coverage of a WLAN with access points that don't have a wired connection.
 IEEE 802.11 headers can accommodate up to 4 addresses to differentiate between final addresses and per-hop addresses\footnote{This is explained in the theory session}.
 

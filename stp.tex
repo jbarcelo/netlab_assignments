@@ -51,13 +51,15 @@ Fill in the table \ref{tab:Stp}.
 \begin{tabular}{>{\columncolor{tablegray}}ccccc}
 \multicolumn{1}{>{\columncolor{tableorange}}c}{Switch ID} & \multicolumn{1}{>{\columncolor{tableheader}}c}{MAC} & \multicolumn{1}{>{\columncolor{tableheader}}c}{Port} & \multicolumn{1}{>{\columncolor{tableheader}}c}{Role} &
 \multicolumn{1}{>{\columncolor{tableheader}}c}{State} \\
-Switch B & & & & \\
-\cline{2-5}
-& & & & \\
-\cline{2-5}
-& & & & \\
+Switch B & 00:15:F9:2E:A5:40 & & & \\
 \hline
-\vdots & & & & \\
+Switch C & 00:13:19:F7:1A:80 & & & \\
+\hline
+Switch D & 00:13:19:E1:F2:00 & & & \\
+\hline
+Switch E & 00:13:19:E2:3B:C0 & & & \\
+\hline
+Switch F & 00:15:F9:2E:98:00 & & & \\
 \hline
 \end{tabular}
 \caption{The spanning tree.}
@@ -76,25 +78,24 @@ In each of the switches, enter the \emph{privileged EXEC} mode and use the comma
 Switch# show spanning-tree vlan <id>
 \end{lstlisting}
 
+Observe all the fields and make sure you understand them.
+
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
 What can you see?\\
+\hline
+Find the BridgeId of each switch. Compute which is the spanning tree and draw it.\\
+\hline
+Which switch is the root? Which is the role of each port? Which ports are activated?\\
+\hline
+Fill in the table \ref{tab:Stp} and compare practical results to the theoretical computation.\\
 \hline
 \end{tabular}
 \end{center}
 
-Observe all the fields and make sure you understand them.
 
-{\color{red}Find the BridgeId of each switch.
-Compute which is the spanning tree and draw it.
-Which switch is the root?
-Which is the role of each port?
-Which ports are activated?
-
-Fill in the table \ref{tab:Stp} and compare practical results to the theoretical computation.}
 
 \section{Changing the STP Configuration}
 
