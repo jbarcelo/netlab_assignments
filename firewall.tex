@@ -1,6 +1,6 @@
 \chapter{Firewall}
 
-The goals of this assignment include the following.
+The goals of this assignment are the following.
 
 \begin{itemize}
 \item Familiarizing ourselves with firewalls.
@@ -9,20 +9,22 @@ The goals of this assignment include the following.
 \item Solve a case study about connecting a Small/Medium Enterprise (SME) network to the Internet using a firewall.
 \end{itemize}
 
-\section{Home preparation}
+\section{Home Preparation}
 
-Read from the following document:
+The Cisco firewall can be configured using a Java program which is called \emph{Adaptive Security Device Manager} (ASDM). This tool makes it possible to interact with the firewall using a graphical user interface (GUI) on a computer with the Windows operating system. 
+
+Read more from the following document:
 \url{www.jaumebarcelo.info/teaching/lxs/ipsec/ASA_Getting_Started.pdf}
-
 Read also all the assignment and prepare a solution for the \emph{case study}.
 
-It is also possible to familiarize ourselves with the Adaptive Security Device Manager (ASDM) software using a demo version.
-It is available for windows and you need to install the java runtime environment first.
-After installing and launching the program, check the ``demo'' checkbox.
-
+You can download a copy of the Cisco ASDM software from the following link.
 \url{https://www.dropbox.com/s/5yjqflzvgrlere0/asa.zip}
 
+In the beginning, we can familiarize ourselves with the Adaptive Security Device Manager (ASDM) software using a demo version. The software requires the Java Runtime Environment (JRE) version 1.6.x. You can find  After installing and launching the program, select the {\sf Run in Demo Mode} checkbox and choose the desired demo version.
+
+
 \section{Configuring the working place}
+
 Each group needs 3 PCs and a Cisco ASA 5505 firewall.
 
 One of the PCs will be connected to the patch panel.
@@ -49,13 +51,10 @@ Identify the layer-4 protocol and the port number of FTP.
 
 \section{Adaptive Security Device Manager (ASDM)}
 
-The firewall can be configured using a Java tool which is called Adaptive Security Device Manager (ASDM).
-This tool makes it possible to interact with the firewall using a web interface.
-Use a windows box to run ASMD.
-
 We will find the ``ASMD launcher'' on the desktop.
 The default username and password is blank/blank.
 The default IP address is 192.168.1.1 .
+
 
 The CISCO ASA firewalls assign a ``security level'' to the interfaces.
 A security level of 100 means the interface is 100\% trusted.
