@@ -161,7 +161,7 @@ The IP address of the DNS server is 193.145.56.11. On your wired computer in the
 \item Enable HTTPS access to the network 172.29.X0.0, where $X$ is your group number.
 \item Change the IP address of the \emph{inside} interface to 172.29.X0.1/23. After this change you shall lose connectivity to the firewall.
 \item Change the IP address of the computer to 172.29.X0.2/23. The default gateway is the \emph{inside} interface of the firewall. Restart the ASDM.
-\item Change the IP address of the \emph{outside} interface of the firewall to 201.69.X0.0/24.
+\item Change the IP address of the \emph{outside} interface of the firewall to 201.69.X0.1/24.
 \item Add a static default route at the outside interface of the firewall with your router interface as a gateway.
 \end{enumerate}
 
@@ -194,6 +194,10 @@ The IP address of the DNS server is 193.145.56.11. On your wired computer in the
 \item Use a computer with wired connection and the browser to connect to the access point. Configure the gateway. Configure the wireless network (enable the radio interface, SSID and security configuration).
 \item Add a DHCP server to the firewall to provide an automatic configuration for the wireless computers. You can find the DHCP server configuration at \textsf{Configuration} \textgreater \textsf{Properties} \textgreater \textsf{DHCP Services} \textgreater \textsf{DHCP Server}. Configure the IP address range, the default gateway and the DNS.
 \end{enumerate}
+
+\subsection{Internet Gateway Configuration}
+
+The IP address of the lab Internet gateway (firewall) is 192.168.1.1/24.
 
 \section{Lab Report}
 

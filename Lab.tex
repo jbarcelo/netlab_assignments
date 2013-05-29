@@ -17,10 +17,11 @@
 \usepackage{ifpdf}
 \ifpdf
 \usepackage[protrusion=true,expansion=true]{microtype}
-\usepackage{hyperref}
+\usepackage[hyperindex,breaklinks]{hyperref}
 \else
-\usepackage{url}
+\usepackage[hyphens]{url}
 \fi
+\usepackage{breakurl}
 
 \renewcommand{\sfdefault}{Myriad-LF}
 \renewcommand{\maketitlehooka}{\sf}
