@@ -22,10 +22,18 @@ You can download a copy of the Cisco ASDM software from the following link.
 
 In the beginning, we can familiarize ourselves with the Adaptive Security Device Manager (ASDM) software using a demo version. The software requires the Java Runtime Environment (JRE) version 1.6.18. After installing and launching the program, select the {\sf Run in Demo Mode} checkbox and choose the desired demo version. The version we use during this practice is 5.2.
 
-
 \section{Configuring the working place}
 
 For this practical exercise, each group needs 3 computers and a Cisco ASA 5505 firewall. Connect one of the computers to switch B via the patch panel. Before disconnecting this computer from the Internet, download an FTP server such as \emph{Filezilla}. Connect the other two computers to the two internal ports of the firewall (ports 2 and 3).
+
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tablered}}l}{Important}\\
+Write down the UPF number of your firewall so you can identify it in the next session.\\
+\hline
+\end{tabular}
+\end{center}
 
 Connect the firewall to the switch B via the patch panel. Configure the IP address on the external interface (\emph{outside}) of the firewall according to the figure \ref{fig:Firewall}, where \emph{X} is the number of your group. Configure the default gateway of the three computers with the IP address of the corresponding firewall interface, internal (\emph{inside}) for the internal computers and external (\emph{outside}) for the external computers.
 
@@ -44,7 +52,7 @@ We shall use the FTP to verify that our network configuration works. Identify th
 
 \section{Adaptive Security Device Manager (ASDM)}
 
-We will find the \emph{ASMD launcher} on the desktop. The default username and password are blank. The default IP address of the firewall is 192.168.1.1 .
+We will find a shortcut to the \emph{ASDM} application on the desktop. In the case the ASDM is not installed on your computer, open Internet Explorer, disable the proxy and navigate to \url{https://192.186.1.1}, where the default IP address of the firewall is 192.168.1.1. The default username and password are blank. From the firewall's web interface, use the first button to download and install the ASDM on your computer. Once you open the ASDM, use the same IP address, username and password to connect to the firewall.
 
 The CISCO ASA firewalls assign a \emph{security level} to the interfaces. A security level of 100 means the interface is 100\% trusted. A security level of 0 means that the interface is not trusted at all. We shall check the interfaces available and their security level. Discuss the appropriateness of this configuration.
 
