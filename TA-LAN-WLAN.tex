@@ -1,0 +1,24 @@
+\chapter{Traffic Analysis, LAN, WLAN}
+
+\section{Layered Networks}
+Data networks are organized in layers.
+These layers communicate with each other using interfaces.
+Each layer offers some services to the layer on top of it.
+Also, each layer in one end of the communication connects to the same layer at the other end of the communication.
+
+In theory, the layers are relatively independent from each other.
+A layer can see other layers as \emph{black boxes} without having to care about implementation details.
+This approach is a common practice in engineering as it allows each team of engineers to focus in a particular problem which is just a piece of a puzzle to solve a bigger problem.
+
+Each layer accomplishes some particular tasks.
+For example, the physical layer transmits symbols containing information over a transmission medium such as an optical fiber or a radio channel.
+The network layer is assigned the task of taking routing decisions to move packets from one network to the other.
+
+The Open Systems Interconnection model (OSI) partitions a communication system in seven layers: physical, data link, network, transport, session, presentation and application.
+The TCP/IP model (Transfer Control Protocol/Internet Protocol) is more specific to the Internet and differentiates five layers: physical, link, network, transport, and application.`
+
+The physical layer deals with the transmission medium and transfers information symbols over it.
+The link layer is in charge of one-hop communication.
+The network layer is responsible for connecting multiple networks and therefore should be capable of routing data through multiple hops.
+The transport network takes care of end-to-end communication between two hosts, and can multiplex different instances of communications in each host.
+The application layer uses the end-to-end communication to offer some kind of service to the network user.
