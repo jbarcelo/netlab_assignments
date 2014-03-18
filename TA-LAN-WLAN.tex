@@ -22,3 +22,44 @@ The link layer is in charge of one-hop communication.
 The network layer is responsible for connecting multiple networks and therefore should be capable of routing data through multiple hops.
 The transport network takes care of end-to-end communication between two hosts, and can multiplex different instances of communications in each host.
 The application layer uses the end-to-end communication to offer some kind of service to the network user.
+
+In practice, data is divided in chunks of information.
+It can be convenient to give different names to the different chunks of information used by the different layers: symbols (PHY), frames (LINK), IP packet (NET), UDP datagram or TCP segment (TRA), and message (APP).
+
+The application messages are encapsulated in TCP segments or UDP datagrams which, in turn, are encapsulated into IP packets that are finally encapsulated into link layer frames.
+Regular users do not need to worry about all these data chunks and encapsulation and de-encapsulation processes.
+However, for network engineers designing systems or debugging networks it is very useful to peek into the data chunks of all communications layer to find the errors.
+
+\section{Address mapping and ARP}
+
+At a higher level an application is identified by an IP address and a port number. 
+In principle, the IP address identifies a unique host in the Internet and the port number identifies a particular application in that particular host.
+The IP address has two different parts - network and host -  that can have variable size.
+The actual size of each part is specified by the network mask.
+As the IP address depends on the network that the host belongs to, it will change as the host roams from one network to the other.
+The IP addresses are network layer addresses and are hierarchical as it can be used by routers to send packets to the right network.
+
+Since some link layer technologies such as ethernet support multiple hosts, they also need a link layer address.
+In the case of ethernet, such address is unique for each manufactured network interface card (NIC) and it is also known as a hardware address.
+It is necessary to have some mechanism to translate from IP addresses to HW addresses.
+
+The link layer receives IP packets from the network layer.
+If the IP belongs to the same network, the packet will be sent directly to the destination.
+Otherwise, the packet will be sent to the next router (for example the default gateway).
+In a typical LAN/WLAN setting,  IP address of the next hop is provided by either the IP configuration or the routing table
+In any case, the link layer needs to know the hardware address of the next hop.
+
+To translate from an IP address to an ethernet address, the Address Resolution Protocol (ARP) is used.
+For example, to find out the hardware address associated to IP 192.168.1.1 in an ethernet network, the inquiring host broadcasts a message to the whole network ``Who has IP 192.168.1.1?''.
+The owner of the address in question answers with a directed message with its IP and its hardware address.
+
+To avoid the sending of an ARP request for every transmitted packet, the ARP information is saved from some time in the ARP cache.
+The link layer will first check the ARP cache and only send a broadcast message if the required information is not present in the cache.
+
+
+
+The typical configuration of an end host includes the IP of the default gateway.
+This is the first hop for packets destined to external networks.
+When the link layer is encapsulating an IP packet needs to know the hardware address of the default gateway.
+Similarly
+
