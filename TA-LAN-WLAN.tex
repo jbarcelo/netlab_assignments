@@ -1,6 +1,8 @@
 \chapter{Traffic Analysis, LAN, WLAN}
 
-\section{Layered Networks}
+\section{Traffic Analysis}
+
+\subsection{Layered Networks}
 Data networks are organized in layers.
 These layers communicate with each other using interfaces.
 Each layer offers some services to the layer on top of it.
@@ -30,7 +32,7 @@ The application messages are encapsulated in TCP segments or UDP datagrams which
 Regular users do not need to worry about all these data chunks and encapsulation and de-encapsulation processes.
 However, for network engineers designing systems or debugging networks it is very useful to peek into the data chunks of all communications layer to find the errors.
 
-\section{Coexistence of protocols}
+\subsection{Coexistence of protocols}
 
 In the network coexist a multitude of protocols.
 Obviously, we need protocols of different layers to achieve communication.
@@ -49,7 +51,7 @@ If IPv6 is not supported end-to-end, it is necessary to resort to tunneling or t
 There is not a big incentive for a network administrator to enable IPv6 until the rest of the world enables IPv6.
 As a result, the adoption of IPv6 has been too slow.
 
-\section{Traffic analysis}
+\subsection{Traffic analysis}
 
 There are some useful tools to analyze the traffic in our networks.
 Two of them are tcpdump (command line) and wireshark (graphic interface).
@@ -60,7 +62,7 @@ In wireshark, it is also possible to apply display filters.
 In the case of display filters only some of the stored packets are shown, but the rest of the data is still available and will be visible if the display filter is changed.
 In the case of capture filters, packets that do not fit the filter criteria are discarded and cannot be recovered for analysis at a later time.
 
-\section{iptables}
+\subsection{iptables}
 
 Iptables is a linux tool that can be used to manage IP packets in the device.
 It can be used to drop packets, modify them and/or redirect them.
@@ -69,14 +71,14 @@ In each of this places, the system administrator can configure a set of rules an
 
 Typical uses of iptables include the implementation of firewalls and network address translation (NAT).
 
-\section{Proxy}
+\subsection{Proxy}
 
 A proxy is a relay working at the application layer.
 The proxy caches content and can speed up web browsing and upstream bandwidth when accessing static content.
 A university or other institution can use a proxy with a port configuration different than 80.
 This aspect needs to be taken into consideration when analyzing web traffic.
 
-\section{Connection oriented protocols}
+\subsection{Connection oriented protocols}
 
 Even though the communication occurs using data packets, some protocols are connection oriented.
 These protocols have a previous handshake before starting exchanging data.
@@ -88,7 +90,7 @@ It is used to negotiate initial parameters such as the sequence numbers.
 The TLS protocol also involves a handshake and it starts with a ``client hello'' and a ``server hello'' messages.
 The handshake is to negotiate the version of the protocol, the ciphers and random numbers that will be used to generate a secret key.
 
-\section{Address mapping and ARP}
+\subsection{Address mapping and ARP}
 
 At a higher level an application is identified by an IP address and a port number. 
 In principle, the IP address identifies a unique host in the Internet and the port number identifies a particular application in that particular host.
@@ -115,7 +117,7 @@ To avoid the sending of an ARP request for every transmitted packet, the ARP inf
 The link layer will first check the ARP cache and only send a broadcast message if the required information is not present in the cache.
 
 
-\section{ICMP}
+\subsection{ICMP}
 
 There is a particular network protocol that is used to control the network itself.
 This protocol is not used by regular application to transfer data. 
@@ -134,3 +136,50 @@ All these information can provide a good description of the status of the networ
 Other tools similar to ping that can be used for troubleshouting an IP connection include traceroute and mtr.
 
 Some network administrators filter ICMP packets and therefore the absence of ping does not necessarily mean the absence of IP connectivity.
+
+\section{LAN and WLAN}
+
+\subsection{Local Area Networks}
+
+Local area networks can be deployed to serve a home or a building.
+Ethernet is the most popular technology for wired local area networks.
+It typically uses UTP cables to connect end hosts and speeds of 100 Mbps or 1Gbps.
+Current equipment is full duplex which means that these speeds can be maintained in both directions.
+The nominal speed is just an upper bound for the achievable speed, as there are factors such as upper layer overheads, congestion control or switching fabric limitations that reduce the actual transmission speed.
+
+A possible option to measure the speed that is obtained in practice can be to use a file-transfer, as FTP clients typically report the download speed at when the transfer is completed.
+Note that the speed may vary for different file sizes.
+
+In principle, direct cables are used to connect computers to switches and switches to routers.
+Other connections may require cross-over cables.
+Many modern devices implement automatic crossover and can use both direct and crossover cables for any kind of connection.
+
+Ethernet LAN introduce little errors and delays to the communication
+
+\subsection{Wireless LAN}
+
+WLAN offer the possibility of local area communication without requiring wires.
+The IEEE 802.11 standard makes it possible to transmit data over short distances using radio waves.
+There are two modes of communication: Ad-hoc in which all the participants of the network behave as peers and infrastructure in which there is an access point which is the master and the rest of the stations register as clients.
+In infrastructure mode, the stations communicate only with the access point.
+To transmit data to another station, the frames are first sent to the access point that then relies the packet to the final destination.
+
+The most usual configuration is infrastructure in which an access point forms a wireless cell to which multiple stations connects.
+The Basic Service Set Identifier is the hardware address of the access point.
+In order to extend the coverage of a WLAN it is possible to interconnect multiple access points using a wired network.
+All the connected access points are assigned the same extended service set identifier (ESSID) and stations can roam from one access point to the next.
+Access points can be configured with multiple ESSIDs to offer separate networks.
+For example the access points of our university advertise eduroam and event@upf.
+
+A technology called Wireless Distribution System can be used to wirelessly connect different access points to extend coverage.
+The performance is considerably reduced in this case.
+
+Differently from wired networks, wireless networks use a shared medium which is prone to errors.
+The transmission speed can be adjusted to be able to maintain communication in the presence bad radio channel conditions.
+The latest equipment implements IEEE 802.11n that supports multiple-antennas (MIMO) to increase the transmission speed.
+In any case, wireless networks tend to be slower and more unreliable than their wired counterparts.
+
+Even though WLAN was originally intended for local communications, they are also being used to build wireless community networks.
+In these networks the neighbors connect to each other typically using roof-top antennas and covering large distances.
+The largest community network is called guifi.net and has more than 20,000 nodes.
+
