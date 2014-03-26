@@ -1,0 +1,185 @@
+\chapter{Traffic Analysis, LAN, WLAN}
+
+\section{Traffic Analysis}
+
+\subsection{Layered Networks}
+Data networks are organized in layers.
+These layers communicate with each other using interfaces.
+Each layer offers some services to the layer on top of it.
+Also, each layer in one end of the communication connects to the same layer at the other end of the communication.
+
+In theory, the layers are relatively independent from each other.
+A layer can see other layers as \emph{black boxes} without having to care about implementation details.
+This approach is a common practice in engineering as it allows each team of engineers to focus in a particular problem which is just a piece of a puzzle to solve a bigger problem.
+
+Each layer accomplishes some particular tasks.
+For example, the physical layer transmits symbols containing information over a transmission medium such as an optical fiber or a radio channel.
+The network layer is assigned the task of taking routing decisions to move packets from one network to the other.
+
+The Open Systems Interconnection model (OSI) partitions a communication system in seven layers: physical, data link, network, transport, session, presentation and application.
+The TCP/IP model (Transmission Control Protocol/Internet Protocol) is more specific to the Internet and differentiates five layers: physical, link, network, transport, and application.`
+
+The physical layer deals with the transmission medium and transfers information symbols over it.
+The link layer is in charge of one-hop communication.
+The network layer is responsible for connecting multiple networks and therefore should be capable of routing data through multiple hops.
+The transport network takes care of end-to-end communication between two hosts, and can multiplex different instances of communications in each host.
+The application layer uses the end-to-end communication to offer some kind of service to the network user.
+
+In practice, data is divided in chunks of information.
+It can be convenient to give different names to the different chunks of information used by the different layers: symbols (PHY), frames (LINK), IP packet (NET), UDP datagram or TCP segment (TRA), and message (APP).
+
+The application messages are encapsulated in TCP segments or UDP datagrams which, in turn, are encapsulated into IP packets that are finally encapsulated into link layer frames.
+Regular users do not need to worry about all these data chunks and encapsulation and de-encapsulation processes.
+However, for network engineers designing systems or debugging networks it is very useful to peek into the data chunks of all communications layer to find the errors.
+
+\subsection{Coexistence of protocols}
+
+In the network coexist a multitude of protocols.
+Obviously, we need protocols of different layers to achieve communication.
+But even within a particular layer, we find coexisting protocols.
+
+For example, in the course we will experiment with unshielded twisted pair (UTP) and radio (wireless) physical layers.
+Similarly, we will make use of FTP (file transfer) and HTTP (hypertext) in our labs.
+
+A particular case is that of the network (or Internet layer).
+This is the protocol that provides end-to-end connectivity and for many years the IPv4 has totally dominated network.
+The associated Internet Control Message Protocol v4 (ICMPv4) has friendly coexisted with IPv4.
+
+Today there is a strong incentive to have another protocol, in particular IPv6, at the network layer because IPv4 address space is exhausted.
+However, for IPv6 to be useful it is necessary that all the routers in the communication path support.
+If IPv6 is not supported end-to-end, it is necessary to resort to tunneling or translation techniques that increase the complexity of the communication.
+There is not a big incentive for a network administrator to enable IPv6 until the rest of the world enables IPv6.
+As a result, the adoption of IPv6 has been too slow.
+
+\subsection{Traffic analysis}
+
+There are some useful tools to analyze the traffic in our networks.
+Two of them are tcpdump (command line) and wireshark (graphic interface).
+This tools capture the packets of one or more interfaces and analyze and analyze the protocols at all layers.
+
+It is possible apply capture filters in order to capture only those packets that are of interest.
+In wireshark, it is also possible to apply display filters.
+In the case of display filters only some of the stored packets are shown, but the rest of the data is still available and will be visible if the display filter is changed.
+In the case of capture filters, packets that do not fit the filter criteria are discarded and cannot be recovered for analysis at a later time.
+
+\subsection{iptables}
+
+Iptables is a linux tool that can be used to manage IP packets in the device.
+It can be used to drop packets, modify them and/or redirect them.
+The packets can be intercepted at different places: PREROUTING, INPUT, FORWARD, OUTPUT, POSTROUTING
+In each of this places, the system administrator can configure a set of rules and actions for the packets that match the rules.
+
+Typical uses of iptables include the implementation of firewalls and network address translation (NAT).
+
+\subsection{Proxy}
+
+A proxy is a relay working at the application layer.
+The proxy caches content and can speed up web browsing and upstream bandwidth when accessing static content.
+A university or other institution can use a proxy with a port configuration different than 80.
+This aspect needs to be taken into consideration when analyzing web traffic.
+
+\subsection{Connection oriented protocols}
+
+Even though the communication occurs using data packets, some protocols are connection oriented.
+These protocols have a previous handshake before starting exchanging data.
+Examples of protocols that use a handshake are TCP and TLS.
+
+The TCP handshake is simple and involves three packets with the SYN, SYN-ACK and ACK flags activated.
+It is used to negotiate initial parameters such as the sequence numbers.
+
+The TLS protocol also involves a handshake and it starts with a ``client hello'' and a ``server hello'' messages.
+The handshake is to negotiate the version of the protocol, the ciphers and random numbers that will be used to generate a secret key.
+
+\subsection{Address mapping and ARP}
+
+At a higher level an application is identified by an IP address and a port number. 
+In principle, the IP address identifies a unique host in the Internet and the port number identifies a particular application in that particular host.
+The IP address has two different parts - network and host -  that can have variable size.
+The actual size of each part is specified by the network mask.
+As the IP address depends on the network that the host belongs to, it will change as the host roams from one network to the other.
+The IP addresses are network layer addresses and are hierarchical as it can be used by routers to send packets to the right network.
+
+Since some link layer technologies such as ethernet support multiple hosts, they also need a link layer address.
+In the case of ethernet, such address is unique for each manufactured network interface card (NIC) and it is also known as a hardware address.
+It is necessary to have some mechanism to translate from IP addresses to HW addresses.
+
+The link layer receives IP packets from the network layer.
+If the IP belongs to the same network, the packet will be sent directly to the destination.
+Otherwise, the packet will be sent to the next router (for example the default gateway).
+In a typical LAN/WLAN setting,  IP address of the next hop is provided by either the IP configuration or the routing table
+In any case, the link layer needs to know the hardware address of the next hop.
+
+To translate from an IP address to an ethernet address, the Address Resolution Protocol (ARP) is used.
+For example, to find out the hardware address associated to IP 192.168.1.1 in an ethernet network, the inquiring host broadcasts a message to the whole network ``Who has IP 192.168.1.1?''.
+The owner of the address in question answers with a directed message with its IP and its hardware address.
+
+To avoid the sending of an ARP request for every transmitted packet, the ARP information is saved from some time in the ARP cache.
+The link layer will first check the ARP cache and only send a broadcast message if the required information is not present in the cache.
+
+
+\subsection{ICMP}
+
+There is a particular network protocol that is used to control the network itself.
+This protocol is not used by regular application to transfer data. 
+It is used by network administrators to obtain additional information of the status of the network.
+
+For example, a router can send a destination unreachable ICMP message if it receives a packet for which no routing information exists.
+A packet that is repeatedly used by network administrator is ICMP echo request.
+A device receiving an ICMP request will reply with an ICMP echo reply.
+This can be extremely useful to test if there is IP connectivity between two devices.
+It is also useful to know whether a particular device is running.
+
+Finally, as each ICMP carries a unique identifier that is included in the echo reply, it is possible to measure round-trip time.
+The operative system often includes a ping tool that sends multiple ICMP echo packets and keeps track of the statistics min/avg/max of the round-trip-time.
+Ping also provides information of the number of lost packets.
+All these information can provide a good description of the status of the network.
+Other tools similar to ping that can be used for troubleshouting an IP connection include traceroute and mtr.
+
+Some network administrators filter ICMP packets and therefore the absence of ping does not necessarily mean the absence of IP connectivity.
+
+\section{LAN and WLAN}
+
+\subsection{Local Area Networks}
+
+Local area networks can be deployed to serve a home or a building.
+Ethernet is the most popular technology for wired local area networks.
+It typically uses UTP cables to connect end hosts and speeds of 100 Mbps or 1Gbps.
+Current equipment is full duplex which means that these speeds can be maintained in both directions.
+The nominal speed is just an upper bound for the achievable speed, as there are factors such as upper layer overheads, congestion control or switching fabric limitations that reduce the actual transmission speed.
+
+A possible option to measure the speed that is obtained in practice can be to use a file-transfer, as FTP clients typically report the download speed at when the transfer is completed.
+Note that the speed may vary for different file sizes.
+
+In principle, direct cables are used to connect computers to switches and switches to routers.
+Other connections may require cross-over cables.
+Many modern devices implement automatic crossover and can use both direct and crossover cables for any kind of connection.
+
+Ethernet LAN introduce little errors and delays to the communication
+
+\subsection{Wireless LAN}
+
+WLAN offer the possibility of local area communication without requiring wires.
+The IEEE 802.11 standard makes it possible to transmit data over short distances using radio waves.
+There are two modes of communication: Ad-hoc in which all the participants of the network behave as peers and infrastructure in which there is an access point which is the master and the rest of the stations register as clients.
+In infrastructure mode, the stations communicate only with the access point.
+To transmit data to another station, the frames are first sent to the access point that then relies the packet to the final destination.
+
+The most usual configuration is infrastructure in which an access point forms a wireless cell to which multiple stations connects.
+The Basic Service Set Identifier is the hardware address of the access point.
+In order to extend the coverage of a WLAN it is possible to interconnect multiple access points using a wired network.
+All the connected access points are assigned the same extended service set identifier (ESSID) and stations can roam from one access point to the next.
+Access points can be configured with multiple ESSIDs to offer separate networks.
+For example the access points of our university advertise eduroam and event@upf.
+
+A technology called Wireless Distribution System can be used to wirelessly connect different access points to extend coverage.
+The performance is considerably reduced in this case.
+
+Differently from wired networks, wireless networks use a shared medium which is prone to errors.
+The transmission speed can be adjusted to be able to maintain communication in the presence bad radio channel conditions.
+The latest equipment implements IEEE 802.11n that supports multiple-antennas (MIMO) to increase the transmission speed.
+In any case, wireless networks tend to be slower and more unreliable than their wired counterparts.
+
+Even though WLAN was originally intended for local communications, they are also being used to build wireless community networks.
+In these networks the neighbors connect to each other typically using roof-top antennas and covering large distances.
+The largest community network is called guifi.net and has more than 20,000 nodes.
+
