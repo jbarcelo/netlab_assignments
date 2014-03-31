@@ -40,7 +40,7 @@ Fig.~\ref{fig:Vlan} shows an example in which computers A, B and C are kept in a
 
 VLANs are very convenient for deploying switched networks as it is possible for the network administrators to install a single switched network.
 This network can later be partitioned in a flexible way simply changing the configuration of the routers.
-It is possible that ethernet ports in the same room belong to different virtual lik-layer networks as it is also possible to have ethernet ports in different buildings connected to the same virtual link-layer network.
+It is possible that ethernet ports in the same room belong to different virtual link-layer networks as it is also possible to have ethernet ports in different buildings connected to the same virtual link-layer network.
 
 \begin{figure}
 \centering
@@ -56,7 +56,7 @@ It is possible that ethernet ports in the same room belong to different virtual 
 In a typical configuration, each VLAN contains one IP subnetwork, and it is connected to other subnetworks using a router.
 Each VLAN has a number which is the VLAN identifier.
 The switch ports are associated to VLAN by configuring each of the ports.  
-If a switch has four ports and ports #1 and #3 are assigned to VLAN 10 while ports #2 and #4 are assigned to VLAN 20, then traffic flows from port #1 to #3 and the other way around, but it is isolated from ports #2 and #4.
+If a switch has four ports and ports \#1 and \#3 are assigned to VLAN 10 while ports \#2 and \#4 are assigned to VLAN 20, then traffic flows from port \#1 to \#3 and the other way around, but it is isolated from ports \#2 and \#4.
 This kind of assignment of a single VLAN to a port is called \emph{static-access}.
 
 In a network deployment with multiple switches it is necessary to carry ethernet traffic from one switch to others.
@@ -71,6 +71,16 @@ A port carrying packets of multiple VLANs is called a trunking port.
 
 If packets of different VLANs are transmitted over the same switch, the receiving switch needs to know to which VLAN each packet belongs to.
 To this end, the sending switch will mark every frame with information about the VLAN it belongs to.
+This mark is called a \emph{tag} or, more technically, IEEE 802.1Q header.
 
+In a default configuration, switches have a default VLAN that is also the management VLAN.
+Access through the management VLAN allows remote router configuration.
+Extreme care should be exercised when remotely configuring VLANs to prevent cutting the management connectivity.
+If this occurs, it will be necessary to physically access the switch to recover configuration.
 
+Trunk switch ports can have a \emph{native} VLANs.
+Packets that are received and not tagged are considered to belong to the native VLAN.
+Similarly, frames belonging to the native VLAN are not tagged when transmitted.
 
+Cisco devices feature a VLAN trunking protocol that propagates VLAN-related information to all the layer-2 network.
+This makes it possible to see from one switch all the VLANs available in the network.

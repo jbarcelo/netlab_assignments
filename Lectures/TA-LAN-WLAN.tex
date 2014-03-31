@@ -17,7 +17,7 @@ For example, the physical layer transmits symbols containing information over a 
 The network layer is assigned the task of taking routing decisions to move packets from one network to the other.
 
 The Open Systems Interconnection model (OSI) partitions a communication system in seven layers: physical, data link, network, transport, session, presentation and application.
-The TCP/IP model (Transmission Control Protocol/Internet Protocol) is more specific to the Internet and differentiates five layers: physical, link, network, transport, and application.`
+The TCP/IP model (Transmission Control Protocol/Internet Protocol) is more specific to the Internet and differentiates five layers: physical, link, network, transport, and application.
 
 The physical layer deals with the transmission medium and transfers information symbols over it.
 The link layer is in charge of one-hop communication.
@@ -25,7 +25,7 @@ The network layer is responsible for connecting multiple networks and therefore 
 The transport network takes care of end-to-end communication between two hosts, and can multiplex different instances of communications in each host.
 The application layer uses the end-to-end communication to offer some kind of service to the network user.
 
-In practice, data is divided in chunks of information.
+In practice, data transmitted over data networks is divided in chunks of information.
 It can be convenient to give different names to the different chunks of information used by the different layers: symbols (PHY), frames (LINK), IP packet (NET), UDP datagram or TCP segment (TRA), and message (APP).
 
 The application messages are encapsulated in TCP segments or UDP datagrams which, in turn, are encapsulated into IP packets that are finally encapsulated into link layer frames.
@@ -124,7 +124,7 @@ This protocol is not used by regular application to transfer data.
 It is used by network administrators to obtain additional information of the status of the network.
 
 For example, a router can send a destination unreachable ICMP message if it receives a packet for which no routing information exists.
-A packet that is repeatedly used by network administrator is ICMP echo request.
+A packet that is repeatedly used by network administrators is ICMP echo request.
 A device receiving an ICMP request will reply with an ICMP echo reply.
 This can be extremely useful to test if there is IP connectivity between two devices.
 It is also useful to know whether a particular device is running.
@@ -164,12 +164,12 @@ There are two modes of communication: Ad-hoc in which all the participants of th
 In infrastructure mode, the stations communicate only with the access point.
 To transmit data to another station, the frames are first sent to the access point that then relies the packet to the final destination.
 
-The most usual configuration is infrastructure in which an access point forms a wireless cell to which multiple stations connects.
+The most usual configuration is infrastructure in which an access point forms a wireless cell to which multiple stations connect.
 The Basic Service Set Identifier is the hardware address of the access point.
 In order to extend the coverage of a WLAN it is possible to interconnect multiple access points using a wired network.
 All the connected access points are assigned the same extended service set identifier (ESSID) and stations can roam from one access point to the next.
 Access points can be configured with multiple ESSIDs to offer separate networks.
-For example the access points of our university advertise eduroam and event@upf.
+For example the access points of our university advertise \emph{eduroam} and \emph{event@upf}.
 
 A technology called Wireless Distribution System can be used to wirelessly connect different access points to extend coverage.
 The performance is considerably reduced in this case.
