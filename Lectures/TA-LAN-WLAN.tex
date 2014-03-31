@@ -119,7 +119,7 @@ The link layer will first check the ARP cache and only send a broadcast message 
 \subsection{ICMP}
 
 There is a particular network protocol that is used to control the network itself.
-This protocol is not used by regular application to transfer data. 
+This protocol is not used by regular applications to transfer data. 
 It is used by network administrators to obtain additional information of the status of the network.
 
 For example, a router can send a destination unreachable ICMP message if it receives a packet for which no routing information exists.
@@ -131,8 +131,9 @@ It is also useful to know whether a particular device is running.
 Finally, as each ICMP carries a unique identifier that is included in the echo reply, it is possible to measure round-trip time.
 The operative system often includes a ping tool that sends multiple ICMP echo packets and keeps track of the statistics min/avg/max of the round-trip-time.
 Ping also provides information of the number of lost packets.
+It is also possible to adjust the size of ping packets to see how the network behaves with packets of different sizes.
 All these information can provide a good description of the status of the network.
-Other tools similar to ping that can be used for troubleshouting an IP connection include traceroute and mtr.
+Other tools similar to ping that can be used for troubleshouting an IP connection include \emph{traceroute} and \emph{mtr}.
 
 Some network administrators filter ICMP packets and therefore the absence of ping does not necessarily mean the absence of IP connectivity.
 
@@ -147,7 +148,7 @@ Current equipment is full duplex which means that these speeds can be maintained
 The nominal speed is just an upper bound for the achievable speed, as there are factors such as upper layer overheads, congestion control or switching fabric limitations that reduce the actual transmission speed.
 
 A possible option to measure the speed that is obtained in practice can be to use a file-transfer, as FTP clients typically report the download speed at when the transfer is completed.
-Note that the speed may vary for different file sizes.
+Note that the measured speed may vary for different file sizes as the TCP windows require some iterations to fully open.
 
 In principle, direct cables are used to connect computers to switches and switches to routers.
 Other connections may require cross-over cables.
@@ -161,13 +162,14 @@ WLAN offer the possibility of local area communication without requiring wires.
 The IEEE 802.11 standard makes it possible to transmit data over short distances using radio waves.
 There are two modes of communication: Ad-hoc in which all the participants of the network behave as peers and infrastructure in which there is an access point which is the master and the rest of the stations register as clients.
 In infrastructure mode, the stations communicate only with the access point.
-To transmit data to another station, the frames are first sent to the access point that then relies the packet to the final destination.
+To transmit data to another station, the frames are first sent to the access point that then relays the packet to the final destination.
+
 
 The most usual configuration is infrastructure in which an access point forms a wireless cell to which multiple stations connect.
 The Basic Service Set Identifier is the hardware address of the access point.
 In order to extend the coverage of a WLAN it is possible to interconnect multiple access points using a wired network.
-All the connected access points are assigned the same extended service set identifier (ESSID) and stations can roam from one access point to the next.
-Access points can be configured with multiple ESSIDs to offer separate networks.
+All the connected access points are assigned the same service set identifier (SSID or Extended SSID ESSID) and stations can roam from one access point to the next.
+Access points can be configured with multiple SSIDs to offer separate networks.
 For example the access points of our university advertise \emph{eduroam} and \emph{event@upf}.
 
 A technology called Wireless Distribution System can be used to wirelessly connect different access points to extend coverage.
