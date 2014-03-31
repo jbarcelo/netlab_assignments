@@ -13,20 +13,19 @@ A layer can see other layers as \emph{black boxes} without having to care about 
 This approach is a common practice in engineering as it allows each team of engineers to focus in a particular problem which is just a piece of a puzzle to solve a bigger problem.
 
 Each layer accomplishes some particular tasks.
-For example, the physical layer transmits symbols containing information over a transmission medium such as an optical fiber or a radio channel.
+For example, the link layer is responsible for one hop connectivity.
 The network layer is assigned the task of taking routing decisions to move packets from one network to the other.
 
 The Open Systems Interconnection model (OSI) partitions a communication system in seven layers: physical, data link, network, transport, session, presentation and application.
-The TCP/IP model (Transmission Control Protocol/Internet Protocol) is more specific to the Internet and differentiates five layers: physical, link, network, transport, and application.
+The TCP/IP model (Transmission Control Protocol/Internet Protocol) is more specific to the Internet and differentiates four layers: link, network, transport, and application.
 
-The physical layer deals with the transmission medium and transfers information symbols over it.
 The link layer is in charge of one-hop communication.
 The network layer is responsible for connecting multiple networks and therefore should be capable of routing data through multiple hops.
 The transport network takes care of end-to-end communication between two hosts, and can multiplex different instances of communications in each host.
 The application layer uses the end-to-end communication to offer some kind of service to the network user.
 
 In practice, data transmitted over data networks is divided in chunks of information.
-It can be convenient to give different names to the different chunks of information used by the different layers: symbols (PHY), frames (LINK), IP packet (NET), UDP datagram or TCP segment (TRA), and message (APP).
+It can be convenient to give different names to the different chunks of information used by the different layers: frames (LINK), IP packet (NET), UDP datagram or TCP segment (TRA), and message (APP).
 
 The application messages are encapsulated in TCP segments or UDP datagrams which, in turn, are encapsulated into IP packets that are finally encapsulated into link layer frames.
 Regular users do not need to worry about all these data chunks and encapsulation and de-encapsulation processes.
@@ -48,7 +47,7 @@ The associated Internet Control Message Protocol v4 (ICMPv4) has friendly coexis
 Today there is a strong incentive to have another protocol, in particular IPv6, at the network layer because IPv4 address space is exhausted.
 However, for IPv6 to be useful it is necessary that all the routers in the communication path support.
 If IPv6 is not supported end-to-end, it is necessary to resort to tunneling or translation techniques that increase the complexity of the communication.
-There is not a big incentive for a network administrator to enable IPv6 until the rest of the world enables IPv6.
+For this reason, it is not very useful for a network administrator to enable IPv6 until the rest of the world also enables IPv6.
 As a result, the adoption of IPv6 has been too slow.
 
 \subsection{Traffic analysis}
