@@ -37,24 +37,23 @@ In the network coexist a multitude of protocols.
 Obviously, we need protocols of different layers to achieve communication.
 But even within a particular layer, we find coexisting protocols.
 
-For example, in the course we will experiment with unshielded twisted pair (UTP) and radio (wireless) physical layers.
-Similarly, we will make use of FTP (file transfer) and HTTP (hypertext) in our labs.
+For example, we will make use of FTP (file transfer) and HTTP (hypertext) in our labs.
 
-A particular case is that of the network (or Internet layer).
+A particular case is that of the network (or Internet) layer.
 This is the protocol that provides end-to-end connectivity and for many years the IPv4 has totally dominated network.
 The associated Internet Control Message Protocol v4 (ICMPv4) has friendly coexisted with IPv4.
 
 Today there is a strong incentive to have another protocol, in particular IPv6, at the network layer because IPv4 address space is exhausted.
 However, for IPv6 to be useful it is necessary that all the routers in the communication path support.
 If IPv6 is not supported end-to-end, it is necessary to resort to tunneling or translation techniques that increase the complexity of the communication.
-For this reason, it is not very useful for a network administrator to enable IPv6 until the rest of the world also enables IPv6.
+For this reason, many network administrators are waiting for others to enable IPv6 first.
 As a result, the adoption of IPv6 has been too slow.
 
 \subsection{Traffic analysis}
 
 There are some useful tools to analyze the traffic in our networks.
 Two of them are tcpdump (command line) and wireshark (graphic interface).
-This tools capture the packets of one or more interfaces and analyze and analyze the protocols at all layers.
+This tools capture the packets of one or more interfaces and analyze the protocols at all layers.
 
 It is possible apply capture filters in order to capture only those packets that are of interest.
 In wireshark, it is also possible to apply display filters.
@@ -96,7 +95,8 @@ In principle, the IP address identifies a unique host in the Internet and the po
 The IP address has two different parts - network and host -  that can have variable size.
 The actual size of each part is specified by the network mask.
 As the IP address depends on the network that the host belongs to, it will change as the host roams from one network to the other.
-The IP addresses are network layer addresses and are hierarchical as it can be used by routers to send packets to the right network.
+The IP addresses are network layer addresses and are hierarchical.
+They can be used by routers to send packets to the next hop towards the destination.
 
 Since some link layer technologies such as ethernet support multiple hosts, they also need a link layer address.
 In the case of ethernet, such address is unique for each manufactured network interface card (NIC) and it is also known as a hardware address.
@@ -112,7 +112,7 @@ To translate from an IP address to an ethernet address, the Address Resolution P
 For example, to find out the hardware address associated to IP 192.168.1.1 in an ethernet network, the inquiring host broadcasts a message to the whole network ``Who has IP 192.168.1.1?''.
 The owner of the address in question answers with a directed message with its IP and its hardware address.
 
-To avoid the sending of an ARP request for every transmitted packet, the ARP information is saved from some time in the ARP cache.
+To avoid the sending of an ARP request for every transmitted packet, the ARP information is saved for some time in the ARP cache.
 The link layer will first check the ARP cache and only send a broadcast message if the required information is not present in the cache.
 
 
