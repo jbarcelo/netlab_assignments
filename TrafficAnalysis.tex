@@ -4,6 +4,15 @@
 
 The goal of this lab assignment is to learn about monitoring and traffic analysis tools. We shall use the \emph{Wireshark} and \emph{tcpdump} software tools to study different layers of the TCP/IP architecture.
 
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tablered}}l}{Important}\\
+For this practical exercise, the activity during the lab will receive \textbf{20\,\%} and the answers to questions will receive \textbf{80\,\%} of the final grade. When submitting the answers to the questions, be brief but precise. If you include screenshots, indicate on the screenshot what is the answer.\\
+\hline
+\end{tabular}
+\end{center}
+
 \section{Home Preparation}
 
 Review the TCP/IP model and explain the function of each layer. Provide examples of the protocols at each layer of the protocol stack.
@@ -11,7 +20,7 @@ Review the TCP/IP model and explain the function of each layer. Provide examples
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions and Tasks}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions and Tasks \textbf{(7 $\times$ 1.6\,\%)}}\\
 What is the purpose of ARP? \emph{Tip: Use the RFC826 standard to answer this question \cite{rfc826}.}\\
 \hline
 Draw a sketch of the different messages being exchanged and the different steps involved.\\
@@ -22,7 +31,7 @@ What is the ICMP protocol?\\
 \hline
 How does the \emph{ping} command work?\\
 \hline
-What does the \emph{ping} command measure?\\
+What does the \emph{ping} command measure? Include at least two items.\\
 \hline
 Explain and draw an SSL connection indicating how the protocol works and which messages are being exchanged.\\
 \hline
@@ -31,45 +40,58 @@ Explain and draw an SSL connection indicating how the protocol works and which m
 
 \section{Disable Your Local Firewall}
 
-On a Linux machine, your local firewall can interfere with the assignment. Disable it using the following command with root permissions.
-
-\begin{lstlisting}
-service iptables stop
-\end{lstlisting}
+On a Windows machine, your local firewall can interfere with the assignment. Go to the \textbf{\sf Control Panel}, \textbf{\sf Windows Firewall} and from the left-hand site options list, select \textbf{\sf Turn Windows Firewall on or off}. In the page, select the option \textbf{\sf Turn off Windows Firewall (not recommended)} for both private and public networks, and then click \textbf{\sf OK}.
 
 \section{Wireshark Network Analyzer}
 
-Start your computer in Linux. Start the \emph{Wireshark} software program and choose the correct network interface from the \textbf{\sf Capture} \textgreater \textbf{\sf Interfaces} dialog. Use it to start the packet capture. It is also possible to configure the length of the capture and other details.
+Start your computer in Windows or Linux. Start the \emph{Wireshark} software program and choose the correct network interface from the \textbf{\sf Capture} \textgreater \textbf{\sf Interfaces} dialog. Use it to start the packet capture. It is also possible to configure the length of the capture and other details.
 
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions}\\
-What interface does Wireshark detect? What is your IP address? What is the corresponding MAC address?\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(1.6\,\%)}}\\
+What interfaces does Wireshark detect? What is your IP address? What is the corresponding MAC address?\\
 \hline
 \end{tabular}
 \end{center}
 
-Configure the \textbf{\sf Capture} \textgreater \textbf{\sf Interfaces} options to perform a five minutes capture. Observe the results and answer the following questions.
+Configure the \textbf{\sf Capture} \textgreater \textbf{\sf Interfaces} options to perform a capture of a few minutes. Observe the results and answer the following questions.
 
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions}\\
-What is the total number of captured packets? Are there lost packets? If yes, why?\\
+\multicolumn{1}{>{\columncolor{tablegreen}}l}{Advice}\\
+You may stop the capture when you have received a reasonable number of packets.\\
 \hline
 \end{tabular}
 \end{center}
 
-Select a (any) packet. Observe the details and answer the following questions.
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(1.6\,\%)}}\\
+What is the total number of captured packets? Are there lost packets? If yes, why? Include a screenshot of the Wireshark window, indicating from where you determined this information.\\
+\hline
+\end{tabular}
+\end{center}
+
+Select one (any) packet. Observe the details and answer the following questions, including for all answers the summary of the packet with the description of each layer protocol, as in the following example.
+
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize]
+? ?.????????? 10.80.26.113 173.194.34.243 HTTP 1704 GET / HTTP/1.1 
+Frame ?: 1704 bytes on wire (13632 bits), 1704 bytes captured (13632 bits) on interface 0
+Ethernet II, Src: G-ProCom_c8:f4:5c (00:0f:fe:c8:f4:5c), Dst: Cisco_00:0a:01 (00:07:b4:00:0a:01)
+Internet Protocol Version 4, Src: 10.80.26.113 (10.80.26.113), Dst: 173.194.34.243
+  (173.194.34.243)
+Transmission Control Protocol, Src Port: 53744 (53744), Dst Port: http (80), Seq: 1, Ack: 1,
+  Len: 1650
+Hypertext Transfer Protocol
+\end{lstlisting}
 
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions \textbf{(6 $\times$ 1.6\,\%)}}\\
 What is the source and destination IP address?\\
 \hline
 What are the source and destination MAC addresses?\\
@@ -78,7 +100,7 @@ What is the number of bytes in the packet?\\
 \hline
 What protocols can you see in the packet?\\
 \hline
-Did you capture an HTTP packet? If yes, what is the length of the HTTP message (the payload of the TCP segment or segments)?\\
+Did you capture an HTTP packet? If yes, what is the length of the HTTP message (that is payload of the TCP segment or segments)?\\
 \hline
 What are the source and destination port?\\
 \hline
@@ -89,53 +111,52 @@ In the dialog \textbf{\sf Analyze} \textgreater \textbf{\sf Enable Protocols...}
 
 Select the menu \textbf{\sf Statistics} \textgreater \textbf{\sf Protocol Hierarchy} and observe the percentage of the following protocols: Ethernet, Internet Protocol, TCP, UDP, Logical Link Control, ARP, STP, IPv6, HTTP.
 
-Repeat the previous capture using IPv6, by performing ping to the local-link IPv6 address of a neighbor or attempting an IPv6 ping to an existing destination. You may use one of the following commands:
+Repeat the previous capture using IPv6, by performing a ping to the local-link IPv6 address of a neighbor computer. Use the following command on a Windows computer:
+\begin{lstlisting}
+ping -6 <destination-address>
+\end{lstlisting}
 
+or the following command on a Linux computer:
 \begin{lstlisting}
-ping6 -I <interface> <address>
+ping6 -I <interface> <destination-address>
 \end{lstlisting}
-or:
-\begin{lstlisting}
-ping6 ipv6.google.com
-\end{lstlisting}
+
 
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions}\\
-What are the differences between IPv4 and IPv6?\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(1.6\,\%)}}\\
+What are the protocol differences between IPv4 and IPv6?\\
 \hline
 \end{tabular}
 \end{center}
 
 \section{The Address Resolution Protocol (ARP)}
 
-The Address Resolution Protocol (ARP) resolves the association between an IP address and a MAC address. It is used in IP over Ethernet networks. Begin a new traffic capture and analyze the ARP packets. You can filter the ARP packets by writing \texttt{\color{blue}ARP} in the \textbf{\sf Filter Toolbar}.
-
-If you do not capture any ARP packets, clear your ARP cache and then ping or browse to any preferred destination. You can use the following command to delete all ARP entries. On a Windows computer use.
+The Address Resolution Protocol (ARP) resolves the association between an IP address and a MAC address. It is used in IP over Ethernet networks. Clear your ARP cache using one of the following commands. On a Windows computer use:
 
 \begin{lstlisting}
-arp -d *
+arp -d
 \end{lstlisting}
-On a Linux computer use.
+On a Linux computer use:
 
 \begin{lstlisting}
-sudo ip neighbour flush all
+sudo ip neigh flush all
 \end{lstlisting}
+
+Begin a new traffic capture and then ping or browse to any preferred destination. Analyze a pair of request-response ARP packet. You can filter the ARP packets by writing \texttt{\color{blue}ARP} in the \textbf{\sf Filter Toolbar}.
 
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions}\\
-What are the source and destination MAC addresses of the Ethernet frame that contains the ARP request message?\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions \textbf{(4 $\times$ 1.6\,\%)}}\\
+What are the source and destination MAC addresses of the Ethernet frame that contains the ARP request message? The response should state in words the meaning of the MAC addresses, not their values.\\
 \hline
-What are the source and destination IP addresses in the ARP request and response frames?\\
+What are the source and destination IP addresses in the ARP request and response frames? The response should state in words the meaning of the IP addresses, not their values.\\
 \hline
-What are the source and destination MAC addresses in the ARP request and response frames?\\
+What are the source and destination MAC addresses in the ARP request and response frames? The response should state in words the meaning of the MAC addresses, not their values.\\
 \hline
-What is the time elapsing between an ARP request and reply messages?\\
+What is the time elapsed between an ARP request and reply messages?\\
 \hline
 \end{tabular}
 \end{center}
@@ -145,8 +166,7 @@ Use the information available in \emph{Wireshark} to indicate the length of the 
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(1.6\,\%)}}\\
 To which layer does ARP belong?\\
 \hline
 \end{tabular}
@@ -154,13 +174,21 @@ To which layer does ARP belong?\\
 
 \section{HTTP and Secure HTTP}
 
-Begin a new 5 minutes capture and during this time visit a few web sites, such as \url{http://www.upf.edu} and \url{https://www.google.com}. After the capture finishes, observe the HTTP and HTTPS messages by typing \texttt{\color{blue}http or ssl} in the filter toolbar. Observe an HTTP GET message and the corresponding response and answer the following questions.
+Begin a new capture of a few minutes and during this time visit a few web sites, such as \url{http://www.upf.edu} and \url{https://www.google.com}. After the capture finishes, observe the HTTP and HTTPS messages by typing \texttt{\color{blue}http or ssl} in the filter toolbar. Observe an HTTP GET message and the corresponding response and answer the following questions.
 
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tablegreen}}l}{Advice}\\
+You may stop the capture when you have received a reasonable number of packets.\\
+\hline
+\end{tabular}
+\end{center}
 
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions}\\
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions \textbf{(5 $\times$ 1.6\,\%)}}\\
 What is the HTTP version of your web browser?\\
 \hline
 What is the HTTP version of the server?\\
@@ -179,9 +207,8 @@ The default destination port for web is 80 or 8080, when using a web proxy.
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions}\\
-What is the source port of the get requests?\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions \textbf{(2 $\times$ 1.6\,\%)}}\\
+What is the source port of the GET requests?\\
 \hline
 Write the source port number for different connections. At which layer can you find this information?\\
 \hline
@@ -193,8 +220,7 @@ Find a DNS query--response message pair. Use \texttt{\color{blue} dns} in the \e
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(1.6\,\%)}}\\
 What is the function of DNS?\\
 \hline
 \end{tabular}
@@ -205,8 +231,7 @@ Use the option \textbf{\sf Analyze} \textgreater \textbf{\sf Follow TCP Stream} 
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(1.6\,\%)}}\\
 When using HTTP, it is possible to observe the contents of the web using Wireshark?\\
 \hline
 \end{tabular}
@@ -217,8 +242,7 @@ Now use HTTPS.
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(1.6\,\%)}}\\
 Is it still possible to read the information that is being transmitted? \emph{Tip: Search for SSL packets.}\\
 \hline
 \end{tabular}
@@ -226,15 +250,14 @@ Is it still possible to read the information that is being transmitted? \emph{Ti
 
 Identify a SSL handshake in \emph{Wireshark}.
 
-\section{ICMP Ping Packet Capture (Homework)}
+\section{ICMP Ping Packet Capture}
 
-Close all applications that use the network and \texttt{ping} four different web sites on four different continents. Analyze the results.
+Close all applications that use the network and \texttt{ping} four different web sites on four different continents, as indicated by your instructor. Analyze the results.
 
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(1.6\,\%)}}\\
 What are protocols used?\\
 \hline
 \end{tabular}
@@ -245,8 +268,7 @@ Draw a frame and explain how the different packet are encapsulated in each other
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(1.6\,\%)}}\\
 How many ping messages are transmitted by default?\\
 \hline
 \end{tabular}
@@ -257,8 +279,7 @@ Prepare a table with the source, destination, and average packet delay  of the f
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions \textbf{(8 $\times$ 1.6\,\%)}}\\
 What is the packet length?\\
 \hline
 At which layers can we find source and destination addresses?\\
@@ -292,11 +313,10 @@ Open a terminal and begin a new \texttt{\color{blue}tcpdump} capture. Enter the 
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions \textbf{(2 $\times$ 1.6\,\%)}}\\
 What is the information provided by \texttt{tcpdump} and what is the format used?\\
 \hline
-To which network layer does the information belong? \emph{Tip: Remember that you can redirect the output to a file using the following command \texttt{\color{blue}tcpdump \textgreater file\_name}}.\\
+With the default options, to which network layer does the information belong? \emph{Tip: Remember that you can redirect the output to a file using the following command \texttt{\color{blue}tcpdump \textgreater file\_name}}.\\
 \hline
 \end{tabular}
 \end{center}
@@ -306,8 +326,7 @@ The first line of \texttt{tcpdump} specifies the network interface used during t
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(1.6\,\%)}}\\
 What is the interface that you are using?\\
 \hline
 \end{tabular}
@@ -323,20 +342,27 @@ Then, execute the same command again using the \texttt{\color{blue}-e} option.
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(1.6\,\%)}}\\
 What is the difference with respect to the previous execution? \emph{Tip: Use the \texttt{tcpdump} manual, if necessary.}\\
 \hline
 \end{tabular}
 \end{center}
 
-Try several new captures related to this assignment, such as
+Run a \texttt{tcpdump} capture for each of the following cases. In each case, find the corresponding filters that you must add as parameters to the \texttt{tcpdump} command.
 
-\begin{lstlisting}
-tcpdump stp
-tcpdump http
-tcpdump udp
-tcpdump ssl
-tcpdump ip
-\end{lstlisting}
-Try also to make captures for a specific IP address.
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions \textbf{(5 $\times$ 1.6\,\%)}}\\
+Run a capture only for IPv4 and IPv6 packets. What are the command filters?\\
+\hline
+Run a capture only for IPv4 packets originating at a specific IP address. What is the command filter?\\
+\hline
+Run a capture only for UDP packets. What is the command filter?\\
+\hline
+Run a capture only for STP packets. What is the command filter?\\
+\hline
+Run a capture only for HTTP and HTTPS packets. What is the command filter?\\
+\hline
+\end{tabular}
+\end{center}

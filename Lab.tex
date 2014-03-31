@@ -5,7 +5,7 @@
 \usepackage{subfigure}
 \usepackage{fullpage}
 %\usepackage{MinionPro}
-\usepackage[scaled=.95]{inconsolata}
+%\usepackage[scaled=.95]{zi4}
 \usepackage[Sonny]{fncychap}
 \usepackage{fancyhdr}
 \usepackage{titlesec}
@@ -36,6 +36,14 @@
 \ChRuleWidth{0pt}
 \ChNameAsIs
 
+\titleformat{\part}
+[display]
+{\centering}
+{\Large\sf\partname \\[0.5cm] {\fontsize{120}{1}\selectfont\thepart}}
+{1cm}
+{\Huge\sf}
+
+
 \arrayrulecolor{tableborder}
 \renewcommand{\arraystretch}{1.5}
 \setlength{\arrayrulewidth}{0.5pt}
@@ -51,6 +59,7 @@
 \definecolor{tablegray}{RGB}{228,228,230}
 \definecolor{tableorange}{RGB}{255,204,50}
 \definecolor{tablered}{RGB}{255,51,51}
+\definecolor{tablegreen}{RGB}{153,255,153}
 
 \definecolor{hyperrefcite}{RGB}{0,51,153}
 \definecolor{hyperrefurl}{RGB}{153,51,51}
