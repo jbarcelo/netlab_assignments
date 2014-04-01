@@ -8,7 +8,7 @@ The goal of this lab assignment is to learn about monitoring and traffic analysi
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
 \multicolumn{1}{>{\columncolor{tablered}}l}{Important}\\
-For this practical exercise, the activity during the lab will receive \textbf{20\,\%} and the answers to questions will receive \textbf{80\,\%} of the final grade. When submitting the answers to the questions, be brief but precise. If you include screenshots, indicate on the screenshot what is the answer.\\
+For this practical exercise, you have to submit a report the answers to the questions below. When submitting the answers to the questions, be brief but precise. If you include screenshots, indicate on the screenshot what is the answer.\\
 \hline
 \end{tabular}
 \end{center}
@@ -20,7 +20,7 @@ Review the TCP/IP model and explain the function of each layer. Provide examples
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions and Tasks \textbf{(7 $\times$ 1.6\,\%)}}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions and Tasks \textbf{(7 $\times$ 2\,\%)}}\\
 What is the purpose of ARP? \emph{Tip: Use the RFC826 standard to answer this question \cite{rfc826}.}\\
 \hline
 Draw a sketch of the different messages being exchanged and the different steps involved.\\
@@ -49,7 +49,7 @@ Start your computer in Windows or Linux. Start the \emph{Wireshark} software pro
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(1.6\,\%)}}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(2\,\%)}}\\
 What interfaces does Wireshark detect? What is your IP address? What is the corresponding MAC address?\\
 \hline
 \end{tabular}
@@ -69,7 +69,7 @@ You may stop the capture when you have received a reasonable number of packets.\
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(1.6\,\%)}}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(2\,\%)}}\\
 What is the total number of captured packets? Are there lost packets? If yes, why? Include a screenshot of the Wireshark window, indicating from where you determined this information.\\
 \hline
 \end{tabular}
@@ -78,7 +78,7 @@ What is the total number of captured packets? Are there lost packets? If yes, wh
 Select one (any) packet. Observe the details and answer the following questions, including for all answers the summary of the packet with the description of each layer protocol, as in the following example.
 
 \begin{lstlisting}[basicstyle=\ttfamily\scriptsize]
-? ?.????????? 10.80.26.113 173.194.34.243 HTTP 1704 GET / HTTP/1.1 
+? ?.????????? 10.80.26.113 173.194.34.243 HTTP 1704 GET / HTTP/1.1
 Frame ?: 1704 bytes on wire (13632 bits), 1704 bytes captured (13632 bits) on interface 0
 Ethernet II, Src: G-ProCom_c8:f4:5c (00:0f:fe:c8:f4:5c), Dst: Cisco_00:0a:01 (00:07:b4:00:0a:01)
 Internet Protocol Version 4, Src: 10.80.26.113 (10.80.26.113), Dst: 173.194.34.243
@@ -91,7 +91,7 @@ Hypertext Transfer Protocol
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions \textbf{(6 $\times$ 1.6\,\%)}}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions \textbf{(6 $\times$ 2\,\%)}}\\
 What is the source and destination IP address?\\
 \hline
 What are the source and destination MAC addresses?\\
@@ -125,7 +125,7 @@ ping6 -I <interface> <destination-address>
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(1.6\,\%)}}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(2\,\%)}}\\
 What are the protocol differences between IPv4 and IPv6?\\
 \hline
 \end{tabular}
@@ -149,7 +149,7 @@ Begin a new traffic capture and then ping or browse to any preferred destination
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions \textbf{(4 $\times$ 1.6\,\%)}}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions \textbf{(4 $\times$ 2\,\%)}}\\
 What are the source and destination MAC addresses of the Ethernet frame that contains the ARP request message? The response should state in words the meaning of the MAC addresses, not their values.\\
 \hline
 What are the source and destination IP addresses in the ARP request and response frames? The response should state in words the meaning of the IP addresses, not their values.\\
@@ -166,7 +166,7 @@ Use the information available in \emph{Wireshark} to indicate the length of the 
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(1.6\,\%)}}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(2\,\%)}}\\
 To which layer does ARP belong?\\
 \hline
 \end{tabular}
@@ -188,7 +188,7 @@ You may stop the capture when you have received a reasonable number of packets.\
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions \textbf{(5 $\times$ 1.6\,\%)}}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions \textbf{(5 $\times$ 2\,\%)}}\\
 What is the HTTP version of your web browser?\\
 \hline
 What is the HTTP version of the server?\\
@@ -207,7 +207,7 @@ The default destination port for web is 80 or 8080, when using a web proxy.
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions \textbf{(2 $\times$ 1.6\,\%)}}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions \textbf{(2 $\times$ 2\,\%)}}\\
 What is the source port of the GET requests?\\
 \hline
 Write the source port number for different connections. At which layer can you find this information?\\
@@ -220,7 +220,7 @@ Find a DNS query--response message pair. Use \texttt{\color{blue} dns} in the \e
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(1.6\,\%)}}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(2\,\%)}}\\
 What is the function of DNS?\\
 \hline
 \end{tabular}
@@ -231,7 +231,7 @@ Use the option \textbf{\sf Analyze} \textgreater \textbf{\sf Follow TCP Stream} 
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(1.6\,\%)}}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(2\,\%)}}\\
 When using HTTP, it is possible to observe the contents of the web using Wireshark?\\
 \hline
 \end{tabular}
@@ -242,7 +242,7 @@ Now use HTTPS.
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(1.6\,\%)}}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(2\,\%)}}\\
 Is it still possible to read the information that is being transmitted? \emph{Tip: Search for SSL packets.}\\
 \hline
 \end{tabular}
@@ -257,7 +257,7 @@ Close all applications that use the network and \texttt{ping} four different web
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(1.6\,\%)}}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(2\,\%)}}\\
 What are protocols used?\\
 \hline
 \end{tabular}
@@ -268,7 +268,7 @@ Draw a frame and explain how the different packet are encapsulated in each other
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(1.6\,\%)}}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(2\,\%)}}\\
 How many ping messages are transmitted by default?\\
 \hline
 \end{tabular}
@@ -279,7 +279,7 @@ Prepare a table with the source, destination, and average packet delay  of the f
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions \textbf{(8 $\times$ 1.6\,\%)}}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions \textbf{(8 $\times$ 2\,\%)}}\\
 What is the packet length?\\
 \hline
 At which layers can we find source and destination addresses?\\
@@ -313,7 +313,7 @@ Open a terminal and begin a new \texttt{\color{blue}tcpdump} capture. Enter the 
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions \textbf{(2 $\times$ 1.6\,\%)}}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions \textbf{(2 $\times$ 2\,\%)}}\\
 What is the information provided by \texttt{tcpdump} and what is the format used?\\
 \hline
 With the default options, to which network layer does the information belong? \emph{Tip: Remember that you can redirect the output to a file using the following command \texttt{\color{blue}tcpdump \textgreater file\_name}}.\\
@@ -326,7 +326,7 @@ The first line of \texttt{tcpdump} specifies the network interface used during t
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(1.6\,\%)}}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(2\,\%)}}\\
 What is the interface that you are using?\\
 \hline
 \end{tabular}
@@ -342,7 +342,7 @@ Then, execute the same command again using the \texttt{\color{blue}-e} option.
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(1.6\,\%)}}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(2\,\%)}}\\
 What is the difference with respect to the previous execution? \emph{Tip: Use the \texttt{tcpdump} manual, if necessary.}\\
 \hline
 \end{tabular}
@@ -353,7 +353,7 @@ Run a \texttt{tcpdump} capture for each of the following cases. In each case, fi
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions \textbf{(5 $\times$ 1.6\,\%)}}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions \textbf{(5 $\times$ 2\,\%)}}\\
 Run a capture only for IPv4 and IPv6 packets. What are the command filters?\\
 \hline
 Run a capture only for IPv4 packets originating at a specific IP address. What is the command filter?\\

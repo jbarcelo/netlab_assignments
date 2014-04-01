@@ -4,9 +4,9 @@
 0
 1
 Lab.tex
-19
-9
-8
+13
+10
+0
 
 
 
@@ -15,16 +15,19 @@ Lab.tex
 
 Lab.tex
 TeX
-152055803 0 -1 567 -1 533 50 50 784 281 1 73 255 -1 -1 0 0 34 -1 -1 34 1 0 533 -1   0
+420491259 1 -1 184 -1 130 50 50 784 281 1 73 102 -1 -1 0 0 34 -1 -1 34 1 0 130 -1   0
+Title.tex
+TeX
+1060859 0 -1 127 -1 33 175 175 1318 631 0 137 17 -1 -1 0 0 17 -1 -1 17 1 0 33 -1   0
 About.tex
 TeX
-17838075 1 -1 1575 -1 1622 25 25 759 256 1 153 85 -1 -1 0 0 26 -1 -1 26 1 0 1622 -1   0
+17838075 0 -1 1425 -1 204 25 25 759 256 1 177 204 -1 -1 0 0 26 -1 -1 26 1 0 204 -1   0
 TrafficAnalysis.tex
 TeX
-17838075 1 -1 570 -1 523 50 50 784 281 1 73 136 -1 -1 0 0 26 -1 -1 26 1 0 523 -1   0
+17838075 0 -1 11203 -1 11499 50 50 784 281 1 169 867 -1 -1 0 0 26 -1 -1 26 1 0 11499 -1   0
 LanAndWlan.tex
 TeX
-1060859 0 -1 2906 -1 2851 75 75 809 306 1 449 306 -1 -1 0 0 22 -1 -1 22 1 0 2851 -1   0
+1060859 0 -1 2906 -1 2851 75 75 809 306 1 641 306 -1 -1 0 0 22 -1 -1 22 1 0 2851 -1   0
 Vlans.tex
 TeX
 17838075 1 -1 1360 -1 678 50 50 784 281 1 73 238 -1 -1 0 0 45 -1 -1 45 1 0 678 -1   0
@@ -39,31 +42,10 @@ TeX
 17838075 1 -1 2109 -1 1841 100 100 1136 556 1 73 51 -1 -1 0 0 18 -1 -1 18 1 0 1841 -1   0
 Final.tex
 TeX
-286273531 0 -1 962 -1 1044 75 75 837 306 1 729 136 -1 -1 0 0 23 -1 -1 23 1 0 1044 -1   0
-:\Users\Alex\SkyDrive\Teaching\2012 21744 Distributed Protocols\Seminars\Seminar 5\s5.tex
-TeX
-269496315 0 -1 0 -1 0 225 225 1368 681 0 25 0 -1 -1 0 0 -1 -1 -1 -1 1 0 0 -1   0
-:\Users\Alex\SkyDrive\Teaching\2012 21744 Distributed Protocols\Old\seminars\04\s4.tex
-TeX
-269496315 0 -1 0 -1 0 200 200 1343 656 0 25 0 -1 -1 0 0 -1 -1 -1 -1 1 0 0 -1   0
-:\Users\Alex\SkyDrive\Teaching\2012 21744 Distributed Protocols\Seminars\Seminar 3\s3.tex
-TeX
-269496315 0 -1 0 -1 0 200 200 1343 656 0 25 0 -1 -1 0 0 -1 -1 -1 -1 1 0 0 -1   0
-:\Users\Alex\SkyDrive\Teaching\2012 21728 Networks and Services\Students\Students.tex
-TeX
-269496315 0 -1 0 -1 0 200 200 1343 656 0 25 0 -1 -1 0 0 37 -1 -1 37 1 0 0 -1   0
-Title.tex
-TeX
-269496315 0 -1 358 -1 461 175 175 1318 631 0 25 442 -1 -1 0 0 -1 -1 -1 -1 1 0 461 -1   0
-:\Users\Alex\SkyDrive\Teaching\2012 21744 Distributed Protocols\Labs\Lab 1\Code\ChatClient\src\rmichat\ChatClient.java
-DATA:UNIX
-273776882 0 135 37 121 5 50 50 784 281 1 105 68 -1 -1 0 0 17 0 0 17 1 0 5 121   0
+17838075 0 -1 962 -1 1044 75 75 837 306 1 729 136 -1 -1 0 0 23 -1 -1 23 1 0 1044 -1   0
 Rfc.bib
 BibTeX
 269485042 2 10 5 10 8 50 50 784 254 0 81 170 -1 -1 0 0 -1 -1 -1 -1 1 0 8 10   0
-:\Users\Alex\SkyDrive\Teaching\2012 21734 Architecture and Signaling\Old\seminars\2013\s4\nat_1.tex
-TeX
-269496315 0 -1 0 -1 0 25 25 1168 481 0 25 0 -1 -1 0 0 -1 -1 -1 -1 1 0 0 -1   0
 :\Users\Alex\Research\04 Thesis\02 Alex\AppSignalingProcedures.tex
 TeX
 269496315 1 -1 60653 -1 60770 50 50 1193 506 0 25 289 -1 -1 0 0 52 -1 -1 52 1 0 60770 -1   0
@@ -76,6 +58,8 @@ TeX
 *Title
 *Acks
 *About
+*Lectures/TA-LAN-WLAN
+*Lectures/VLAN-STP
 *TrafficAnalysis
 *LanAndWlan
 *Vlans
