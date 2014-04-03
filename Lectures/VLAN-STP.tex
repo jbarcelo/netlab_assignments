@@ -20,11 +20,11 @@ For example, Fig.~\ref{fig:No_vlan} shows a switched network that is a single la
 There are situations in which it is required to partition the network.
 For example, in a campus university it might be necessary to keep wireless access points in a network separated from the servers.
 If the access points are separated across multiple buildings, it would be necessary to have a switch for the access points in each building.
-Similarly, if there are servers in multiple buildings, it would also be necessary to place a router in each building.
+Similarly, if there were servers in multiple buildings, it would also be necessary to place a dedicated switch for the servers in each building.
 Requiring a switch for every network in every location is a solution that does not scale as the number of locations and networks increase.
 It is much more convenient to have a single switch in every location and then configure the switches to keep separate link-layer networks.
 This is precisely what VLANs offer.
-Fig.~\ref{fig:Vlan} shows an example in which computers A, B and C are kept in a link-layer network separated from D, E and F.
+Fig.~\ref{fig:Vlan} shows an example with two VLANs in which computers A, B and C are kept in a link-layer network separated from D, E and F.
 
 
 \begin{figure}
@@ -42,6 +42,9 @@ VLANs are very convenient for deploying switched networks as it is possible for 
 This network can later be partitioned in a flexible way simply changing the configuration of the routers.
 It is possible that ethernet ports in the same room belong to different virtual link-layer networks as it is also possible to have ethernet ports in different buildings connected to the same virtual link-layer network.
 
+Another advantage of VLANs is that if an administrator wants to change a device from one network to another, it can simply remotely change the configuration of the switch.
+It is not necessary that the technician goes to the wiring closet to physically disconnect and re-connect a cable.
+
 \begin{figure}
 \centering
 \ifpdf
@@ -58,6 +61,7 @@ Each VLAN has a number which is the VLAN identifier.
 The switch ports are associated to VLAN by configuring each of the ports.  
 If a switch has four ports and ports \#1 and \#3 are assigned to VLAN 10 while ports \#2 and \#4 are assigned to VLAN 20, then traffic flows from port \#1 to \#3 and the other way around, but it is isolated from ports \#2 and \#4.
 This kind of assignment of a single VLAN to a port is called \emph{static-access}.
+
 
 In a network deployment with multiple switches it is necessary to carry ethernet traffic from one switch to others.
 One option would be to connect a separate cable for each of the existing VLANs. 
