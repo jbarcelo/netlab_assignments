@@ -387,4 +387,32 @@ If there is a better candidate will move to the blocking state.
 \item Forwarding: A root or designated port that transmits and receives data packets and also BPDUs.
 \end{itemize}
 
+\subsection{Timers}
 
+As the BPDUs need to be transmitted across the network, the convergence of STP is slow and there are some timers to prevent that loops can appear during the convergence process.
+
+\begin{itemize}
+\item Hello: Interval between configuration BPDU transmissions (default 2 seconds).
+\item Forward Delay: Time spent in Listening and Learning states (default 15 seconds).
+\item Max Age: Maximum length of time a BPDU can be stored before discarding it (default 20 seconds).
+\end{itemize}
+
+\subsection{Topology Changes}
+
+If a switch detects a change in the status of one of its ports goes up or down, it sends a notification towards the root bridge.
+The root bridge propagates the notification to all the network by setting the Topology Change flag in the Configuration BPDU.
+All the bridges receiving this notification will shorten the MAC table bridging time from its default value (300 s) to the Forward Delay value (15 s)
+
+Hosts that are directly attached to a PC can be configured as PortFast and do not participate in the STP.
+They are brought up quickly and do not trigger Topology Changes modifications.
+
+\subsection{STP and VLANs}
+
+As a switched network can contain multiple VLANs it is necessary to decide how the STP is computed in each of them.
+The IEEE 802.1Q standard specifies a single STP for all VLANs.
+This can cause problems if, for example, the root does not belong to some of the VLANs.
+It also prevents taking advantage from load distribution among the different available paths.
+
+A second alternative is Cisco's Per-VLAN Spanning Tree that creates a VLAN for each spanning tree but it is incompatible with IEEE 802.1Q.
+
+Finally, a third alternative is Per-VLAN Spanning Tree Plus that is compatible with the other two and can be used in IEEE 802.1Q VLANs and keeps a different tree for each VLAN.
