@@ -329,3 +329,62 @@ The fields in the BPDU are the following:
 \end{itemize}
 
 \subsection{Root port election}
+
+The first step towards the construction of the spanning tree is the election of the bridge.
+Each bridge participating in the STP has a Bridge ID which consists in two different parts: a Bridge Priority field and the Bridge MAC Address.
+The default Bridge priority is 32,768 (0x8000)
+The bridge with the lowest bridge ID will be elected as the root of the network.
+
+When a switch joins the network it does not know other bridges and therefore believes it is the root of the tree.
+Only by exchanging BPDUs with its neighbours it can learn other bridges' IDs and discover who is the actual root.
+
+The new bridge starts sending BPDUs placing its Bridge ID in the fields Root Bridge ID and Sender Bridge ID.
+If it receives a BPDU with a Root Bridge ID which is lower than its own, it will realize that it is not the root and will stop generating BPDUs.
+Instead, the bridge will relay the BPDUs that it receives.
+
+When a bridge relays a BPDU it replaces the Sender Bridge field by its own Bridge ID but it keeps the same Root Bridge ID.
+A bridge receiving multiple BPDUs will relay only the one with the lowest Brige ID in the Root Bridge ID field.
+This way, after some convergence time, all bridges know the Bridge ID of the root bridge.
+At this point the root bridge is the only one sending BPDUs and all the other bridges simply relay the root's BPDUs.
+
+A non-root bridge may receive BPDUs from the root bridge through different ports.
+In this case, the bridge will relay only the ones with the lowest path cost.
+To compute the path cost it will add the cost of the path through which the BPDU is received to the Root Path Cost field of the BPDU.
+The path cost of the incoming port is related to the bandwidth of that port.
+For example, it is 100 for 10Mbps, 10 for 100Mbps and 4 for 1Gbps.
+The root bridge sends MPDUs with a Root Path Cost equal to zero.
+The other bridges include the cumulative path cost to the root in Root Path Cost field.
+
+This process constructs a tree that includes the paths of minimum cost to from each bridge to the root bridge.
+In the case of a tie, the sender bridge ID and sender port ID are used as tie-breakers.
+
+In summary, the elements that are considered in determining the priority are:
+\begin{itemize}
+\item Lowest root bridge ID
+\item Lowest root path cost to root bridge
+\item Lowest sender bridge ID
+\item Lowest sender port ID
+\end{itemize}
+
+Each bridge marks the port through which it is receiving the best BPDUs as the root port.
+For each network segment, the port that is sending the best BPDUs is elected as the designated port.
+Designated and root ports are the only ports that should receive and send data frames in order to keep a tree topology and avoid loops.
+
+\subsection{STP port states}
+
+The ports participating in STP can be in one of the following six states:
+\begin{itemize}
+\item Disabled: Administratively shut down. It does not transmit or receive anything and does not participate in the STP.
+\item Blocking: Ports that are not root ports nor designated ports.
+Blocking ports receive BPDUs and do not transmit anything.
+\item Listening: A port that is a candidate to be root port or designated port. 
+It transmits and receives BPDUs and can move to the forwarding state (if it still a candidate) or to the blocking port (if it is no longer a candidate).
+If it is a candidate for 15 seconds will move to the forwarding state.
+\item Learning: A port that is a candidate to be root or designated port.
+The state similar to the listening state with the difference that it learns MAC addresses of the incoming data packets to populate the MAC table.
+If it is a candidate for 15 seconds will move to the forwarding state.
+If there is a better candidate will move to the blocking state.
+\item Forwarding: A root or designated port that transmits and receives data packets and also BPDUs.
+\end{itemize}
+
+
