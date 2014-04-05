@@ -281,3 +281,51 @@ Fa0/18    1-3,10
 Fa0/19    None
 \end{lstlisting}
 
+\section{Spanning Tree Protocol}
+
+In networking it is desirable to have alternative redundant path to be able to recover connectivity in the case of failure.
+In the layer-3, the routing protocol decides which are the best paths among the available ones.
+However, in layer 2 there is no routing protocol.
+
+A switch learns in which port a host is connected when it receives a frame from that host.
+The source address of an incoming frame is stored in a MAC table together with the port that has received the frame.
+When a switch has to transmit a frame, it checks the MAC table to find the destination MAC address of the frame.
+If the MAC is found in the table, the frame is forwarded in the port indicated in the table.
+Otherwise, the packet is sent over all ports with the exception of the port that has received the packet.
+
+Broadcast packets are also sent over all the ports with the exception of the port that has received the packet.
+
+Creating alternative redundant connections results in bridging broadcast storms.
+Packets can circulate in circles in the network multiplying themselves and the MAC tables can be corrupted.
+
+To prevent the problems that arise when adding redundancy to a switched network it is necessary to logically disable some of the network.
+This is the task of the Spanning Tree Protocol (STP).
+The STP constructs a logical tree topology on top of a network that may contain loops.
+
+The switches running STP will not forward data packets until the logical tree topology has been built.
+To build the tree-like loop-free topology, the switches exchange bridge protocol data units (BPDU).
+The source address is the switch port MAC address and the destination address is a multicast address 01:80:c2:00:00:00.
+
+There are two types of BPDUs:
+\begin{itemize}
+\item Configuration BPDU which are used to build the spanning tree.
+\item Topology Change Notification (TCN) which are issued when a switch detects that a ports goes up or down.
+\end{itemize}
+
+The fields in the BPDU are the following:
+\begin{itemize}
+\item Protocol ID (2 bytes)
+\item Version (1 byte)
+\item Message type (1 byte)
+\item Flags (1 byte)
+\item Root Bridge ID (8 bytes)
+\item Root Path Cost (4 bytes)
+\item Sender Bridge ID (8 bytes)
+\item Port ID (2 bytes)
+\item Message Age in 256th of second (2 bytes)
+\item Maximum Age in 256th of a second (2 bytes)
+\item Hello Time in 256th of a second (2 bytes)
+\item Forward Delay in 256th of a second (2 bytes)
+\end{itemize}
+
+\subsection{Root port election}
