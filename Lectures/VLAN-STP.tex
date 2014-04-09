@@ -70,7 +70,7 @@ This solution is not convenient for two different reasons.
 The first is that it requires many cables and many ports in each of the switches.
 The second is that a new cable has to be added each time that a VLAN is created.
 
-The alternative is to use a single cable to interconnect two routers and use that cable to transmit frames of different VLANs.
+The alternative is to use a single cable to interconnect two switches and use that cable to transmit frames of different VLANs.
 This makes the deployment and maintenance of the switched network easier.
 A port carrying packets of multiple VLANs is called a trunking port.
 
@@ -81,14 +81,11 @@ This mark is called a \emph{tag} or, more technically, IEEE 802.1Q header.
 In a default configuration, switches have a default VLAN that is also the management VLAN.
 Access through the management VLAN allows remote router configuration.
 Extreme care should be exercised when remotely configuring VLANs to prevent cutting the management connectivity.
-If this occurs, it will be necessary to physically access the switch to recover configuration.
+If this occurs, it might be necessary to physically access the switch to recover configuration.
 
 Trunk switch ports can have a \emph{native} VLANs.
 Packets that are received and not tagged are considered to belong to the native VLAN.
 Similarly, frames belonging to the native VLAN are not tagged when transmitted.
-
-Cisco devices feature a VLAN trunking protocol that propagates VLAN-related information to all the layer-2 network.
-This makes it possible to see from one switch all the VLANs available in the network.
 
 
 A switched network in which every device can reach any other device with level-2 connectivity is called a flat network topology.
@@ -110,7 +107,7 @@ There are two ways of making this assignment: static and dynamic.
 
 \subsection{Static Assignment}
 
-In the static assignment the network administrator assign a particular port to a particular VLAN.
+In the static assignment the network administrator assigns a particular port to a particular VLAN.
 The end host connected to that port will see other hosts connected to that VLAN and it doesn't need to be aware that there is a VLAN.
 A switch can have ports in different VLANs and VLANs can have ports in multiple switches.
 
@@ -208,10 +205,10 @@ This can be useful for example for a person working in different offices or buil
 
 \section{Trunking}
 
-End devices typically connected to switch ports that belong to a single VLAN, and the host does not need to know anything about the VLAN.
+End devices are typically connected to switch ports that belong to a single VLAN, and the host does not need to know anything about the VLAN.
 The situation is different in connections between two switches.
 When two switches need to exchange traffic of two or more VLANs it can be a good idea to connect them using trunking ports.
-Trunking are also useful to connect switches to routers.
+Trunking ports are also useful to connect switches to routers.
 
 A trunking port carries traffic of different VLANs.
 The receiving end needs to know to which VLAN each frame belongs to.
@@ -298,7 +295,7 @@ Broadcast packets are also sent over all the ports with the exception of the por
 Creating alternative redundant connections results in bridging broadcast storms.
 Packets can circulate in circles in the network multiplying themselves and the MAC tables can be corrupted.
 
-To prevent the problems that arise when adding redundancy to a switched network it is necessary to logically disable some of the network.
+To prevent the problems that arise when adding redundancy to a switched network it is necessary to logically disable some of the links.
 This is the task of the Spanning Tree Protocol (STP).
 The STP constructs a logical tree topology on top of a network that may contain loops.
 
@@ -378,8 +375,8 @@ The ports participating in STP can be in one of the following six states:
 \item Blocking: Ports that are not root ports nor designated ports.
 Blocking ports receive BPDUs and do not transmit anything.
 \item Listening: A port that is a candidate to be root port or designated port. 
-It transmits and receives BPDUs and can move to the forwarding state (if it still a candidate) or to the blocking port (if it is no longer a candidate).
-If it is a candidate for 15 seconds will move to the forwarding state.
+It transmits and receives BPDUs and can move to the learning state (if it still a candidate) or to the blocking port (if it is no longer a candidate).
+If it is a candidate for 15 seconds will move to the learning state.
 \item Learning: A port that is a candidate to be root or designated port.
 The state similar to the listening state with the difference that it learns MAC addresses of the incoming data packets to populate the MAC table.
 If it is a candidate for 15 seconds will move to the forwarding state.
