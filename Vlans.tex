@@ -1,10 +1,36 @@
 \chapter{Virtual Local Area Networks (VLANs)}
 
-\section{Switch User Manual}
+\section{Home Preparation}
+
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tablered}}l}{Important}\\
+For this practical exercise, you have to submit a report the answers to the questions below. When submitting the answers to the questions, be brief but precise. If you include screenshots, indicate on the screenshot what is the answer.\\
+\hline
+\end{tabular}
+\end{center}
 
 You can download the switch user manual from here:
 
 \url{http://www.jaumebarcelo.info/teaching/lxs/wlan/manual_vlan.pdf}
+
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions \textbf{(5 $\times$ 3\,\%)}}\\
+What is a VLAN and what is used for?\\
+\hline
+What are the differences between the different modes of the Cisco IOS command-lien interface (CLI)?\\
+\hline
+How do you establish a relationship between the active VLANs and the different ports of the switch?\\
+\hline
+What are the differences between access ports and trunk ports?\\
+\hline
+If you have two switches, include and explain at least three (3) different connectivity situations.\\
+\hline
+\end{tabular}
+\end{center}
 
 \section{Introduction}
 
@@ -30,7 +56,23 @@ Group 5 & Switch F & 192.168.1.106 \\
 \label{tab:SwitchIp}
 \end{table}
 
-Each VLAN has a unique identifier that takes values between 0 and 4094. In this lab assignment we shall use the identifiers \emph{10} and \emph{20}. Each group will use \emph{three computers}. With one computer you shall manage the switch, and this compute requires an IP address in the same subnetwork as the address of the switch. Your instructor will give your further details. The IP addresses of the other two computers must belong to the range of the VLAN that you are going to use: 192.168.10.\emph{XX} or 192.168.20.\emph{XX}.
+Each VLAN has a unique identifier that takes values between 0 and 4094. In this lab assignment we shall use the identifiers \emph{10} and \emph{20}. Each group will use \emph{three computers}. With one computer you shall manage the switch, and this compute requires an IP address in the same subnetwork as the address of the switch. Your instructor will give your further details. The IP addresses of the other two computers must belong to the range of the VLAN that you are going to use, as shown in the table \ref{tab:ComputerIp}.
+
+\begin{table}
+\sffamily\small
+\centering
+\begin{tabular}{l>{\columncolor{tablegray}}ll}
+\multicolumn{1}{>{\columncolor{tableheader}}c}{Student Group} & \multicolumn{1}{>{\columncolor{tableorange}}c}{Computer} & \multicolumn{1}{>{\columncolor{tableheader}}c}{IP Address}\\
+Group {\color{red}X} & Computer using VLAN 1 & 192.168.1.20{\color{red}X}/24 \\
+\hline
+Group {\color{red}X} & Computer using VLAN 10 & 192.168.10.{\color{red}X}/24 \\
+\hline
+Group {\color{red}X} & Computer using VLAN 20 & 192.168.20.{\color{red}X}/24 \\
+\hline
+\end{tabular}
+\caption{The IP addresses of the computers.}
+\label{tab:ComputerIp}
+\end{table}
 
 \section{Creation of a VLAN}
 
@@ -82,8 +124,7 @@ to see the current configuration of the switch.
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions \textbf{(3 $\times$ 3\,\%)}}\\
 How many VLANs can you observe? \emph{Note that this is not necessarily the number of VLANs in the switch.}\\
 \hline
 How many Fast Ethernet interfaces are available?\\
@@ -107,8 +148,7 @@ to collect more information.
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions \textbf{(2 $\times$ 3\,\%)}}\\
 What is the status of VLAN1?\\
 \hline
 How many VLANs are there in the switch? For each of the VLANs identify the ID, the name, the status, the assigned ports and the type. Include this information in the report.\\
@@ -125,8 +165,7 @@ Switch(config)# no vlan 1
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(3\,\%)}}\\
 What happens?\\
 \hline
 \end{tabular}
@@ -150,8 +189,7 @@ in the privileged EXEC mode.
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(3\,\%)}}\\
 What is the default name of the new VLAN?\\
 \hline
 \end{tabular}
@@ -186,8 +224,7 @@ Name your VLAN \texttt{\color{blue}vlanXX-GroupX-switchX}, and verify the change
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(3\,\%)}}\\
 Which other parameters can be changed in the VLAN configuration mode?\\
 \hline
 \end{tabular}
@@ -198,8 +235,7 @@ In the \emph{privileged EXEC} mode, take a look at the running configuration and
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(3\,\%)}}\\
 Are they equal?\\
 \hline
 \end{tabular}
@@ -207,25 +243,49 @@ Are they equal?\\
 
 Find which are the commands that are needed to show the running configurations, and then to copy the running configuration to the start-up configuration. You will need this command when you make changes to the configuration that you want to save.
 
-\section{Static Assignment of Ports to a VLAN}
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Tasks \textbf{(3\,\%)}}\\
+Add these commands to your report.\\
+\hline
+\end{tabular}
+\end{center}
 
-After creating one or more VLANs, during the next step we assign ports to the VLANs. The simplest assignment is the \emph{static} assignment.
+\section{Static Assignment of a VLAN}
 
-First, enter the \emph{global configuration} mode. Find out which are the ports that you want to modify (for example, 0/1, 0/2, etc.). Modify only the configuration of the ports that are assigned to the other two computers from your group. Make sure that you do not change the port that you are using for the Telnet connection.
+After creating one or more VLANs, during the next step we assign ports to the VLANs. The simplest assignment is the \emph{static} assignment. First, enter the \emph{global configuration} mode. Find out which are the ports that you want to modify (for example, 0/1, 0/2, etc.).
+
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tablered}}l}{Important}\\
+Modify only the configuration of the ports that are assigned to the other two computers from your group. Make sure that you do not change the port that you are using for the Telnet connection.\\
+\hline
+\end{tabular}
+\end{center}
 
 To make the changes, you first have to go into to \emph{interface configuration} mode. Here, check the options of the \texttt{\color{blue}switchport} command and use the switch user manual if you require extra information. After making the changes, return to the \emph{privileged} mode. Verify the changes that you have made comparing the running configuration to the start-up configuration. Save your changes.
 
-Use the \texttt{\color{blue}ping} command to test the connectivity between the two auxiliary computers. Try the connectivity between the configuration computer (the one that you use to connect to the switch CLI) to the auxiliary computers. Finally, try the connectivity between the computers of your group and computers of other groups in your class. Explain the results and the conclusions of the experiments, and complete the table \ref{tab:Connectivity}.
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Tasks \textbf{(6\,\%)}}\\
+Add to your report the output of the commands showing that you successfully assigned the ports to your VLAN.\\
+\hline
+\end{tabular}
+\end{center}
+
+Use the \texttt{\color{blue}ping} command to test the connectivity between the two auxiliary computers. Try the connectivity between the configuration computer (the one that you use to connect to the switch CLI) to the auxiliary computers. Finally, try the connectivity between the computers of your group and computers of other groups in your class.
 
 \begin{table}
 \sffamily\small
 \centering
 \begin{tabular}{>{\columncolor{tablegray}}ccc}
-
 \multicolumn{1}{c}{} & \multicolumn{1}{>{\columncolor{tablegray}}c}{Same switch} &
 \multicolumn{1}{>{\columncolor{tablegray}}c}{Different switch} \\
-Same VLAN & OK/KO & OK/KO \\
-Different VLAN & OK/KO & OK/KO \\
+Same VLAN & Yes/No & Yes/No \\
+Different VLAN & Yes/No & Yes/No \\
 \end{tabular}
 \caption{Connectivity tests}
 \label{tab:Connectivity}
@@ -234,11 +294,12 @@ Different VLAN & OK/KO & OK/KO \\
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions and Tasks \textbf{(3 $\times$ 3\,\%)}}\\
 Which devices are reached if you use a broadcast packet?\\
 \hline
 How can a packet travel from one VLAN to a different VLAN?\\
+\hline
+Explain the results and the conclusions of the experiments, and complete the table \ref{tab:Connectivity}.\\
 \hline
 \end{tabular}
 \end{center}
@@ -251,6 +312,10 @@ A trunk port can carry traffic of different VLANs between two switches. You will
 Switch(config)# show interfaces <interface> switchport
 \end{lstlisting}
 
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Task \textbf{(7\,\%)}}\\
 Write down the following parameters:
 \begin{itemize}
 \item Administrative mode
@@ -259,7 +324,10 @@ Write down the following parameters:
 \item Trunking native mode
 \item Trunking VLAN enabled
 \item Trunking VLAN active
-\end{itemize}
+\end{itemize}\\
+\hline
+\end{tabular}
+\end{center}
 
 Use the command:
 \begin{lstlisting}
@@ -270,46 +338,41 @@ to check the status of the ports.
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
-Where can you find the trunk ports?\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(3\,\%)}}\\
+How can you find the trunk ports?\\
 \hline
 \end{tabular}
 \end{center}
 
-\section{Setup the VLANs Carried by a Trunk Port}
+\section{VLAN Trunk Port Assigment}
 
 By default, a trunk port carries traffic of all VLANs. However, it is possible to configure which VLANs are allowed in a given trunk port. To accomplish this, from the \emph{privileged EXEC} mode, check which are the VLANs in the trunk port of your switch.
 
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
-Which command do you use?\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(3\,\%)}}\\
+What command do you use to find the trunk ports of your switch?\\
 \hline
 \end{tabular}
 \end{center}
 
-In the \emph{global configuration} mode, enter into the configuration of the trunk port.
-\begin{center}
-\sffamily\small
-\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
-Which command do you use?\\
-\hline
-\end{tabular}
-\end{center}
-
-Now we are going to configure the trunk port to allow the traffic of our VLAN.
-Check the options of the command:
+In the \emph{global configuration} mode, enter into the configuration of the trunk port. Now we are going to configure the trunk port to allow the traffic of our VLAN. Check the options of the command:
 
 \begin{lstlisting}
-Switch(config-if)# switchport trunk allowed vlan [remove | add] <vlan-list>
+Switch(config-if)# switchport trunk allowed vlan { remove | add } <vlan-list>
 \end{lstlisting}
 
 The parameter \texttt{\color{blue}vlan-list} is a list of VLAN identifiers (or names) separated by a hyphen (\texttt{\color{blue}-}) when specifying a VLAN range, or a comma (\texttt{\color{blue},}) when specifying a set of VLANs.
+
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(6\,\%)}}\\
+What commands do you use to configure a trunk port?\\
+\hline
+\end{tabular}
+\end{center}
 
 Exit the configuration mode and return to the \emph{privileged EXEC} mode. Use the commands:
 \begin{lstlisting}
@@ -325,7 +388,7 @@ to see the configuration of one or all the interfaces.
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
 
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(3\,\%)}}\\
 What are the results?\\
 \hline
 \end{tabular}
@@ -336,56 +399,62 @@ Try also the command:
 \begin{lstlisting}
 Switch# show interfaces trunk
 \end{lstlisting}
-and write down the results.
 
-\section{Connectivity Test}
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Task \textbf{(3\,\%)}}\\
+Include the output of the previous command to your report.\\
+\hline
+\end{tabular}
+\end{center}
 
 Verify whether the following connections are possible and explain why.
-\begin{itemize}
-\item Ping a computer of the same VLAN, connected to a different switch.
-\item Ping the switch of a different VLAN.
-\item Perform additional tests (optional).
-\end{itemize}
-
-Compare the results that you obtain now with the results obtained in the static assignment of VLANs. Fill in the connectivity table \ref{tab:Connectivity} again.
 
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions}\\
-Are there any differences? Why?\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions and Tasks \textbf{(4 $\times$ 3\,\%)}}\\
+Can you ping a computer of the same VLAN, connected to a different switch? Include the output of the ping command.\\
+\hline
+Compare the results that you obtain now with the results obtained in the static assignment of VLANs. Fill in the connectivity table \ref{tab:Connectivity} again.\\
+\hline
+Are there any differences from the previous table? Explain.\\
 \hline
 \end{tabular}
 \end{center}
 
-Change the IP address of one of your auxiliary computers to an address belonging to the range of the other VLAN. Perform the connectivity tests again.
+Change the IP address of \emph{one} of your auxiliary computers to an address belonging to the range of the other VLAN, as shown in the table \ref{tab:ComputerNewIp}. Perform the connectivity tests again.
+
+\begin{table}
+\sffamily\small
+\centering
+\begin{tabular}{l>{\columncolor{tablegray}}ll}
+\multicolumn{1}{>{\columncolor{tableheader}}c}{Student Group} & \multicolumn{1}{>{\columncolor{tableorange}}c}{Computer} & \multicolumn{1}{>{\columncolor{tableheader}}c}{New IP Address}\\
+Group {\color{red}X} & Computer using VLAN {\color{blue}10} & 192.168.{\color{blue}20}.1{\color{red}X}/24 \\
+\hline
+\end{tabular}
+\caption{The new IP address of one of the computers.}
+\label{tab:ComputerNewIp}
+\end{table}
 
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
-What happens? Why?\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(3\,\%)}}\\
+What changes? Why?\\
 \hline
 \end{tabular}
 \end{center}
 
-\section{Network Topology}
-
-Draw the network topology, both from the physical point of view and the logical point of view.
-
-\section{Preparing the Report}
-
-These are aspects that you may want to cover in your report:
-\begin{itemize}
-\item What is a VLAN and what is used for?
-\item What are the differences among the different modes of the switch?
-\item Relation between the active VLANs and the different ports.
-\item Differences between access ports and trunk ports.
-\item Connectivity in the different situations.
-\item Remote management using Telnet and VLAN 1.
-\end{itemize}
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Task \textbf{(3\,\%)}}\\
+Draw the network topology, both from the physical point of view and the logical point of view.\\
+\hline
+\end{tabular}
+\end{center}
 
 \section{Changing the Native VLAN (Optional)}
 

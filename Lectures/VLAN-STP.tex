@@ -59,13 +59,13 @@ It is not necessary that the technician goes to the wiring closet to physically 
 
 In a typical configuration, each VLAN contains one IP subnetwork, and it is connected to other subnetworks using a router.
 Each VLAN has a number which is the VLAN identifier.
-The switch ports are associated to VLAN by configuring each of the ports.  
+The switch ports are associated to VLAN by configuring each of the ports.
 If a switch has four ports and ports \#1 and \#3 are assigned to VLAN 10 while ports \#2 and \#4 are assigned to VLAN 20, then traffic flows from port \#1 to \#3 and the other way around, but it is isolated from ports \#2 and \#4.
 This kind of assignment of a single VLAN to a port is called \emph{static-access}.
 
 
 In a network deployment with multiple switches it is necessary to carry ethernet traffic from one switch to others.
-One option would be to connect a separate cable for each of the existing VLANs. 
+One option would be to connect a separate cable for each of the existing VLANs.
 This solution is not convenient for two different reasons.
 The first is that it requires many cables and many ports in each of the switches.
 The second is that a new cable has to be added each time that a VLAN is created.
@@ -102,8 +102,8 @@ Devices connected to different VLANs need a router or layer-3 switch to exchange
 Another terminology used to refer to VLANs is \emph{logical network segment} as opposed to a \emph{physical network segment}.
 The former is created using configuration while the latter consists of actual physical cables.
 
-The VLANs are created by assigning the ports of the switch to a given VLAN. 
-There are two ways of making this assignment: static and dynamic. 
+The VLANs are created by assigning the ports of the switch to a given VLAN.
+There are two ways of making this assignment: static and dynamic.
 
 \subsection{Static Assignment}
 
@@ -119,7 +119,7 @@ Switch(config)# vlan vlan-num
 Switch(config-vlan)# vlan vlan-name
 \end{lstlisting}
 
-The assignment of a name to the VLAN is optional. 
+The assignment of a name to the VLAN is optional.
 The name, if given, must not contain blank spaces.
 
 For example, to create VLANs for the classrooms and for the WiFi access points we use:
@@ -256,7 +256,7 @@ Finally, in the case of dynamic auto, the port will switch to trunk only if the 
 
 The command \texttt{show interfaces trunk} provides information about trunking.
 \begin{lstlisting}
-Cat3550#show interfaces trunk 
+Cat3550#show interfaces trunk
 
 Port      Mode         Encapsulation  Status        Native vlan
 Fa0/17  trunk    802.1q         trunking   1
@@ -266,11 +266,11 @@ Fa0/19  trunk    802.1q         other      1
 Port      Vlans allowed on trunk Fa0/17     1-4094 Fa0/18     1-4094
 Fa0/19     1-4094
 
-Port      Vlans allowed and active in management domain Fa0/17     1-3,10 
+Port      Vlans allowed and active in management domain Fa0/17     1-3,10
 Fa0/18     1-3,10
 Fa0/19     None
 
-Port      Vlans in spanning tree forwarding state and not pruned  
+Port      Vlans in spanning tree forwarding state and not pruned
 Fa0/17    1-3,10
 
 Fa0/18    1-3,10
@@ -325,7 +325,7 @@ The fields in the BPDU are the following:
 \item Forward Delay in 256th of a second (2 bytes)
 \end{itemize}
 
-\subsection{Root port election}
+\subsection{Root Port Election}
 
 The first step towards the construction of the spanning tree is the election of the bridge.
 Each bridge participating in the STP has a Bridge ID which consists in two different parts: a Bridge Priority field and the Bridge MAC Address.
@@ -367,16 +367,16 @@ Each bridge marks the port through which it is receiving the best BPDUs as the r
 For each network segment, the port that is sending the best BPDUs is elected as the designated port.
 Designated and root ports are the only ports that should receive and send data frames in order to keep a tree topology and avoid loops.
 
-\subsection{STP port states}
+\subsection{STP Port States}
 
 The ports participating in STP can be in one of the following six states:
 \begin{itemize}
 \item Disabled: Administratively shut down. It does not transmit or receive anything and does not participate in the STP.
 \item Blocking: Ports that are not root ports nor designated ports.
 Blocking ports receive BPDUs and do not transmit anything.
-\item Listening: A port that is a candidate to be root port or designated port. 
-It transmits and receives BPDUs and can move to the learning state (if it still a candidate) or to the blocking port (if it is no longer a candidate).
-If it is a candidate for 15 seconds will move to the learning state.
+\item Listening: A port that is a candidate to be root port or designated port.
+It transmits and receives BPDUs and can move to the forwarding state (if it still a candidate) or to the blocking port (if it is no longer a candidate).
+If it is a candidate for 15 seconds will move to the forwarding state.
 \item Learning: A port that is a candidate to be root or designated port.
 The state similar to the listening state with the difference that it learns MAC addresses of the incoming data packets to populate the MAC table.
 If it is a candidate for 15 seconds will move to the forwarding state.
