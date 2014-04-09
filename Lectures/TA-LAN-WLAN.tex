@@ -31,7 +31,7 @@ The application messages are encapsulated in TCP segments or UDP datagrams which
 Regular users do not need to worry about all these data chunks and encapsulation and de-encapsulation processes.
 However, for network engineers designing systems or debugging networks it is very useful to peek into the data chunks of all communications layer to find the errors.
 
-\subsection{Coexistence of protocols}
+\subsection{Coexistence of Protocols}
 
 In the network coexist a multitude of protocols.
 Obviously, we need protocols of different layers to achieve communication.
@@ -49,7 +49,7 @@ If IPv6 is not supported end-to-end, it is necessary to resort to tunneling or t
 For this reason, many network administrators are waiting for others to enable IPv6 first.
 As a result, the adoption of IPv6 has been too slow.
 
-\subsection{Traffic analysis}
+\subsection{Traffic Analysis}
 
 There are some useful tools to analyze the traffic in our networks.
 Two of them are tcpdump (command line) and wireshark (graphic interface).
@@ -76,7 +76,7 @@ The proxy caches content and can speed up web browsing and upstream bandwidth wh
 A university or other institution can use a proxy with a port configuration different than 80.
 This aspect needs to be taken into consideration when analyzing web traffic.
 
-\subsection{Connection oriented protocols}
+\subsection{Connection Oriented Protocols}
 
 Even though the communication occurs using data packets, some protocols are connection oriented.
 These protocols have a previous handshake before starting exchanging data.
@@ -88,9 +88,9 @@ It is used to negotiate initial parameters such as the sequence numbers.
 The TLS protocol also involves a handshake and it starts with a ``client hello'' and a ``server hello'' messages.
 The handshake is to negotiate the version of the protocol, the ciphers and random numbers that will be used to generate a secret key.
 
-\subsection{Address mapping and ARP}
+\subsection{Address Mapping and ARP}
 
-At a higher level an application is identified by an IP address and a port number. 
+At a higher level an application is identified by an IP address and a port number.
 In principle, the IP address identifies a unique host in the Internet and the port number identifies a particular application in that particular host.
 The IP address has two different parts - network and host -  that can have variable size.
 The actual size of each part is specified by the network mask.
@@ -119,7 +119,7 @@ The link layer will first check the ARP cache and only send a broadcast message 
 \subsection{ICMP}
 
 There is a particular network protocol that is used to control the network itself.
-This protocol is not used by regular applications to transfer data. 
+This protocol is not used by regular applications to transfer data.
 It is used by network administrators to obtain additional information of the status of the network.
 
 For example, a router can send a destination unreachable ICMP message if it receives a packet for which no routing information exists.
