@@ -309,7 +309,7 @@ Explain the results and the conclusions of the experiments, and complete the tab
 A trunk port can carry traffic of different VLANs between two switches. You will find which are the trunking ports on the blackboard/whiteboard. In the \emph{privileged EXEC} mode use the command:
 
 \begin{lstlisting}
-Switch(config)# show interfaces <interface> switchport
+Switch# show interfaces <interface> switchport
 \end{lstlisting}
 
 \begin{center}
@@ -323,7 +323,6 @@ Write down the following parameters:
 \item Administrative trunking encapsulation
 \item Trunking native mode
 \item Trunking VLAN enabled
-\item Trunking VLAN active
 \end{itemize}\\
 \hline
 \end{tabular}
@@ -331,7 +330,7 @@ Write down the following parameters:
 
 Use the command:
 \begin{lstlisting}
-Switch(config)# show vlan
+Switch# show vlan
 \end{lstlisting}
 to check the status of the ports.
 
