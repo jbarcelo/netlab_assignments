@@ -279,7 +279,7 @@ Router(config)# router rip
 Use the command:
 
 \begin{lstlisting}
-Router(config-router)# network <your network>
+Router(config-router)# network <network>
 \end{lstlisting}
 
 to associate your network to the RIP routing process. Assume that we are working with \emph{C} class IP addresses. Therefore, the last byte of the network address must be 0. Verify that the RIP protocol is now enabled and that your network has been recognized by the router using the command:
@@ -431,8 +431,6 @@ In this session, we shall use the WAN (serial) interfaces of the routers. The fi
 
 \subsection{Shutdown the Ethernet Interfaces}
 
-{\color{red}\textbf{(10\,\%)}}
-
 Make sure that there is no cable connected to the Ethernet interface, and that there is a cable connecting the serial interfaces. Delete the IP address of the Ethernet interface:
 
 \begin{lstlisting}
@@ -451,13 +449,16 @@ Verify that the changes have been applied using:
 Router# show running-config
 \end{lstlisting}
 
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Task \textbf{(5\,\%)}}\\
+Include in your report the final configuration of the Ethernet interface.\\
+\hline
+\end{tabular}
+\end{center}
+
 \subsection{Configuration of the WAN Serial Interface}
-
-{\color{red}\textbf{(50\,\%)}}
-
-From the privileged EXEC mode of your router, enter the global configuration mode. Enter into the configuration of the WAN serial interface and configure the IP.
-
-To choose the IP, use the following algorithm. Assume the your group id is $X$ and your neighbor's group ID is $Y$. If $X<Y$, then your IP is 192.168.XY.1. Otherwise, it is 192.168.YX.2. Use a /30 network mask.
 
 The serial interfaces are interconnected by cables that, in the middle, have male/female connector. The router in the female connector side sets the communication rate. You can find which is the female router issuing the command:
 
@@ -467,27 +468,67 @@ Router# show controller
 
 The DTE interface uses the male connector, and the DCE interface uses the female connector. Alternatively, you may also look at the number on the cable, where 1428 is male and 1429 is female.
 
-Use the command:
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question? \textbf{(5\,\%)}}\\
+What type of connector do you use for each of the serial interface?\\
+\hline
+\end{tabular}
+\end{center}
+
+From the privileged mode of your router, enter the global configuration mode. Enter into the configuration of the WAN serial interface and configure the IP.
+
+To choose the IP, use the following algorithm. Assume the your group id is \texttt{\color{red}X} and your neighbor's group ID is \texttt{\color{red}Y}. If \texttt{\color{red}X} \textless \texttt{\color{red}Y}, then your IP is \texttt{192.168.{\color{red}XY}.1}. Otherwise, it is \texttt{192.168.{\color{red}YX}.2}. Use a /30 network mask.
+
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Task \textbf{(5\,\%)}}\\
+Include in your report the commands you used to setup the IP addresses on each serial interface.\\
+\hline
+\end{tabular}
+\end{center}
+
+On the DCE serial interface, you must setup the interface clock rate. Using this practical exercise we shall use a clock rate of 128 kbps. Use the command:
 
 \begin{lstlisting}
-Router(config-if)# clock rate 128000
+Router(config-if)# clock rate <bps>
 \end{lstlisting}
 
 or the closest available rate.
 
-Verify the configuration and use the command:
+Verify the previous configuration is correct and enable the serial interfaces using the command:
 
 \begin{lstlisting}
 Router(config-if)# no shutdown
 \end{lstlisting}
 
-on both connected routers to enable the communication. Then use the command:
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Task \textbf{(10\,\%)}}\\
+Include in your report the final configuration of the serial interfaces.\\
+\hline
+\end{tabular}
+\end{center}
+
+Wait for your neighbors to complete their configuration, and then use the command:
 
 \begin{lstlisting}
 Router# show protocols
 \end{lstlisting}
 
 to verify the state of the line.
+
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Task \textbf{(5\,\%)}}\\
+Include in your report the state of each serial interface.\\
+\hline
+\end{tabular}
+\end{center}
 
 Now we will gather information about neighboring devices using the command:
 
@@ -501,20 +542,26 @@ or
 Router# show cdp neighbors detail
 \end{lstlisting}
 
-and we will elaborate a table indicating, for each neighbor, the following information:
-
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Task \textbf{(10\,\%)}}\\
+Elaborate a table indicating, for each neighbor, the following information:
 \begin{itemize}
 \item the neighbor identifier;
 \item the neighbor IP address, and;
 \item the port.
-\end{itemize}
+\end{itemize}\\
+\hline
+\end{tabular}
+\end{center}
 
-Make sure that routing is enabled using the following commands:
+Enable routing using the following commands:
 
 \begin{lstlisting}
 Router(config)# ip routing
 Router(config)# router rip
-Router(config-router)# network 192.168.XX.0
+Router(config-router)# network <network>
 \end{lstlisting}
 
 and look at the routing tables using the command
@@ -523,40 +570,45 @@ and look at the routing tables using the command
 Router# show ip route
 \end{lstlisting}
 
-Compare the routing tables to the ones obtained in the previous session and highlight the differences. Use the \texttt{\color{blue}ping} to the other devices in the network.
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Tasks \textbf{(2 $\times$ 5\,\%)}}\\
+Include in your report the current routing table.\\
+\hline
+Compare the routing table to the one obtained in the previous session and highlight the differences.\\
+\hline
+\end{tabular}
+\end{center}
+
+Use the \texttt{\color{blue}ping} tool to measure the connectivity to the other routers in the network.
 
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
-Which ones are reachable?\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Tasks \textbf{(2 $\times$ 5\,\%)}}\\
+Indicate which routers are reachable and which are not. Explain why by using the current routing table.\\
 \hline
-Which ones are not?\\
-\hline
-Why?\\
-\hline
-Are there differences in the round-trip-time compared to the measures taken in the previous session?\\
-\hline
-Why?\\
+Are there differences in the round-trip-time compared to the measures taken in the previous session? Why?\\
 \hline
 \end{tabular}
 \end{center}
 
 \subsection{Network Topology}
 
-{\color{red}\textbf{(40\,\%)}}
+{\color{red}\textbf{(30\,\%)}}
 
-Prepare a sketch of the network topology that we have used in this session and compare it to the topology of the previous session.
+Compare the current network topology to one of the previous session. Answer in a few brief sentences to the following questions.
 
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
-What are the differences?\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions \textbf{(3 $\times$ 10\,\%)}}\\
+What are the differences between the two networks? Enumerate at least three (3).\\
 \hline
-What are the advantages?\\
+What are the advantages of the current topology over the previous one?\\
 \hline
-And disadvantages?\\
+What are the disadvantages of the current topology over the previous one?\\
 \hline
 \end{tabular}
 \end{center}
@@ -574,7 +626,7 @@ And disadvantages?\\
 \label{fig:RoutingSwitches}
 \end{figure}
 
-This third session extends the previous one by including switches to the network topology, as shown in the figure~\ref{fig:RoutingSwitches}. The topology consists of a ring of routers connected in a ring using the serial interfaces. Each router is connected using the ethernet interface to a local area network with two or more computers. The devices used in this assignment are:
+This third session extends the previous one by including switches to the network topology, as shown in the figure~\ref{fig:RoutingSwitches}. The topology consists of a ring of routers connected in a ring using the serial interfaces. Each router is connected using the Ethernet interface to a local area network with two or more computers. The devices used in this assignment are:
 
 \begin{itemize}
 \item computers;
