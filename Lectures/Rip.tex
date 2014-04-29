@@ -1,0 +1,130 @@
+\chapter{Routing}
+
+Routers are layer 3 devices that forward packets between networks.
+The routers separate layer 2 broadcast domains.
+
+Routers are specialized computing devices that have a CPU, RAM and ROM.
+Routers also have network adaptors to connect to networks.
+A router has two kinds of ports: network ports which are connected to networks and a console port for direct configuration.
+
+A router performs two main tasks: keeping a routing table and forwarding packets.
+
+The routing table is a list of destination networks combined with information about how to reach those networks.
+There are three ways of learning routes:
+\begin{itemize}
+\item Directly connected networks: The router can directly reach the networks it belongs to.
+\item Static routing: The routes are directly entered by the administrator.
+\item Dynamic routing: A routing protocol is used to automatically exchange routing information between routers.
+\end{itemize}
+
+There is a special route, called the \emph{default} route, that is used when no other route is available.
+It can be statically configured by the network administrator or learned from other routers using a dynamic routing protocol.
+
+It can happen that there are different alternatives to reach a particular network.
+In this case, a network metric can be used to pick between routes offered by the same routing protocol.
+Typical metrics include bandwidth, delay, hop count and cost.
+This metrics are used to compute routing distances and in general smaller routing distances are preferred.
+
+It can also be the case that there are different routes that come from different routing protocols.
+For example, there can be static and dynamic routes, or routes from different routing protocols.
+In this case, an administrative distance is used for the router to choose between the different sources of information.
+
+The lowest administrative distance, 0, is for directly connected networks.
+This is the one with higher priority.
+The administrative distance 1 is for statically configured networks.
+Higher administrative distances are assigned to different routing protocols.
+
+There are two main approaches to dynamic routing:
+\begin{itemize}
+\item Distance vector: For a given destination network, each router only knows the next hop and the routing distance. 
+This information is periodically shared with all neighbours.
+\item Link state: Each router informs all the other routers about all its other neighbours.
+Then each router has a complete map of the network and can choose the minimum routing distance routes.
+\end{itemize}
+
+\section{Routing Information Protocol}
+
+The Routing Information Protocol (RIP) is a distance vector algorithm to compute routes.
+In distance vector routing, the participating routers periodically share their knowledge of the network with their neighbours.
+They send a list of the networks that they can reach together with the necessary cost to reach such networks.
+The information is exchanged using UDP packets and port 520.
+In addition to the periodic (also called gratuitous) messages sent periodically, a router that joins a network can request routing information from its neighbours in a request message.
+
+The routers use the received announcements to populate a table that includes a destination network, a routing distance and a next hop or outgoing interface.
+In the case a router receives reachability announcements for the same network through different paths, it simply keeps the route of lowest cost.
+The list of neighbouring networks and costs are re-distributed to neighbouring routers.
+
+RIP updates are sent approximately every 30 seconds and routes are timed out after 180 seconds.
+If a router stops receiving reachability announcements for a particular route for 180 seconds it simply assumes that the route is no longer available and deletes it from the routing table.
+To speed up routing re-convergence after a network change, when a router changes its routing table it immediately sends a \emph{triggered} update.
+The triggered update includes only the changes in the routing table.
+If a destination is no longer reachable, the maximum value of the hop counter (16) is used to indicate unreachability.
+
+As the maximum value of the hop counter (16) means that the destination is unreachable, the actual maximum number of hops in a RIP network is 15.
+This is often referred to as the diameter of the network.
+Consequently, RIP can only be used for small networks.
+
+If a router detects that one of its interfaces goes down, it can update its routing table immediately by removing all the entries that used that particular interface and then send the triggered update.
+If a router goes down, there is no immediate way for its neighbours to detect the failure and they have to wait for the 180 seconds timeout to expire before updating the routing tables and sending triggered updates.
+
+A problem of the RIP protocol is the \emph{count to infinity} behaviour which is best understood by means of an example.
+Consider a router $R_A$ that is connected to a network $N$ and to another router $R_B$.
+$R_B$ is connected to a third router $R_C$.
+$R_A$ announces the network $N$ with a cost 0 and $R_B$ receives the announcements and announces $N$ itself at a cost of 1.
+$R_C$ receives the announcements of $R_B$ and announces $N$ itself at a cost 2.
+If $R_A$ fails, $R_B$ no longer receives announcements from $R_A$ but still receives announcements from $R_C$ saying that it is possible to reach $N$ through $R_C$ at a cost 2.
+Consequently, $R_B$ updates its routing table to reflect that $N$ is reachable through $R_C$ at a cost of 3.
+When $R_C$ receives the routing update from $R_B$, it updates its table to reflect that $N$ is reachable through $R_B$ at a total cost of 4.
+The routing updates continue until the maximum hopcount is reached and the routers finally delete the routes from their routing tables.
+
+A partial solution to the count to infinity problem is the use of \emph{split horizon}.
+When split horizon is in use, when routers receive a route announcement through a particular interface, they do not announce that particular route in that particular interface.
+In our previous example, $R_B$ would not announce $N$ to $R_A$ and $R_C$ would not announce $N$ to $R_B$.
+Even though split horizon solves count to infinity problem in our example scenario, it does not solve it in genera.
+In topologies containing loops, the count to infinity problem can appear even when split horizon is in use.
+
+In addition to use split horizon, a router can explicitly say that a particular route is unreachable by sending a distance equal to the maximum hop count that is interpreted as infinite.
+This technique is known as route poisoning.
+
+RIP also uses a holddown timer to prevent route unstability. 
+When a router receives information about a route being previously previously reachable is now unreachable, the router marks the route in question as inaccessible and starts a holddown timer.
+Until the holddown timer expires the router will only accept route announcements about that particular route with a lower cost than the one contained in the original route.
+Other route announcements indicating the reachability of the networks are disregarded.
+Only after the holddown timer has expired, new routes with higher or equal metric will be considered and the route can be installed again in the routing table.
+
+There are three timers that are used in RIP.
+The first one is for the periodic RIP updates and takes a random value between 25 and 35 seconds.
+A random value is used to prevent that the routers synchronize and send all the routing updates at the same time causing the congestion of the network.
+The second one is for timing out a route and has a duration of 180 seconds.
+Finally, the last one is for garbage collection and lasts 120 seconds.
+When a route is no longer valid, the router sends announcements with that route with a distance set to the maximum hop count which is equivalent to infinity.
+This helps the neighbouring routers to purge the route that is no longer valid.
+The holddown timer default is 180 seconds in RIP.
+
+Compared to OSPF, RIP is simpler.
+The drawbacks of RIP are that it places a limit in the maximum cost between two networks to be 15 and it is slower to converge and to react to changes.
+Furthermore, RIP has severe limitation when it comes to assigning costs to a link.
+It is possible to assign a link cost higher than one, but it reduces the maximum number of hops in the network as the maximum allowed cost for a reachable route is 15.
+
+\section{A Cisco Router}
+
+When a cisco router boots, it goes through a power-on self test (POST), then it loads the Internetworking Operative System (IOS) and finally loads the configuration.
+You can connect to the router using the console port and a serial port terminal such as Hyperterminal for windows or gtkterm for linux.
+Once you are connected to the router, there are two main modes of operation: user mode and privileged mode.
+The first one allows you to check the router status while the second one is for changing the router configuration.
+The \texttt{enable} command can be used to enter the privileged mode.
+When in privileged mode, the prompt shows a hash sign (\texttt{\#}).
+
+The question mark (\texttt{?}) can be used to know which commands are available.
+It can also be used in the middle of a command for help information about how to continue.
+
+The \texttt{show version}, \texttt{show running-config} and \texttt{show} commands can be used to obtain additional information about the router.
+To enter the global configuration mode you can use the command \texttt{configure terminal} or, equivalently, \texttt{conf ter}.
+The global configuration mode is indicated in the prompt as \texttt{config}.
+It is possible to access the specific configuration modes from this point.
+For example, the command \texttt{interface serial 0} can be used to go to the interface specific configuration mode for the Serial 0 interface.
+To move back to the previous mode, the exit command or the Ctrl-Z shortcut can be used.
+
+To enter into the router specific configuration mode we can enter, for example, the \texttt{R1(config)\#router rip} command and then the \texttt{R1(config-router)\#network 10.0.0.0} to include a particular network in the routing process.
+
+To other particularly relevant commands for routing are the \texttt{show ip protocols} and the \texttt{show ip route} commands.
