@@ -2,6 +2,15 @@
 
 \section{Home Preparation}
 
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tablered}}l}{Important}\\
+For this practical exercise, you have to submit a report the answers to the questions below. When submitting the answers to the questions, be brief but precise. If you include screenshots, indicate on the screenshot what is the answer.\\
+\hline
+\end{tabular}
+\end{center}
+
 RIP and OSPF are two of the most widely used routing protocols. Find information about these two protocols and compare them. Describe what is the format of a routing table and explain how each of the protocols work.
 
 Read the following quick guide:
@@ -14,6 +23,19 @@ Then, download the router user manuals:
 
 \section{First Session}
 
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tablered}}l}{Important}\\
+Each group must select a computer that has a console serial connection.\\
+\hline
+Start your computer in Windows.\\
+\hline
+Before disconnecting the computer from the Internet, download the TFTP server from the web site \url{http://tftpd32.jounin.net/}, and save it on one of the computers that you will use to connect to the router.\\
+\hline
+\end{tabular}
+\end{center}
+
 In this first session each group will work with a router. The goals of this session are:
 \begin{itemize}
 \item Getting familiar with the configuration method.
@@ -21,8 +43,6 @@ In this first session each group will work with a router. The goals of this sess
 \item Observe the RIP protocol in action.
 \item Save the configuration in an external TFTP server.
 \end{itemize}
-
-Start your computer in Windows. Before disconnecting the computer from the Internet, download the TFTP server from the web site \url{http://tftpd32.jounin.net/}, and save it on one of the computers that you will use to connect to the router.
 
 \begin{figure}
 \centering
@@ -35,21 +55,27 @@ Start your computer in Windows. Before disconnecting the computer from the Inter
 \label{fig:RoutingEthernet}
 \end{figure}
 
-The routers are connected to each other using the Ethernet interfaces and forming the topology from the figure \ref{fig:RoutingEthernet}. Use the console connection to connect to the routers (use either \emph{HyperTerminal} or \emph{putty} to open a serial connection at 9600 bps). The COM port number (e.g. COM1, COM2, etc.) depends on your computer configuration\footnote{You can see the name of the local serial ports in the \emph{Device Manager} snap-in. To open the snap-in, click on \textsf{Start} \textgreater \textsf{Run...}, type \texttt{devmgmt.msc} and click \textsf{OK}. The serial ports are listed under the \emph{Ports} branch.}. The escape keystroke to exit the \texttt{ping} command in a router is \textsf{Ctrl-Alt-6}.
+The routers are connected to each other using the Ethernet interfaces and forming the topology from the figure \ref{fig:RoutingEthernet}. Use the console connection to connect to the routers (use \emph{PuTTY} to open a serial connection at 9600 bps). The COM port number (e.g. COM1, COM2, etc.) depends on your computer configuration\footnote{You can see the name of the local serial ports in the \emph{Device Manager} snap-in. To open the snap-in, click on \textsf{Start} \textgreater \textsf{Run...}, type \texttt{devmgmt.msc} and click \textsf{OK}. The serial ports are listed under the \emph{Ports} branch.}. The escape keystroke to exit the \texttt{ping} command in a router is \textsf{Ctrl-Alt-6}.
 
 \subsection{Checking the Router Status}
 
 Use the console to connect to your router and try the following commands. Prepare a summary of what you can see with each command.
 
 \begin{lstlisting}
-show version
+show history
 show protocols
 show interfaces
-show processes
-show mem
 show ip route
-show history
 \end{lstlisting}
+
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions \textbf{(4 $\times$ 3\,\%)}}\\
+For each of the previous commands, what does the output represent?\\
+\hline
+\end{tabular}
+\end{center}
 
 \subsection{Create a Running and Startup Configuration}
 
@@ -65,13 +91,20 @@ and password \texttt{\color{blue}cisco}, and the the global configuration mode
 Router# configure terminal
 \end{lstlisting}
 
-Find the commands to:
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Tasks \textbf{(4 $\times$ 3\,\%)}}\\
+Find and include to your report the commands to:
 \begin{itemize}
 \item show and change the router name;
 \item debugging mode configuration;
 \item send pings from the router, and;
 \item activate fair queueing on the ethernet interfaces (e.g. FastEthernet0/0).
-\end{itemize}
+\end{itemize}\\
+\hline
+\end{tabular}
+\end{center}
 
 Use the following commands to show and save the current configuration to the startup configuration from the privileged mode.
 
@@ -79,7 +112,6 @@ Use the following commands to show and save the current configuration to the sta
 Router# show running-config
 Router# copy running-config startup-config
 \end{lstlisting}
-
 
 \subsection{IP Addresses Configuration}
 
@@ -89,28 +121,34 @@ Go to your physical router equipment and check which interfaces are visible. Use
 Router# show interfaces
 \end{lstlisting}
 
-Fill in a table that includes:
-
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Tasks \textbf{(5\,\%)}}\\
+Include in your report a table with the following information for each interface:
 \begin{itemize}
 \item the interface name;
 \item the interface MTU;
 \item the interface bandwidth, and;
 \item the encapsulation protocol.
-\end{itemize}
+\end{itemize}\\
+\hline
+\end{tabular}
+\end{center}
 
-Enter the Ethernet interface configuration mode with the command:
+Enter in the configuration mode of the Ethernet interface with the command:
 
 \begin{lstlisting}
 Router(config)# interface <interface name>
 \end{lstlisting}
 
-Then, set the IP address to 192.168.XX.1, where XX is your group ID times 10, i.e. 10, 20, 30, etc. Use a /24 network mask. For the Ethernet interface of your computer use the IP address 192.168.XX.2.
+Then, set the IP address to \texttt{192.168.{\color{red}X}0.1}, where \texttt{\color{red}X} is the number of your group. Use a /24 network mask. Use the IP address \texttt{192.168.{\color{red}X}0.2} for the Ethernet interface of your computer.
 
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
-What is the command that you have used?\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(5\,\%)}}\\
+What is the command to configure the IP address on the router interface? Indicate the command mode in which you must execute this command.\\
 \hline
 \end{tabular}
 \end{center}
@@ -126,6 +164,15 @@ to verify the IP address assignment, and enable the interface with the command:
 \begin{lstlisting}
 Router(config-if)# no shutdown
 \end{lstlisting}
+
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Task \textbf{(5\,\%)}}\\
+Include in your report the relevant output of at least one command showing that you successfully configured the IP address on the Ethernet interface.\\
+\hline
+\end{tabular}
+\end{center}
 
 Verify the line status and the interface status using the command:
 
@@ -145,30 +192,48 @@ and:
 Router# show cdp neighbors detail
 \end{lstlisting}
 
-to see the neighboring Cisco devices. Write down the information received from the different interfaces.
-\begin{itemize}
-\item the neighbor identifier;
-\item the IP address, and;
-\item the port.
-\end{itemize}
-
-Use the \texttt{\color{blue}ping} command to test the connectivity to the other routers in the lab and write down the round-trip times and other results that you may consider relevant.
-
-From your computer, use the \texttt{\color{blue}telnet} command to connect to your router.
+to see the neighboring Cisco devices.
 
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
-Is it possible to remotely configure a router?\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question and Tasks \textbf{(5\,\%)}}\\
+What are the devices displayed by the \texttt{show cdp neighbors} command? Write down the information received from the different interfaces.
+\begin{itemize}
+\item the neighbor identifier;
+\item the IP address, and;
+\item the port.
+\end{itemize}\\
+\hline
+\end{tabular}
+\end{center}
+
+Use the \texttt{\color{blue}ping} command to test the connectivity to at least one other router in the lab.
+
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Task \textbf{(5\,\%)}}\\
+Include in your report the output of the \texttt{\color{blue}ping} command, indicating the round-trip times.\\
+\hline
+\end{tabular}
+\end{center}
+
+From your computer, use the PuTTY in Telnet mode to connect to your router.
+
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions \textbf{(5 $\times$ 1\,\%)}}\\
+Is it possible to remotely configure a router using Telnet?\\
 \hline
 Is login and password required?\\
 \hline
 Does a console user notice that there is an ongoing telnet connection?\\
 \hline
-Use telnet to change a parameter of the router (e.g., the name) and verify the changes both using the console and the telnet connection. What happens?\\
+Use telnet to change a parameter of the router (such as the router name) and verify the changes both using the console and the telnet connection. What happens?\\
 \hline
-Do messages appear on the console when changes are done over Telnet? What information is included in these messages?\\
+Do any messages appear on the console when changes are done over Telnet? What information is included in these messages?\\
 \hline
 \end{tabular}
 \end{center}
@@ -188,7 +253,7 @@ Router# show protocols
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(5\,\%)}}\\
 What is the status of IP routing?\\
 \hline
 \end{tabular}
@@ -199,7 +264,7 @@ Enter the global configuration mode and enter the submenu \texttt{\color{blue}ro
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(5\,\%)}}\\
 What is the purpose of this submenu?\\
 \hline
 \end{tabular}
@@ -223,17 +288,24 @@ to associate your network to the RIP routing process. Assume that we are working
 Router# show ip protocol
 \end{lstlisting}
 
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Task \textbf{(5\,\%)}}\\
+Include in your report the output of the previous command showing that the RIP protocol has been enabled.\\
+\hline
+\end{tabular}
+\end{center}
+
 Observe the relevant parameters and answer the following questions:
 
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
-What is the use of the timers?\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions \textbf{(3 $\times$ 2\,\%)}}\\
+What timers do you identify for the RIP protocol?\\
 \hline
 What are their values?\\
-\hline
-Are they too small, or too large?\\
 \hline
 What happens if we change the values?\\
 \hline
@@ -249,38 +321,63 @@ Router# show ip route
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Task and Questions \textbf{(3 $\times$ 2\,\%)}}\\
+Include in your report the routing table of your router, after the RIP protocol has been enabled on at least one other router in the lab.\\
+\hline
 What is the meaning of each of the fields in the table?\\
 \hline
-How can we check which are the networks to which RIP protocols is associated?\\
-\hline
-If there is no information, why?\\
+How do you identify the networks advertised using the RIP protocol?\\
 \hline
 \end{tabular}
 \end{center}
 
-Work together with another group to do this part. If there is no other group ready, skip this exercise and come back to it when another group reaches this point.
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tablered}}l}{Important}\\
+For this assignment you must work together with another group. If there is no other group ready, skip this exercise and come back to it when another group reaches this point.\\
+\hline
+\end{tabular}
+\end{center}
 
-Add an static route to the other group's network. Use the following command from the configuration mode.
+Add a static route to the other group's network. Use the following command from the configuration mode.
 
 \begin{lstlisting}
 Router(config)# ip route
 \end{lstlisting}
 
-Explain what happens when you use \texttt{\color{blue}traceroute} to the other groups router (both interfaces).  Repeat the experiment after deleting the static route in one of the routers. Explains what happens and why.
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Task \textbf{(5\,\%)}}\\
+Include in your report the command you used to setup a static route.\\
+\hline
+\end{tabular}
+\end{center}
 
-The command:
+Use the \texttt{\color{blue}traceroute} command from your computer, choosing as destination the computer of another group.
+
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(5\,\%)}}\\
+Include the output of the traceroute command, indicating the network interfaces traversed by the traceroute ICMP or UDP packet?\\
+\hline
+\end{tabular}
+\end{center}
+
+Use the command:
 
 \begin{lstlisting}
 Router# debug ip rip
 \end{lstlisting}
 
-shows the RIP messages that are sent and received by the router.
+to show the RIP messages that are sent and received by the router.
 
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions \textbf{(2 $\times$ 2\,\%)}}\\
 What are the source and destination of these packets?\\
 \hline
 What information do we obtain?\\
@@ -303,13 +400,13 @@ and follow the instructions to enter the TFT server address (this is one of your
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
-What can you observe?\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Question \textbf{(5\,\%)}}\\
+What is the format of the configuration file saved on your computer? How is the content of this file compared to the configuration file viewed in the router console?\\
 \hline
 \end{tabular}
 \end{center}
 
-To copy the configuration in the TFTP server to the router, there are two different options. Either use the command:
+To copy the configuration in the TFTP server to the router, there are two different options. Use either the command:
 
 \begin{lstlisting}
 Router# copy tftp running-config
@@ -334,6 +431,8 @@ In this session, we shall use the WAN (serial) interfaces of the routers. The fi
 
 \subsection{Shutdown the Ethernet Interfaces}
 
+{\color{red}\textbf{(10\,\%)}}
+
 Make sure that there is no cable connected to the Ethernet interface, and that there is a cable connecting the serial interfaces. Delete the IP address of the Ethernet interface:
 
 \begin{lstlisting}
@@ -353,6 +452,8 @@ Router# show running-config
 \end{lstlisting}
 
 \subsection{Configuration of the WAN Serial Interface}
+
+{\color{red}\textbf{(50\,\%)}}
 
 From the privileged EXEC mode of your router, enter the global configuration mode. Enter into the configuration of the WAN serial interface and configure the IP.
 
@@ -443,6 +544,8 @@ Why?\\
 
 \subsection{Network Topology}
 
+{\color{red}\textbf{(40\,\%)}}
+
 Prepare a sketch of the network topology that we have used in this session and compare it to the topology of the previous session.
 
 \begin{center}
@@ -484,6 +587,8 @@ Each group has to configure its router and its VLAN. It is assumed that the prev
 
 \subsection{VLAN Configuration}
 
+{\color{red}\textbf{(40\,\%)}}
+
 We connect using Telnet to our switch and enter the privileged EXEC mode. Create a VLAN with a number equal to ten times your group number (e.g. VLAN 20 for group 2). Assign a port connected to the router and one or two other ports connected to computers. Remember to keep the port of the computer you are using for managing the switch in VLAN 1.
 
 Use an IP equal to 192.168.1.XX where XX is the group multiplied by ten for the computer in VLAN 1. Use an IP 192.168.VLAN.YY for the other VLAN. YY is going to be 1 for the router and 2 for the computer. You can use YY equal to 3 if you have another computer.
@@ -491,6 +596,8 @@ Use an IP equal to 192.168.1.XX where XX is the group multiplied by ten for the 
 Test the connectivity between your different computers and with computers of other groups. Write down when a \texttt{\color{blue}ping} command is successful and when it is not successful, and provide an explanation.
 
 \subsection{Configuring the Router LAN Interface}
+
+{\color{red}\textbf{(40\,\%)}}
 
 In the router console enter the privileged EXEC mode and use the command:
 
@@ -525,6 +632,8 @@ Router# show routes
 to see the routing tables.
 
 \subsection{Connectivity Test}
+
+{\color{red}\textbf{(20\,\%)}}
 
 We add our router's IP as as the default gateway for the computers connected to the router. We perform ping tests from the router to the other devices of the network. Finally, we fill in a table with the following information:
 
