@@ -573,7 +573,7 @@ Router# show ip route
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Tasks \textbf{(2 $\times$ 5\,\%)}}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Tasks \textbf{(2 $\times$ 10\,\%)}}\\
 Include in your report the current routing table.\\
 \hline
 Compare the routing table to the one obtained in the previous session and highlight the differences.\\
@@ -595,8 +595,6 @@ Are there differences in the round-trip-time compared to the measures taken in t
 \end{center}
 
 \subsection{Network Topology}
-
-{\color{red}\textbf{(30\,\%)}}
 
 Compare the current network topology to one of the previous session. Answer in a few brief sentences to the following questions.
 
@@ -637,19 +635,41 @@ This third session extends the previous one by including switches to the network
 
 Each group has to configure its router and its VLAN. It is assumed that the previous session has been successfully completed and the connectivity tests were satisfactory.
 
+During this practical exercise, each group shall fill in a form indicating the desired configuration for the computers and network equipments involved.
+
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Task \textbf{(10\,\%)}}\\
+Download the form for your part of the network topology from the following address:\\
+\url{http://alex.bikfalvi.com/teaching/upf/2014/networks_and_services/lab/routing/FormRouting.pdf}\\
+Fill in the configuration of all computers and network devices.\\
+\hline
+\end{tabular}
+\end{center}
+
 \subsection{VLAN Configuration}
 
-{\color{red}\textbf{(40\,\%)}}
+We connect using Telnet to our switch and enter the privileged mode. Create a VLAN with a number equal to ten times your group number (e.g. VLAN 20 for group 2). Assign a port connected to the router and one or two other ports connected to computers. Remember to keep the port of the computer you are using for managing the switch in VLAN 1.
 
-We connect using Telnet to our switch and enter the privileged EXEC mode. Create a VLAN with a number equal to ten times your group number (e.g. VLAN 20 for group 2). Assign a port connected to the router and one or two other ports connected to computers. Remember to keep the port of the computer you are using for managing the switch in VLAN 1.
+Use an IP equal to \texttt{192.168.1.{\color{red}X}0} where \texttt{\color{red}X} is the number of your group, for the computer in VLAN 1. Use an IP \texttt{192.168.{\color{red}X}0}.{\color{blue}X} for the other VLAN. \texttt{\color{blue}Y} is 1 for the router and 2 for the computer. You can use \texttt{\color{red}X} equal to 3 if you have another computer.
 
-Use an IP equal to 192.168.1.XX where XX is the group multiplied by ten for the computer in VLAN 1. Use an IP 192.168.VLAN.YY for the other VLAN. YY is going to be 1 for the router and 2 for the computer. You can use YY equal to 3 if you have another computer.
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Tasks \textbf{(3 $\times$ 15\,\%)}}\\
+Include in your the commands you used to setup the VLAN configuration.\\
+\hline
+Include in your report the VLAN configuration showing that you successfully assigned your VLAN on the required interfaces.\\
+\hline
+Include in your report the configuration of the interfaces you used.\\
+\hline
+\end{tabular}
+\end{center}
 
 Test the connectivity between your different computers and with computers of other groups. Write down when a \texttt{\color{blue}ping} command is successful and when it is not successful, and provide an explanation.
 
 \subsection{Configuring the Router LAN Interface}
-
-{\color{red}\textbf{(40\,\%)}}
 
 In the router console enter the privileged EXEC mode and use the command:
 
@@ -672,7 +692,7 @@ Router# show protocols
 Then we enable the routing. From the global configuration menu we enter the router menu and we use the command:
 
 \begin{lstlisting}
-Router(config-router)# network 192.168.VLAN.0
+Router(config-router)# network 192.168.<vlan>.0
 \end{lstlisting}
 
 to associate our network to the routing process. We will assume that we are using class C networks. Then we use the command:
@@ -683,17 +703,35 @@ Router# show routes
 
 to see the routing tables.
 
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Tasks \textbf{(2 $\times$ 15\,\%)}}\\
+Include in your the commands you used to setup the configuration of the router's Ethernet interface and to enable IP routing using RIP.\\
+\hline
+Include in your report the final state of your routing table. Indicate which are the networks that are reachable from your router, and how these networks were discovered.\\
+\hline
+\end{tabular}
+\end{center}
+
 \subsection{Connectivity Test}
 
-{\color{red}\textbf{(20\,\%)}}
+We add our router's IP as as the default gateway for the computers connected to the router. We perform ping tests from the router to the other devices of the network. Then, we repeat the same tests from a computer. If we are on a Linux box, we may also try the \texttt{\color{blue}tracepath} and \texttt{\color{blue}mtr} commands.
 
-We add our router's IP as as the default gateway for the computers connected to the router. We perform ping tests from the router to the other devices of the network. Finally, we fill in a table with the following information:
-
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Tasks \textbf{(3 $\times$ 7.5\,\%)}}\\
+Include in your report a table with the results of the connectivity test performed from your router, which must include following information:
 \begin{itemize}
 \item the destination IP address;
 \item the packet loss, and;
 \item the average delay.
 \end{itemize}
-
-Now we repeat the tests from the computer. If we are on a Linux box, we may also try the \texttt{\color{blue}tracepath} and \texttt{\color{blue}mtr} commands. We will include the configuration of the switch and the router in the lab assignment report.
+The connectivity test must involve at least one other router and one other computer.\\
+\hline
+Include in your report a similar table with the results of the connectivity test performed from your computer.\\
+\hline
+\end{tabular}
+\end{center}
 
