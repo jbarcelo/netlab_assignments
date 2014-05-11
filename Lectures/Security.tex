@@ -135,6 +135,8 @@ When a client in the protected network sends a packet to a web server in the pub
 Compared to the stateless firewall that accepted all packets that used port 80, the stateful firewall accept only those packets that are answering a request initiated in the protected network.
 Stateful firewalls are much more effective and therefore are the firewalls that we normally use nowadays.
 
+\section{Related Security Concepts}
+
 \subsection{Deep Packet Inspection}
 
 Normal firewalls consider only information available in the network layer and the transport layer of the packet.
@@ -147,5 +149,81 @@ Furthermore, looking into the application messages and interpreting application 
 Therefore, the packet processing speed is much lower for DPI than it is for normal firewall operation.
 Some applications encrypt the information making it more difficult or impossible for the DPI firewall to extract information from the application layer.
 
+\subsection{Intrusion Detection and Prevention Systems}
 
+An intrusion detection system (IDS) is a device or software that continuously monitor network traffic to detect anomalies that can be indicative of an attack.
+We can differentiate to kinds of IDS:
+\begin{itemize}
+\item Signature-based: The IDS has a database of signatures of virus and malicious packets in general.
+The IDS continuously compares the network packets with the signature database and rises an alarm when malicious packets are detected.
+It is important to keep updating the database as new attacks are discovered.
+\item Statistics-based: The IDS gathers statistics about \emph{normal} traffic behaviour.
+Then, it continuously compares traffic statistics with what is considered normal and rises an alarm when it detects abnormal traffic patterns.
+\end{itemize}
 
+IDS have the problem of issuing false positives and false negatives.
+In a false positive event, an alarm is raised when there is no attack situation.
+In a false negative event, an attack goes undetected.
+
+An intrusion prevention system (IPS) is an IDS that has the capability to automatically take action to prevent the attack.
+An IPS can, for example, change the firewall rules to stop malicious traffic.
+
+\subsection{Application Layer Gateway}
+
+An Application Layer Gateway (ALG) works in combination with a firewall to interpret messages at the application layer as in DPI.
+An ALG uses the information to adjust the firewall rules or to rewrite the message to allow legitimate user communication through the firewall.
+The ALG is intended for protocols that open additional ports to perform their task, such as SIP, FTP and BitTorrent.
+
+\section{Network Address Translation and Port Address Translation}
+
+Network address translation (NAT) translates addresses between two domains.
+When the protected domain uses private addresses, NAT is required to translate those addresses to public internet addresses.
+
+\subsection{Static mapping NAT}
+In its simplest form, NAT is a one-to-one mapping.
+For example, private address 192.198.1.1 could be translated to a public address 193.145.56.1.
+This translation can be bi-directional, and all packets arriving at the public-facing interface can be translated to the corresponding private address.
+With this kind of mapping, a client in the public internet can contact a server in the private IP addressing space if it knows the corresponding public address.
+
+\subsection{Dynamic mapping NAT}
+In a more complex situation, several devices on the private address space share a set of public addresses.
+In this situation, the NAT device dynamically use public addresses for translating the private addresses.
+The NAT device can take advantage of statistical multiplexing.
+If the devices with private address are not always online, it is possible to use a set of public address to server a larger number of devices.
+The same device will probably be mapped to different public IP addresses at different times.
+As this is no longer a one-to-one correspondence, it is no longer possible to host a server in the private address space that can be reached from the internet.
+
+With dynamic mapping, at any given time, there is a one-to-one translation between the private and public addresses.
+It is dynamic because this assignment can change at another time.
+The devices in the private address space take turns in using the public addresses, but they don't use them simultaneously.
+
+The number of devices with private addresses that can simultaneously access the public internet is limited by the size of the pool of available public addresses.
+
+\subsection{Port Address Translation}
+
+Port address translation (PAT) allows that different devices with private addresses simultaneously use the same public address.
+In PAT, the port numbers of the IP packets changed in addition to the addresses.
+The NAT device keeps a database with the association of address and port in the public side and the private side.
+Each entry in the database has four fields: original address, original port, translated address and translated port.
+Two different private addresses can be translated to the same public address as long as the resultant translation has different ports and therefore the translated address and translated port tuple is unique.
+
+If two devices in the private network send a web request to the same webserver, the two packets will have different source addresses in the private network.
+When this packets are translated by the NAT/PAT device, they will have the same source and destination address, but they will have different source ports.
+The two reply answers from the webserver will have the same source and destination ports and different port destination number.
+When receiving the two answers, the NAT/PAT device will differentiate the two packets using the different destination ports.
+In the database in the NAT/PAT device there will be stored the private addresses that had originally initiated the web requests.
+The NAT/PAT device will translate the two packets coming from the webserver using the two different addresses in the database and send the reply packets to the two devices that had originated the request.
+
+PAT is also known as masquerading.
+
+In principle, it is not possible for a client in the public internet to access a server in the private network unless port forwarding is used.
+
+\subsection{Port Forwarding}
+
+PAT is very useful when the number of public addresses available is limited and also to hide internal network topology.
+Still, there are occasions in which is desirable to host a server in the private network behind the NAT/PAT.
+If it is not possible assign a public address to the server in the NAT/PAT device, an option is to assign it an address and port tuple.
+When the NAT/PAT device receives a packet in the public-facing interface that is directed to specified address and port tuple, it applies a static translation rule and directs it to the server behind the NAT/PAT.
+
+For example, in a private network with a SMTP server and a web server installed in different hosts and with different private addresses, it is possible to install static rules in the NAT/PAT device that redirects some traffic arriving to the NAT/PAT public interface to the appropriate server.
+In particular, there will be a rule that redirects traffic with destination port 80 to the webserver and with destination port 25 to the email server.
