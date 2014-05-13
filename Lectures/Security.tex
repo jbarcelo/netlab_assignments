@@ -2,30 +2,27 @@
 
 Protecting information can be more complex than protecting phyisical goods.
 We may be interested in preventing that information can be duplicated or read by third parties.
-We may wand to also protect information from being modified or erased.
+We may want to also protect information from being modified or erased.
 
 The internet makes it possible for the information to easily travel accross the globe.
 All the protocols and tools that are typically used with good intentions can also be used to abuse and exploit information systems.
 Therefore, it is important to keep security in mind when designing and managing information networks.
 
 Security can be present at different layers of the protocol stack.
-For example, the TLS protocol offers security at the application layer in the Internet protocol stack.
+For example, the TLS protocol offers security at the application layer in the internet protocol stack.
 TLS is used to protect HTTP sessions in the HTTPS protocol. 
 The open source implementation of TSL OpenSSL was recently in the news after the heartbleed bug was discovered.
 
-IPSEC offers security at the network layer.
+IPsec offers security at the network layer.
 It can be used to protect all traffic between two endpoints.
 These endpoints can be either a host or a network.
-IPsec uses two different headers to provide security.
+IPsec uses two different forms of protection.
 The Authentication Header (AH) provides integrity, data origin authentication and protection against replay attacks.
 The Encapsulating Security Payload (ESP) header provides confidentiality, data origin authentication, integrity and protection against replay attacks.
 
-IPsec can operate in two diffrent modes: transport mode and tunnel mode.
+IPsec can operate in two different modes: transport mode and tunnel mode.
 In the first one, the payload of an IP packet is protected while the IP headers are left unmodified.
-Even though the source and destination address are left untouched, they are still protected by a hash and therefore cannot be modified by the intermediate network devices (e.g. NAT devices).
-
 In the second mode of operation, IPsec tunnel mode, the entire IP packet is protected and encapsulated within a new IP packet.
-This tunnel can be used to create a VPN and the resulting data flow can traverse NAT devices.
 
 Another aspect of security is access control and network perimeter protection.
 It is desired to prevent unauthorized access to computers and networking devices.
@@ -40,20 +37,20 @@ We will be focusing on the latter kind of firewall.
 
 \section{Firewall}
 
-A network can be protected from attacks coming from the rest of the Internet by placing a firewall in the frontier between the two networks.
-To be effective, it is important that all the traffic exchanged bay the network and the rest of the Internet goes through the firewall.
+A network can be protected from attacks coming from the rest of the internet by placing a firewall in the frontier between the two networks.
+To be effective, it is important that all the traffic exchanged by the network and the rest of the internet goes through the firewall.
 The firewall filters undesired traffic to offer partial protection against external attacks.
-Note that a negative aspect of forcing that all the traffic between our network and the Internet is handled by the firewall is that it introduces a single point of failure.
+Note that a negative aspect of forcing that all the traffic between our network and the internet is handled by the firewall is that it introduces a single point of failure.
 It is possible to have two firewalls with the same configuration to mitigate this problem.
 
 In perimeter protection, networks are called security domains and are classified regarding their level of trust.
 For example, the network of the organization can be considered trusted and therefore it is a trusted security domain.
-The public Internet can be considered untrusted and it is therefore an unstrusted security domain.
+The public internet can be considered untrusted and it is therefore an unstrusted security domain.
 A firewall is placed between the two of them to enforce access control rules.
 The firewall protects the trusted domain from the unstrusted domain.
 
 More complex topologies are possible.
-For example is possible to have multiple nested security domains with multiple passwords securing each of them.
+For example it is possible to have multiple nested security domains with multiple firewalls securing each of them.
 In this case, the network that is considered trusted by one firewall is considered untrusted by another firewall.
 This situation is illustrated in Fig.~\ref{fig:Nested_security_domains}.
 
@@ -73,7 +70,7 @@ This web servers need to be placed in a network that can be accessed from the ou
 It is still possible to offer partial protection to this servers using a firewall.
 For example, the firewall can be configured to allow only web traffic between the internet and the network of the web servers.
 This partially protected network is typically named DMZ (for demilitarized zone).
-The organization can keep a network totally protected, as shown in Fig.~\ref{fig:DMZ}.
+The organization can keep a network totally protected (internal) and another network partially protected (DMZ), as shown in Fig.~\ref{fig:DMZ}.
 
 \begin{figure}
 \centering
@@ -131,8 +128,8 @@ This configuration gives little protection to the protected network.
 
 An alternative to allow the computers in the protected network to visit web browsers in the public internet while keeping the protected network more secure is to use a stateful firewall.
 The stateful firewalls keeps the state of a connection and can take a decision about whether to allow or reject a packet taking into account the history of packets that have traversed the network before.
-When a client in the protected network sends a packet to a web server in the public Internet, the firewall stores the addresses and ports of this packet in a database and then will allow the packets that are answering this particular request.
-Compared to the stateless firewall that accepted all packets that used port 80, the stateful firewall accept only those packets that are answering a request initiated in the protected network.
+When a client in the protected network sends a packet to a web server in the public internet, the firewall stores the addresses and ports of this packet in a database and then will allow the packets that are answering this particular request.
+Compared to the stateless firewall that accepted all packets that used port 80, the stateful firewall accepts only those packets that are answering a request initiated in the protected network.
 Stateful firewalls are much more effective and therefore are the firewalls that we normally use nowadays.
 
 \section{Related Security Concepts}
@@ -142,7 +139,8 @@ Stateful firewalls are much more effective and therefore are the firewalls that 
 Normal firewalls consider only information available in the network layer and the transport layer of the packet.
 Deep packet inspection (DPI) is about re-constructing application layer messages and taking decisions based on this information.
 A deep packet inspection firewall can differentiate between a web packet and file sharing packet even if they both use exactly the same IP and port information.
-A DPI can be much more precise in making decisions thanks to the additional information.
+A DPI can be much more precise in making decisions thanks to the additional information it has access to.
+
 The problem is that the number of applications is very large and is growing continuously.
 It is difficult to keep track of all existing applications. 
 Furthermore, looking into the application messages and interpreting application information is computationally expensive and consumes CPU time.
@@ -151,7 +149,7 @@ Some applications encrypt the information making it more difficult or impossible
 
 \subsection{Intrusion Detection and Prevention Systems}
 
-An intrusion detection system (IDS) is a device or software that continuously monitor network traffic to detect anomalies that can be indicative of an attack.
+An intrusion detection system (IDS) is a device or software that continuously monitors network traffic to detect anomalies that can be indicative of an attack.
 We can differentiate to kinds of IDS:
 \begin{itemize}
 \item Signature-based: The IDS has a database of signatures of virus and malicious packets in general.
@@ -187,23 +185,24 @@ With this kind of mapping, a client in the public internet can contact a server 
 
 \subsection{Dynamic mapping NAT}
 In a more complex situation, several devices on the private address space share a set of public addresses.
-In this situation, the NAT device dynamically use public addresses for translating the private addresses.
+In this situation, the NAT device dynamically uses public addresses for translating the private addresses.
 The NAT device can take advantage of statistical multiplexing.
-If the devices with private address are not always online, it is possible to use a set of public address to server a larger number of devices.
+If the devices with private address are not always online, it is possible to use a set of public address to serve a larger number of devices.
 The same device will probably be mapped to different public IP addresses at different times.
-As this is no longer a one-to-one correspondence, it is no longer possible to host a server in the private address space that can be reached from the internet.
+As this is no longer a one-to-one correspondence, it can be more complicated to host a server using the private address space its public equivalent address it is not always the same.
 
-With dynamic mapping, at any given time, there is a one-to-one translation between the private and public addresses.
-It is dynamic because this assignment can change at another time.
-The devices in the private address space take turns in using the public addresses, but they don't use them simultaneously.
+
+Despite the fact that in general there is not a one-to-one mapping between private and public addresses, if we look at any particular time instant there is a one-to-one mapping between those private addresses that are active and the public addresses.
+The difference with static NAT is that in static NAT this one-to-one correspondence is valid for any period of time, while in dynamic NAT the one-to-one correspondence is valid only for a particular instant and can change dynamically.
+The devices in the private address space take turns in using the public addresses, but they do not use them simultaneously.
 
 The number of devices with private addresses that can simultaneously access the public internet is limited by the size of the pool of available public addresses.
 
 \subsection{Port Address Translation}
 
 Port address translation (PAT) allows that different devices with private addresses simultaneously use the same public address.
-In PAT, the port numbers of the IP packets changed in addition to the addresses.
-The NAT device keeps a database with the association of address and port in the public side and the private side.
+In NAT/PAT, both IP addresses and port numbers are translated.
+The NAT/PAT device keeps a database with the association of address and port in the public side and the private side.
 Each entry in the database has four fields: original address, original port, translated address and translated port.
 Two different private addresses can be translated to the same public address as long as the resultant translation has different ports and therefore the translated address and translated port tuple is unique.
 
