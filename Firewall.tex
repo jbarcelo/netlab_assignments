@@ -1,5 +1,14 @@
 \chapter{Firewall}
 
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tablered}}l}{Important}\\
+For this practical exercise, you have to submit a report the answers to the questions below. When submitting the answers to the questions, be brief but precise. If you include screenshots, indicate on the screenshot what is the answer.\\
+\hline
+\end{tabular}
+\end{center}
+
 The goals of this assignment are the following.
 
 \begin{itemize}
@@ -62,7 +71,7 @@ We try to ping between the two computers connected to the internal interfaces.
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
 \multicolumn{1}{>{\columncolor{tableorange}}l}{Question}\\
-Does it work? Why?\\
+With the default configuration of the firewall, does the ping command succeed? Why?\\
 \hline
 \end{tabular}
 \end{center}
@@ -71,12 +80,14 @@ Does it work? Why?\\
 
 The Cisco ASA use the same OS that the other devices used in the previous assignments, the Cisco IOS. Open the \textsf{Options} \textgreater \textsf{Preferences} menu and check the \textsf{Preview commands before sending them to the device} option. This will show us the equivalent commands that would be used on the console to change the configuration.
 
-Explain which is the default configuration of the firewall. Observe and explain the different aspects that can be configured using the icons on the left hand side of the screen.
+Explain which is the default configuration of the firewall.
 
 \begin{center}
 \sffamily\small
 \begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
-\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions}\\
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Questions and Tasks}\\
+Observe and explain the different aspects that can be configured using the icons on the left hand side of the screen.\\
+\hline
 What is the default configuration of Ethernet 0/0 (outside)?\\
 \hline
 Why do you thing that the router ships with this configuration?\\
@@ -113,7 +124,16 @@ command to see who is connected to the firewall.
 # show run
 \end{lstlisting}
 to see the running configuration.
-Find information about Telnet and DHCP and explain it.
+
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Task}\\
+Find information about Telnet and DHCP and explain it.\\
+\hline
+\end{tabular}
+\end{center}
+
 We also try the commands
 \begin{lstlisting}
 # show interface
@@ -122,9 +142,17 @@ and
 \begin{lstlisting}
 # show traffic
 \end{lstlisting}
-and explain the information that they provide.
 
-Discuss the security implications of connecting using Telnet of the console.
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Tasks}\\
+Explain the information the previous commands provide.\\
+\hline
+Discuss the security implications of connecting using Telnet of the console.\\
+\hline
+\end{tabular}
+\end{center}
 
 \section{The Hosts/Networks Table}
 
@@ -149,7 +177,7 @@ The last rule is \emph{any to any deny}. Why?\\
 
 The first rule allows traffic from any IP source to any IP destination if the destination interface has a lower security level. If this rule does not apply, the second rule is examined. The second rule always applies and discards the packet.
 
-We shall observe and explain the rules for the traffic arriving to the external interfaces. To understand the rules, we will pay attention to the graphical diagrams offered by the software.`
+We shall observe and explain the rules for the traffic arriving to the external interfaces. To understand the rules, we will pay attention to the graphical diagrams offered by the software.
 
 We shall install and configure the FTP server to the external computer. Remember that it is needed to add a folder.
 
@@ -163,6 +191,15 @@ Is it possible to access the FTP server from the internal computers?\\
 \end{center}
 
 Use the rules to deny the access to the FTP server to one of the internal computers and allow access to the other. Observe the log messages to verify that access is being denied. Each time that you change the configuration and try to access to the ftp server, clean the browser cache.
+
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Task}\\
+Include in your report the configuration of the firewall.\\
+\hline
+\end{tabular}
+\end{center}
 
 \section{Translation Rules}
 
@@ -183,6 +220,15 @@ What is the IP address used after the packets traverse the firewall?\\
 
 We can use the ASDM for network monitoring. It allows to select the message supervising level. Check the Telnet connections and connected users using the options of the menu on the left. There is also a tool to generate graphs such as traffic, memory and CPU. Look at some of the graphs and enumerate them.
 
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Task}\\
+Include in your report a brief summary of your observations.\\
+\hline
+\end{tabular}
+\end{center}
+
 \section{Case Study}
 
 An enterprise has a C class network 204.69.100+X.0 and wants securely connect their internal network to an external network. The address of the outside firewall interface is 204.69.100+X.1.
@@ -191,4 +237,13 @@ In the internal network there is an FTP server with address 192.168.1.4 that nee
 
 The other requirements are that internal users must be able to ping external devices, but not the other way around.
 
-We shall configure the firewall to satisfy the above requirements. Explain the changes that we have made and the tests performed to verify the correctness of the configuration.
+We shall configure the firewall to satisfy the above requirements.
+
+\begin{center}
+\sffamily\small
+\begin{tabular}{>{\columncolor{tablegray}}p{15cm}}
+\multicolumn{1}{>{\columncolor{tableorange}}l}{Task}\\
+Explain the changes that we have made and the tests performed to verify the correctness of the configuration.\\
+\hline
+\end{tabular}
+\end{center}
